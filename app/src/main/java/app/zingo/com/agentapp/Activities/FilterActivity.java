@@ -46,7 +46,7 @@ public class FilterActivity extends AppCompatActivity {
     Button mFilter;
     public LocalityFilterAdapter adapter;
 
-    String locality,checkInDate,checkOutDate,room,checkInTime,checkOutTime,price;
+    String locality,checkInDate,checkOutDate,room,checkInTime,checkOutTime,price,city;
     Double latitude,longitude;
 
     ArrayList<String> hotelLocality;
@@ -73,6 +73,7 @@ public class FilterActivity extends AppCompatActivity {
                 hotelLocality = intent.getStringArrayListExtra("LocalityName");
 
                 locality = intent.getStringExtra("Locality");
+                city = intent.getStringExtra("City");
                 checkInDate = intent.getStringExtra("CheckinDate");
                 checkOutDate = intent.getStringExtra("CheckOutDate");
                 checkInTime = intent.getStringExtra("CheckInTime");
@@ -216,6 +217,7 @@ public class FilterActivity extends AppCompatActivity {
                             Intent filter = new Intent(FilterActivity.this, HotelListActivity.class);
                             //filter.putStringArrayListExtra("LocalityName",hotelLocality);
                             filter.putExtra("Locality",locality);
+                            filter.putExtra("City",city);
                             filter.putExtra("Latitude",latitude);
                             filter.putExtra("Longitude",longitude);
                             filter.putExtra("CheckinDate",checkInDate);
@@ -237,6 +239,7 @@ public class FilterActivity extends AppCompatActivity {
                             Intent filter = new Intent(FilterActivity.this, HotelListActivity.class);
                             //filter.putStringArrayListExtra("LocalityName",hotelLocality);
                             filter.putExtra("Locality",locality);
+                            filter.putExtra("City",city);
                             filter.putExtra("Latitude",latitude);
                             filter.putExtra("Longitude",longitude);
                             filter.putExtra("CheckinDate",checkInDate);

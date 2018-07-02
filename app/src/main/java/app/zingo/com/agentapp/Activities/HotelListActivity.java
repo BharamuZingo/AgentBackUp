@@ -163,19 +163,28 @@ public class HotelListActivity extends AppCompatActivity {
                 mGuestDetails.setText(s[0] + " Rooms, " + s[1] + " Adult, " + s[2] + " Child");
             }
             //getHotels();
-            if (activity != null) {
+            /*if (activity != null) {
 //                System.out.println("Feature Size=="+featureList.size());
                 //filterFeature(featureList);
                 getHotels(activity);
 
-            } else {
+            } else {*/
                 if (locality != null) {
-                    getHotelsByLocalty(locality,city);
+                    if (activity != null) {
+//                System.out.println("Feature Size=="+featureList.size());
+                        //filterFeature(featureList);
+                        getHotelsByLocalty(locality,city,activity);
+
+                    }else{
+                        getHotelsByLocalty(locality,city,"normal");
+                    }
+
                 } else {
-                    getHotels("normal");
+                   // getHotels("normal");
+                    Toast.makeText(HotelListActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                 }
 
-            }
+          //  }
 
 
             mFilterParent.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +194,7 @@ public class HotelListActivity extends AppCompatActivity {
                     Intent filter = new Intent(HotelListActivity.this, FilterActivity.class);
                     //filter.putStringArrayListExtra("LocalityName",hotelLocality);
                     filter.putExtra("Locality", locality);
+                    filter.putExtra("City", city);
                     filter.putExtra("Latitude", latitude);
                     filter.putExtra("Longitude", longitude);
                     filter.putExtra("CheckinDate", checkInDate);
@@ -695,7 +705,7 @@ public class HotelListActivity extends AppCompatActivity {
 
 
 
-    private void getHotelsByLocalty(final String locality, final String city){
+    private void getHotelsByLocalty(final String locality, final String city,final String filterType){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("please wait..");
         progressDialog.setCancelable(false);
@@ -740,9 +750,163 @@ public class HotelListActivity extends AppCompatActivity {
 
                                     if(approvedHotels != null && approvedHotels.size() != 0)
                                     {
-                                        adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
-                                                checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
-                                        mLocalHotelList.setAdapter(adapter);
+
+                                        if(filterType.equalsIgnoreCase("filter")){
+
+                                            fillterHotels = new ArrayList<>();
+                                            int minPrice = Integer.parseInt(lowPrice);
+                                            int maxPrice = Integer.parseInt(highPrice);
+                                            System.out.println("LP=="+lowPrice+" HP=="+highPrice);
+
+                                            if(approvedHotels != null && approvedHotels.size() != 0 )
+                                            {
+
+                                                if(featureList!=null&&featureList.size()!=0){
+                                                    for(int i=0;i<approvedHotels.size();i++){
+
+                                                        for(int j=0;j<featureList.size();j++){
+
+                                                            if(approvedHotels.get(i).getHotelType().contains(featureList.get(j))){
+                                                                fillterHotels.add(approvedHotels.get(i));
+                                                                break;
+                                                            }
+
+
+                                                       /* if(featureList.get(j).contains(allApprovedHotels.get(i).getHotelType())){
+                                                            fillterHotels.add(allApprovedHotels.get(i));
+                                                            break;
+                                                        }*/
+
+                                                        }
+
+
+                                                    }
+
+                                                    if(fillterHotels!=null&&fillterHotels.size()!=0){
+
+                                                        ArrayList<HotelDetails> priceHotels = new ArrayList<>();
+                                                        if(minPrice==0&&maxPrice==0){
+                                                            if(approvedHotels != null)
+                                                            {
+                                                                approvedHotels.clear();
+                                                            }
+                                                            approvedHotels = fillterHotels;
+                                                            adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
+                                                                    checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
+                                                            mLocalHotelList.setAdapter(adapter);
+                                                        }else{
+
+                                                            for(int i=0;i<fillterHotels.size();i++){
+                                                                if(minPrice!=0&&maxPrice==0){
+                                                                    if(fillterHotels.get(i).getRooms().get(0).getSellRate()>=minPrice){
+                                                                        priceHotels.add(fillterHotels.get(i));
+                                                                        break;
+                                                                    }
+
+                                                                }else if(minPrice==0&&maxPrice!=0){
+
+                                                                    if(fillterHotels.get(i).getRooms().get(0).getSellRate()<=maxPrice){
+                                                                        priceHotels.add(fillterHotels.get(i));
+                                                                        break;
+                                                                    }
+
+                                                                }else if(minPrice!=0&&maxPrice!=0){
+                                                                    if(fillterHotels.get(i).getRooms().get(0).getSellRate()>=minPrice&&fillterHotels.get(i).getRooms().get(0).getSellRate()<=maxPrice){
+                                                                        priceHotels.add(fillterHotels.get(i));
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            if(priceHotels!=null&&priceHotels.size()!=0){
+                                                                if(approvedHotels != null)
+                                                                {
+                                                                    approvedHotels.clear();
+                                                                }
+                                                                approvedHotels = priceHotels;
+                                                                adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
+                                                                mLocalHotelList.setAdapter(adapter);
+                                                            }else{
+
+                                                                mNoResult.setVisibility(View.VISIBLE);
+                                                                mScrollView.setVisibility(View.GONE);
+                                                            }
+
+                                                        }
+
+
+                                                    }else{
+
+                                                        mNoResult.setVisibility(View.VISIBLE);
+                                                        mScrollView.setVisibility(View.GONE);
+                                                    }
+
+                                                }else{
+
+                                                    if(approvedHotels!=null&&approvedHotels.size()!=0){
+
+                                                        ArrayList<HotelDetails> priceHotels = new ArrayList<>();
+                                                        if(minPrice==0&&maxPrice==0){
+                                                            adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
+                                                            mLocalHotelList.setAdapter(adapter);
+                                                        }else{
+
+                                                            for(int i=0;i<approvedHotels.size();i++){
+                                                                if(approvedHotels.get(i).getRooms()!=null&&approvedHotels.get(i).getRooms().size()!=0){
+
+                                                                    if(minPrice!=0&&maxPrice==0){
+                                                                        if(approvedHotels.get(i).getRooms().get(0).getSellRate()>=minPrice){
+                                                                            priceHotels.add(approvedHotels.get(i));
+                                                                        }
+
+                                                                    }else if(minPrice==0&&maxPrice!=0){
+
+                                                                        if(approvedHotels.get(i).getRooms().get(0).getSellRate()<=maxPrice){
+                                                                            priceHotels.add(approvedHotels.get(i));
+                                                                        }
+
+                                                                    }else if(minPrice!=0&&maxPrice!=0){
+                                                                        if(approvedHotels.get(i).getRooms().get(0).getSellRate()>=minPrice&&approvedHotels.get(i).getRooms().get(0).getSellRate()<=maxPrice){
+                                                                            priceHotels.add(approvedHotels.get(i));
+                                                                        }
+                                                                    }
+
+                                                                }
+
+                                                            }
+
+                                                            if(priceHotels!=null&&priceHotels.size()!=0){
+                                                                System.out.println("Price hotels=="+priceHotels.size());
+                                                                if(approvedHotels != null)
+                                                                {
+                                                                    approvedHotels.clear();
+                                                                }
+                                                                approvedHotels = priceHotels;
+                                                                adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"all");
+                                                                mLocalHotelList.setAdapter(adapter);
+                                                            }else{
+
+                                                                mNoResult.setVisibility(View.VISIBLE);
+                                                                mScrollView.setVisibility(View.GONE);
+                                                            }
+
+                                                        }
+
+
+                                                    }
+
+                                                }
+
+
+
+                                            }
+
+                                        }else {
+                                            adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
+                                                    checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
+                                            mLocalHotelList.setAdapter(adapter);
+                                        }
+
 
                                     }else{
 
@@ -752,12 +916,12 @@ public class HotelListActivity extends AppCompatActivity {
                                     }
                                 /*mPreloaderList.setVisibility(View.GONE);
                                 mProgress.setVisibility(View.GONE);*/
-                                    getHotels("normal");
+                                   // getHotels("normal");
                                 }
                                 else
                                 {
                                     //Toast.makeText(HotelListActivity.this, "No Hotels in your search location", Toast.LENGTH_SHORT).show();
-                                    getHotels("normal");
+                                   // getHotels("normal");
                                     //mPreloaderList.setVisibility(View.GONE);
                                     //mProgress.setVisibility(View.GONE);
                                     mNoHotels.setVisibility(View.VISIBLE);
@@ -906,9 +1070,9 @@ public class HotelListActivity extends AppCompatActivity {
                         latitude,longitude,checkInTime,checkOutTime,room,price);
                 mLocalHotelList.setAdapter(adapter);
 
-                if(allApprovedHotels != null && allApprovedHotels.size() != 0)
+               /* if(approvedHotels != null && approvedHotels.size() != 0)
                 {
-                    Collections.sort(allApprovedHotels, new Comparator<HotelDetails>() {
+                    Collections.sort(approvedHotels, new Comparator<HotelDetails>() {
                         @Override
                         public int compare(HotelDetails o1, HotelDetails o2) {
                             if(o1.getRooms() != null && o1.getRooms().size() != 0 && o2.getRooms() != null && o2.getRooms().size() != 0)
@@ -921,20 +1085,20 @@ public class HotelListActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    /*if(allApprovedHotelsDistance != null)
+                    *//*if(approvedHotelsDistance != null)
                     {
-                        allApprovedHotelsDistance.clear();
-                    }*/
-                    adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,
+                        approvedHotelsDistance.clear();
+                    }*//*
+                    adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
                             checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price);
                     mAddedAllHotels.setAdapter(adapter);
-                }
+                }*/
             }
-            else if(approvedHotels != null && approvedHotels.size() ==0)
+            /*else if(approvedHotels != null && approvedHotels.size() ==0)
             {
-                if(allApprovedHotels != null && allApprovedHotels.size() != 0)
+                if(approvedHotels != null && approvedHotels.size() != 0)
                 {
-                    Collections.sort(allApprovedHotels, new Comparator<HotelDetails>() {
+                    Collections.sort(approvedHotels, new Comparator<HotelDetails>() {
                         @Override
                         public int compare(HotelDetails o1, HotelDetails o2) {
                             if(o1.getRooms() != null && o1.getRooms().size() != 0 && o2.getRooms() != null && o2.getRooms().size() != 0)
@@ -947,18 +1111,18 @@ public class HotelListActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    /*if(allApprovedHotelsDistance != null)
+                    *//*if(approvedHotelsDistance != null)
                     {
-                        allApprovedHotelsDistance.clear();
-                    }*/
-                    adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,
+                        approvedHotelsDistance.clear();
+                    }*//*
+                    adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
                             checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price);
                     mAddedAllHotels.setAdapter(adapter);
                 }
-            }
-            else if(approvedHotels == null && (allApprovedHotels !=null && allApprovedHotels.size() != 0))
+            }*/
+            /*else if(approvedHotels == null && (approvedHotels !=null && approvedHotels.size() != 0))
             {
-                Collections.sort(allApprovedHotels, new Comparator<HotelDetails>() {
+                Collections.sort(approvedHotels, new Comparator<HotelDetails>() {
                     @Override
                     public int compare(HotelDetails o1, HotelDetails o2) {
                         if(o1.getRooms() != null && o1.getRooms().size() != 0 && o2.getRooms() != null && o2.getRooms().size() != 0)
@@ -971,14 +1135,14 @@ public class HotelListActivity extends AppCompatActivity {
                         }
                     }
                 });
-                /*if(allApprovedHotelsDistance != null)
+                *//*if(approvedHotelsDistance != null)
                 {
-                    allApprovedHotelsDistance.clear();
-                }*/
-                adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,
+                    approvedHotelsDistance.clear();
+                }*//*
+                adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
                         checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price);
                 mAddedAllHotels.setAdapter(adapter);
-            }
+            }*/
         }
 
         else if(type.equalsIgnoreCase("high"))
@@ -1007,9 +1171,9 @@ public class HotelListActivity extends AppCompatActivity {
                         checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price);
                 mLocalHotelList.setAdapter(adapter);
 
-                if(allApprovedHotels != null && allApprovedHotels.size() != 0)
+                /*if(approvedHotels != null && approvedHotels.size() != 0)
                 {
-                    Collections.sort(allApprovedHotels, new Comparator<HotelDetails>() {
+                    Collections.sort(approvedHotels, new Comparator<HotelDetails>() {
                         @Override
                         public int compare(HotelDetails o1, HotelDetails o2) {
                             if(o1.getRooms() != null && o1.getRooms().size() != 0 && o2.getRooms() != null && o2.getRooms().size() != 0)
@@ -1022,20 +1186,20 @@ public class HotelListActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    /*if(allApprovedHotelsDistance != null)
+                    *//*if(approvedHotelsDistance != null)
                     {
-                        allApprovedHotelsDistance.clear();
-                    }*/
-                    adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,
+                        approvedHotelsDistance.clear();
+                    }*//*
+                    adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
                             checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price);
                     mAddedAllHotels.setAdapter(adapter);
-                }
+                }*/
             }
-            else if(approvedHotels != null && approvedHotels.size() == 0)
+            /*else if(approvedHotels != null && approvedHotels.size() == 0)
             {
-                if(allApprovedHotels != null && allApprovedHotels.size() != 0)
+                if(approvedHotels != null && approvedHotels.size() != 0)
                 {
-                    Collections.sort(allApprovedHotels, new Comparator<HotelDetails>() {
+                    Collections.sort(approvedHotels, new Comparator<HotelDetails>() {
                         @Override
                         public int compare(HotelDetails o1, HotelDetails o2) {
                             if(o1.getRooms() != null && o1.getRooms().size() != 0 && o2.getRooms() != null && o2.getRooms().size() != 0)
@@ -1048,18 +1212,18 @@ public class HotelListActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    /*if(allApprovedHotelsDistance != null)
+                    *//*if(approvedHotelsDistance != null)
                     {
-                        allApprovedHotelsDistance.clear();
-                    }*/
-                    adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,
+                        approvedHotelsDistance.clear();
+                    }*//*
+                    adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
                             checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price);
                     mAddedAllHotels.setAdapter(adapter);
                 }
             }
-            else if(approvedHotels == null && (allApprovedHotels !=null && allApprovedHotels.size() != 0))
+            else if(approvedHotels == null && (approvedHotels !=null && approvedHotels.size() != 0))
             {
-                Collections.sort(allApprovedHotels, new Comparator<HotelDetails>() {
+                Collections.sort(approvedHotels, new Comparator<HotelDetails>() {
                     @Override
                     public int compare(HotelDetails o1, HotelDetails o2) {
                         if(o1.getRooms() != null && o1.getRooms().size() != 0 && o2.getRooms() != null && o2.getRooms().size() != 0)
@@ -1072,14 +1236,14 @@ public class HotelListActivity extends AppCompatActivity {
                         }
                     }
                 });
-                /*if(allApprovedHotelsDistance != null)
+                *//*if(approvedHotelsDistance != null)
                 {
-                    allApprovedHotelsDistance.clear();
-                }*/
-                adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,
+                    approvedHotelsDistance.clear();
+                }*//*
+                adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
                         checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price);
                 mAddedAllHotels.setAdapter(adapter);
-            }
+            }*/
 
         }
     }
@@ -1109,8 +1273,8 @@ public class HotelListActivity extends AppCompatActivity {
                     latitude,longitude,checkInTime,checkOutTime,room,price);
             mLocalHotelList.setAdapter(adapter);
 
-            if (allApprovedHotelsDistance != null && allApprovedHotelsDistance.size() != 0) {
-                Collections.sort(allApprovedHotelsDistance, new Comparator<HotelWithDistance>() {
+           /* if (approvedHotelsDistance != null && approvedHotelsDistance.size() != 0) {
+                Collections.sort(approvedHotelsDistance, new Comparator<HotelWithDistance>() {
                     @Override
                     public int compare(HotelWithDistance o1, HotelWithDistance o2) {
                         if (o1.getDistance() > o2.getDistance()) {
@@ -1123,20 +1287,20 @@ public class HotelListActivity extends AppCompatActivity {
                     }
                 });
 
-                allApprovedHotels.clear();
-                for(int i=0;i<allApprovedHotelsDistance.size();i++)
+                approvedHotels.clear();
+                for(int i=0;i<approvedHotelsDistance.size();i++)
                 {
-                    allApprovedHotels.add(allApprovedHotelsDistance.get(i).getHotelDetails());
+                    approvedHotels.add(approvedHotelsDistance.get(i).getHotelDetails());
                 }
-                adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,checkOutDate,
+                adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,
                         latitude,longitude,checkInTime,checkOutTime,room,price);
                 mAddedAllHotels.setAdapter(adapter);
-            }
+            }*/
         }
 
-        else if (approvedHotelsDistance != null && approvedHotelsDistance.size() == 0) {
-            if (allApprovedHotelsDistance != null && allApprovedHotelsDistance.size() != 0) {
-                Collections.sort(allApprovedHotelsDistance, new Comparator<HotelWithDistance>() {
+        /*else if (approvedHotelsDistance != null && approvedHotelsDistance.size() == 0) {
+            if (approvedHotelsDistance != null && approvedHotelsDistance.size() != 0) {
+                Collections.sort(approvedHotelsDistance, new Comparator<HotelWithDistance>() {
                     @Override
                     public int compare(HotelWithDistance o1, HotelWithDistance o2) {
                         if (o1.getDistance() > o2.getDistance()) {
@@ -1149,19 +1313,19 @@ public class HotelListActivity extends AppCompatActivity {
                     }
                 });
 
-                allApprovedHotels.clear();
-                for(int i=0;i<allApprovedHotelsDistance.size();i++)
+                approvedHotels.clear();
+                for(int i=0;i<approvedHotelsDistance.size();i++)
                 {
-                    allApprovedHotels.add(allApprovedHotelsDistance.get(i).getHotelDetails());
+                    approvedHotels.add(approvedHotelsDistance.get(i).getHotelDetails());
                 }
-                adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,checkOutDate,
+                adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,
                         latitude,longitude,checkInTime,checkOutTime,room,price);
                 mAddedAllHotels.setAdapter(adapter);
             }
         }
-        else if(approvedHotelsDistance == null &&(allApprovedHotelsDistance != null && allApprovedHotelsDistance.size() != 0))
+        else if(approvedHotelsDistance == null &&(approvedHotelsDistance != null && approvedHotelsDistance.size() != 0))
         {
-            Collections.sort(allApprovedHotelsDistance, new Comparator<HotelWithDistance>() {
+            Collections.sort(approvedHotelsDistance, new Comparator<HotelWithDistance>() {
                 @Override
                 public int compare(HotelWithDistance o1, HotelWithDistance o2) {
                     if (o1.getDistance() > o2.getDistance()) {
@@ -1174,15 +1338,15 @@ public class HotelListActivity extends AppCompatActivity {
                 }
             });
 
-            allApprovedHotels.clear();
-            for(int i=0;i<allApprovedHotelsDistance.size();i++)
+            approvedHotels.clear();
+            for(int i=0;i<approvedHotelsDistance.size();i++)
             {
-                allApprovedHotels.add(allApprovedHotelsDistance.get(i).getHotelDetails());
+                approvedHotels.add(approvedHotelsDistance.get(i).getHotelDetails());
             }
-            adapter = new HotelListAdapter(HotelListActivity.this, allApprovedHotels,checkInDate,checkOutDate,
+            adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,
                     latitude,longitude,checkInTime,checkOutTime,room,price);
             mAddedAllHotels.setAdapter(adapter);
-        }
+        }*/
     }
 
 
@@ -1212,9 +1376,9 @@ public class HotelListActivity extends AppCompatActivity {
            this.curLat = curLat;
            this.curLang = curLang;
            this.adtype = adtype;
-           if(allApprovedHotelsDistance != null)
+           if(approvedHotelsDistance != null)
            {
-               allApprovedHotelsDistance.clear();
+               approvedHotelsDistance.clear();
            }
            if(approvedHotelsDistance != null)
            {
@@ -1501,7 +1665,7 @@ public class HotelListActivity extends AppCompatActivity {
                                    {
                                        if(adaptertype.equalsIgnoreCase("all"))
                                        {
-                                           allApprovedHotelsDistance.add(new HotelWithDistance(hotelDetails,distance));
+                                           approvedHotelsDistance.add(new HotelWithDistance(hotelDetails,distance));
                                        }
                                        else if(adaptertype.equalsIgnoreCase("filter"))
                                        {
@@ -1530,7 +1694,7 @@ public class HotelListActivity extends AppCompatActivity {
                                    {
                                        if(adaptertype.equalsIgnoreCase("all"))
                                        {
-                                           allApprovedHotelsDistance.add(new HotelWithDistance(hotelDetails,0.0));
+                                           approvedHotelsDistance.add(new HotelWithDistance(hotelDetails,0.0));
                                        }
                                        else
                                        {
