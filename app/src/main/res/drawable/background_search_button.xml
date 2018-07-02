@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:textColor="#ffffff"
+        android:state_enabled="true"
+        android:drawable="@drawable/background_round_border_dark_red" />
+    <item
+        android:textColor="@color/black"
+        android:state_enabled="false"
+        android:drawable="@drawable/background_round_red" />
+</selector>

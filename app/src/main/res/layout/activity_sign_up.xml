@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/hotel2"
+    android:fitsSystemWindows="true"
+
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#98000000" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:fitsSystemWindows="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+
+                >
+
+                <TextView
+                    android:id="@+id/left_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:alpha="50"
+                    android:gravity="center"
+                    android:text="Join Us"
+                    android:textColor="#ffffff"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:alpha="50"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Earn more"
+                    android:textColor="#ffffff"
+                    android:textSize="10dp"
+                    android:textStyle="normal"
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="40dp">
+                    <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/btn_selector"
+                        android:gravity="center"
+                        android:text="Agent"
+                        android:id="@+id/login_agent"
+                        android:layout_weight="1"
+                        android:textColor="#ffffff"
+                        app:fontName="arial_bold"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btn_selector"
+                        android:gravity="center"
+                        android:id="@+id/login_guest"
+                        android:text="Guest"
+                        android:textColor="#ffffff"
+                        app:fontName="arial_bold" />
+                </LinearLayout>
+                <!--<RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/selection_item"
+                        android:button="@drawable/female"
+                        />
+                </RadioGroup>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <RadioButton
+                            android:id="@+id/sign_up_mr"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/radio_btn_selector"
+                            android:button="@drawable/editext_border"
+                            android:gravity="center"
+                            android:text="Mr"
+                            android:textColor="@drawable/rbtn_textcolor_selector"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/sign_up_mrs"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/radio_btn_selector"
+                            android:button="@drawable/editext_border"
+                            android:gravity="center"
+                            android:text="Mrs"
+                            android:textColor="@drawable/rbtn_textcolor_selector"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/sign_up_ms"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/radio_btn_selector"
+                            android:button="@drawable/editext_border"
+                            android:gravity="center"
+                            android:text="Ms"
+                            android:textColor="@drawable/rbtn_textcolor_selector"
+                            android:textSize="16sp" />
+                    </RadioGroup>
+
+                    <app.zingo.com.agentapp.CustomViews.CustomEditextTTF
+                        android:id="@+id/first_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/test_background"
+                        android:hint="Full Name"
+                        android:singleLine="true"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#afaeae"
+                        app:fontName="arial" />
+
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                        <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="GENDER"
+                            android:textColor="#ffffff"
+                            app:fontName="arial_bold" />
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/profile_male"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/radio_button_signup"
+                            android:button="@drawable/editext_border"
+                            android:gravity="center"
+                            android:text="Male"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/profile_female"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/radio_button_signup"
+                            android:button="@drawable/editext_border"
+                            android:gravity="center"
+
+                            android:text="Female"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp" />
+
+                        <RadioButton
+                            android:id="@+id/profile_transgender"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/radio_button_signup"
+                            android:button="@drawable/editext_border"
+                            android:gravity="center"
+                            android:text="Other"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+
+                            />
+                    </RadioGroup>
+                </LinearLayout>
+
+
+
+                    <app.zingo.com.agentapp.CustomViews.CustomEditextTTF
+                        android:id="@+id/user_name_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/test_background"
+                        android:hint="User Name"
+                        android:singleLine="true"
+                        android:textColor="#ffffff"
+                        android:textColorHint="#afaeae"
+                        app:fontName="arial"  />
+
+                    <app.zingo.com.agentapp.CustomViews.CustomEditextTTF
+                        android:id="@+id/phone_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                      android:layout_margin="10dp"
+                        android:background="@drawable/test_background"
+                        android:drawablePadding="10dp"
+                        android:hint="Phone Number"
+                        android:inputType="number"
+                        android:singleLine="true"
+
+                        android:textColor="#fff"
+                        android:textColorHint="#afaeae"
+                        app:fontName="arial"
+
+                        />
+
+                    <app.zingo.com.agentapp.CustomViews.CustomEditextTTF
+                        android:id="@+id/email_id_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                       android:layout_margin="10dp"
+
+                        android:background="@drawable/test_background"
+                        android:drawablePadding="10dp"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColor="#fff"
+                        android:textColorHint="#afaeae"
+                        app:fontName="arial"  />
+
+                    <app.zingo.com.agentapp.CustomViews.CustomEditextTTF
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+
+
+                        android:layout_height="35dp"
+                       android:layout_margin="10dp"
+                        android:background="@drawable/test_background"
+                        android:drawablePadding="10dp"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:textColor="#fff"
+                        android:textColorHint="#afaeae"
+                        app:fontName="arial"  />
+
+                    <app.zingo.com.agentapp.CustomViews.CustomEditextTTF
+                        android:id="@+id/confirm_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                       android:layout_margin="10dp"
+                        android:background="@drawable/test_background"
+                        android:drawablePadding="10dp"
+                        android:hint="Confirm Password"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:textColor="#fff"
+
+                        android:textColorHint="#afaeae"
+                        app:fontName="arial"
+
+                        />
+
+                    <app.zingo.com.agentapp.CustomViews.CustomEditextTTF
+                        android:id="@+id/refer_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/test_background"
+                        android:drawablePadding="10dp"
+                        android:hint="Referal Code"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textColor="#fff"
+
+                        android:textColorHint="#afaeae"
+                        app:fontName="arial"
+
+                        />
+
+                    <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                        android:id="@+id/submit_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/button_background_two"
+                        android:gravity="center"
+                        android:text="SIGN UP"
+                        android:textColor="#ffffff"
+                        app:fontName="arial" />
+                </LinearLayout>
+
+                <!-- <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:layout_marginTop="15dp"
+                     android:weightSum="3">
+
+                     <View
+                         android:layout_width="0dp"
+                         android:layout_height="2px"
+                         android:layout_weight="1"
+                         android:layout_gravity="center"
+                         android:background="#FFFFFF" />
+
+                     <TextView
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:text="or you can"
+                         android:textSize="18dp"
+                         android:layout_marginLeft="30dp"
+                         android:layout_weight="1"
+                         android:layout_gravity="center"
+                         android:textColor="#ffffff"
+                         android:textStyle="bold"/>
+
+                     <View
+                         android:layout_width="0dp"
+                         android:layout_height="2px"
+                         android:layout_weight="1"
+                         android:layout_gravity="center"
+                         android:background="#FFFFFF" />
+
+                 </LinearLayout>
+
+
+
+                 <Button
+                     android:id="@+id/signBtn"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="25dp"
+                     android:background="@drawable/custom_border"
+                     android:padding="3dp"
+                     android:text="Create An Account"
+                     android:textColor="#FFFFFF"
+                     android:textSize="17sp"
+                     android:textStyle="bold" />-->
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+
+
+</RelativeLayout>
+
+    <!--<ScrollView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:scrollbars="none">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+
+
+                   >
+                   <TextView
+                       android:id="@+id/left_text"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_horizontal"
+                       android:text="@string/sign_up_title"
+                       android:textColor="#ffffff"
+                       android:alpha="50"
+                       android:gravity="center"
+                       android:layout_marginTop="50dp"
+                       android:textSize="30dp"
+                       android:textStyle="bold"
+                       />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center_horizontal"
+                       android:text="@string/sign_up_sub_title"
+                       android:textColor="#ffffff"
+                       android:alpha="50"
+                       android:paddingLeft="10dp"
+                       android:paddingRight="10dp"
+                       android:gravity="center"
+                       android:layout_marginTop="5dp"
+                       android:textSize="10dp"
+                       android:textStyle="normal"
+                       android:layout_marginBottom="10dp"
+
+                       />
+                   &lt;!&ndash;<RadioGroup
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+                       <RadioButton
+                           android:layout_width="40dp"
+                           android:layout_height="40dp"
+                           android:background="@drawable/selection_item"
+                           android:button="@drawable/female"
+                           />
+                   </RadioGroup>&ndash;&gt;
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical"
+                       android:paddingLeft="30dp"
+                       android:paddingRight="30dp"
+                       android:layout_marginTop="20dp"
+                       android:layout_gravity="center"
+                       android:gravity="center">
+                       <RadioGroup
+                           android:layout_width="match_parent"
+                           android:layout_height="30dp"
+                           android:orientation="horizontal"
+                           android:layout_marginBottom="20dp"
+                           android:layout_gravity="center"
+                           android:gravity="center">
+                           <RadioButton
+                               android:layout_width="70dp"
+                               android:layout_height="match_parent"
+                               android:button="@drawable/editext_border"
+                               android:background="@drawable/radio_btn_selector"
+                               android:textColor="@drawable/rbtn_textcolor_selector"
+                               android:text="Mr"
+                               android:id="@+id/sign_up_mr"
+                               android:textSize="16sp"
+                               android:gravity="center"
+                               />
+                           <RadioButton
+                               android:layout_width="70dp"
+                               android:layout_height="match_parent"
+                               android:button="@drawable/editext_border"
+                               android:background="@drawable/radio_btn_selector"
+                               android:textColor="@drawable/rbtn_textcolor_selector"
+                               android:text="Mrs"
+                               android:id="@+id/sign_up_mrs"
+                               android:textSize="16sp"
+                               android:gravity="center"
+                               />
+                           <RadioButton
+                               android:layout_width="70dp"
+                               android:layout_height="match_parent"
+                               android:button="@drawable/editext_border"
+                               android:background="@drawable/radio_btn_selector"
+                               android:textColor="@drawable/rbtn_textcolor_selector"
+                               android:text="Ms"
+                               android:id="@+id/sign_up_ms"
+                               android:textSize="16sp"
+                               android:gravity="center"
+                               />
+                       </RadioGroup>
+                       <localapp.zingohotels.com.localapp.CustomViews.CustomEditextTTF
+                           android:layout_width="match_parent"
+                           android:layout_height="35dp"
+                           android:background="@drawable/editext_border"
+                           android:drawableLeft="@drawable/user_name"
+                           android:id="@+id/sign_up_user_name"
+                           android:hint="Full Name"
+                           app:editfontName="arial"
+                           android:textColor="#fff"
+                           android:singleLine="true"
+                           android:textColorHint="#eae8e8"
+                           android:drawablePadding="10dp"
+                           android:paddingLeft="15dp"
+                           />
+
+                       <RadioGroup
+                           android:layout_width="match_parent"
+                           android:layout_height="30dp"
+                           android:orientation="horizontal"
+                           android:layout_marginTop="20dp"
+                           android:layout_gravity="center"
+                           android:gravity="center">
+                           <RadioButton
+                               android:layout_width="70dp"
+                               android:layout_height="match_parent"
+                               android:button="@drawable/editext_border"
+                               android:background="@drawable/radio_btn_selector"
+                               android:textColor="@drawable/rbtn_textcolor_selector"
+                               android:text="Male"
+                               android:id="@+id/sign_up_male"
+                               android:textSize="16sp"
+                               android:gravity="center"
+                               />
+                           <RadioButton
+                               android:layout_width="70dp"
+                               android:layout_height="match_parent"
+                               android:button="@drawable/editext_border"
+                               android:background="@drawable/radio_btn_selector"
+                               android:textColor="@drawable/rbtn_textcolor_selector"
+                               android:text="Female"
+
+                               android:id="@+id/sign_up_female"
+                               android:textSize="16sp"
+                               android:gravity="center"/>
+                           <RadioButton
+                               android:layout_width="70dp"
+                               android:layout_height="match_parent"
+                               android:button="@drawable/editext_border"
+                               android:background="@drawable/radio_btn_selector"
+                               android:textColor="@drawable/rbtn_textcolor_selector"
+                               android:text="Other"
+                               android:id="@+id/sign_up_other"
+                               android:textSize="16sp"
+                               android:gravity="center"
+
+                               />
+                       </RadioGroup>
+                       <localapp.zingohotels.com.localapp.CustomViews.CustomEditextTTF
+                           android:layout_width="match_parent"
+                           android:layout_height="45dp"
+                           android:drawablePadding="10dp"
+                           android:hint="Phone Number"
+                           android:textColor="#fff"
+                           app:editfontName="arial"
+                           android:inputType="number"
+                           android:textColorHint="#eae8e8"
+                           android:background="@drawable/editext_border"
+                           android:drawableLeft="@drawable/user_name"
+                           android:id="@+id/sign_up_user_phone_number"
+                           android:layout_marginTop="20dp"
+                           android:paddingLeft="15dp"
+                           android:singleLine="true"
+                           />
+                       <localapp.zingohotels.com.localapp.CustomViews.CustomEditextTTF
+                           android:layout_width="match_parent"
+                           android:layout_height="45dp"
+                           android:background="@drawable/editext_border"
+                           android:drawableLeft="@drawable/email_icon"
+                           android:id="@+id/sign_up_user_email"
+                           android:paddingLeft="15dp"
+                           android:hint="Email"
+                           android:inputType="textEmailAddress"
+                           app:editfontName="arial"
+                           android:textColor="#fff"
+                           android:textColorHint="#eae8e8"
+                           android:drawablePadding="10dp"
+                           android:layout_marginTop="20dp"
+                           android:singleLine="true"
+                           />
+                       <localapp.zingohotels.com.localapp.CustomViews.CustomEditextTTF
+                           android:layout_width="match_parent"
+                           android:layout_height="45dp"
+                           android:background="@drawable/editext_border"
+                           android:drawableLeft="@drawable/password_icon"
+                           android:id="@+id/sign_up_user_password"
+                           android:layout_marginTop="20dp"
+                           android:textColorHint="#eae8e8"
+                           android:hint="Password"
+                           android:inputType="textPassword"
+                           app:editfontName="arial"
+                           android:textColor="#fff"
+                           android:drawablePadding="10dp"
+                           android:paddingLeft="15dp"
+                           android:singleLine="true"
+                           />
+                       <localapp.zingohotels.com.localapp.CustomViews.CustomEditextTTF
+                           android:layout_width="match_parent"
+                           android:layout_height="45dp"
+                           android:drawablePadding="10dp"
+                           android:hint="Confirm Password"
+                           android:textColor="#fff"
+                           app:editfontName="arial"
+                           android:textColorHint="#eae8e8"
+                           android:inputType="textPassword"
+                           android:singleLine="true"
+                           android:background="@drawable/editext_border"
+                           android:drawableLeft="@drawable/password_icon"
+                           android:id="@+id/sign_up_user_confirm_password"
+                           android:layout_marginTop="20dp"
+                           android:paddingLeft="15dp"
+                           />
+                       <localapp.zingohotels.com.localapp.CustomViews.CustomFontTextView
+                           android:layout_width="match_parent"
+                           android:layout_height="50dp"
+                           android:layout_marginTop="30dp"
+                           android:text="SIGN UP"
+                           android:gravity="center"
+                           android:id="@+id/sing_up"
+                           android:textColor="#ffffff"
+                           app:fontName="arial"
+                           android:background="@drawable/button_background"/>
+                   </LinearLayout>
+
+                   &lt;!&ndash; <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="15dp"
+                        android:weightSum="3">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2px"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:background="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="or you can"
+                            android:textSize="18dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"/>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2px"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:background="#FFFFFF" />
+
+                    </LinearLayout>
+
+
+
+                    <Button
+                        android:id="@+id/signBtn"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/custom_border"
+                        android:padding="3dp"
+                        android:text="Create An Account"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />&ndash;&gt;
+               </LinearLayout>
+           </ScrollView>-->

@@ -1,0 +1,158 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <!--<style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>-->
+
+    <style name="DialogTheme" parent="android:Theme.Dialog">
+
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <!-- No backgrounds, titles or window float -->
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearance" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+
+        <item name="android:textSize">14.0sp</item>
+
+        <item name="android:textStyle">normal</item>
+
+
+    </style>
+
+    <style name="ActionBar.TitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+
+        <item name="android:textSize">16.0sp</item>
+
+        <item name="android:textColor">@color/balck_38_opacity</item>
+
+        <!--<item name="android:fontFamily">sans-serif</item>-->
+
+    </style>
+
+    <style name="RatingBarStyle">
+        <item name="android:layout_width">15dp</item>
+        <item name="android:src">@drawable/ratingbar_drawable</item>
+        <item name="android:layout_height">15dp</item>
+    </style>
+
+    <style name="Actionbar.SubTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+
+        <item name="android:textSize">12.0sp</item>
+
+        <item name="android:textStyle">normal</item>
+
+        <item name="android:textColor">@color/balck_38_opacity</item>
+
+        <!--<item name="android:fontFamily">sans-serif-light</item>-->
+
+    </style>
+
+    <style name="ZingoHeaderBar">
+
+        <item name="android:background">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="HotelNameTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/new_hotel_name_txt_color</item>
+        <!--<item name="text">1</item>-->
+    </style>
+
+    <style name="customRatingBar" parent="android:style/Widget.Material.RatingBar.Small"></style>
+
+    <style name="CustomTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_black_1000</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BookingEngineTextStyle">
+        <!--<item>0</item>-->
+        <item name="android:textColor">#666666</item>
+    </style>
+
+    <style name="NewFooterPriceTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="NewFooterEcashTextStyle">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/white</item>
+        <!--<item>true</item>
+        <item>false</item>-->
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="NewFooterStrileOffPriceTextStyle">
+    <item name="android:textSize">20sp</item>
+    <item name="android:textColor">#b3ffffff</item>
+    <!--<item>true</item>
+    <item>false</item>-->
+    <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="NewFooterTotalAmountTextStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#80ffffff</item>
+        <!--<item>false</item>-->
+    </style>
+
+    <style name="NewFooterProceedTextStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <!--<item>true</item>
+        <item>false</item>-->
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="MyTheme.ActionBar" parent="android:Widget.Holo.ActionBar">
+    <item name="android:background">@android:color/transparent</item>
+    <item name="android:backgroundStacked">@android:color/transparent</item>
+    <item name="android:displayOptions">showTitle</item>
+    <!--<item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>-->
+    </style>
+</resources>

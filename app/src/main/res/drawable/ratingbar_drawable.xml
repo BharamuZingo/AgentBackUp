@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/rating1" android:drawable="@drawable/ic_star_inactive_icon" />
+    <item android:id="@+id/rating2" android:drawable="@drawable/ic_star_inactive_icon" />
+    <item android:id="@+id/rating3" android:drawable="@drawable/ic_star_active_icon" />
+</layer-list>

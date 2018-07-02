@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card-view="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_large_padding"
+                    android:layout_marginTop="@dimen/new_hotel_big_padding"
+                    android:layout_marginRight="@dimen/new_hotel_large_padding"
+                    android:layout_alignParentBottom="true">
+                        <TextView
+                            android:textSize="@dimen/new_hotel_final_review_hotel_name_txt_size"
+                            android:textColor="@color/text_black_heading"
+                            android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                            android:id="@+id/txt_hotel_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hotel Name"
+                            android:textStyle="bold"
+                            android:singleLine="true"
+                            android:includeFontPadding="false"
+                            android:fontFamily="sans-serif" />
+                        <TextView
+                            android:textSize="@dimen/new_hotel_final_review_hotel_address_txt_size"
+                            android:textColor="@color/text_black"
+                            android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                            android:id="@+id/txt_hotel_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/new_hotel_small_padding"
+                            android:layout_marginBottom="@dimen/new_hotel_small_padding"
+                            android:text="Hotel address"
+                            android:singleLine="true"
+                            android:includeFontPadding="false"
+                            android:fontFamily="sans-serif" />
+                        <RatingBar
+                            android:id="@+id/hotel_ratingbar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:isIndicator="true"
+                            android:visibility="gone"
+                            style="?android:attr/ratingBarStyleSmall"
+                             />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:paddingLeft="@dimen/new_hotel_large_padding"
+                    android:paddingRight="@dimen/new_hotel_large_padding"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.0">
+                                        <TextView
+                                            android:textSize="@dimen/new_hotel_final_review_hotel_check_in_and_check_out_txt_size"
+                                            android:textColor="@color/new_hotel_final_review_hotel_title_color"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/new_hotel_less_big_padding"
+                                            android:text="Check-in"
+                                            android:singleLine="true"
+                                            android:includeFontPadding="false"
+                                            android:fontFamily="sans-serif" />
+                                        <TextView
+                                            android:textSize="@dimen/new_hotel_final_review_hotel_date_size"
+                                            android:textColor="@color/new_hotel_final_review_hotel_date_color"
+                                            android:id="@+id/txt_hotel_check_in_date"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/medium_padding"
+                                            android:text="Wed, 18 Apr"
+                                            android:singleLine="true"
+                                            android:includeFontPadding="false"
+                                            android:fontFamily="sans-serif" />
+                                        <TextView
+                                            android:textSize="@dimen/new_hotel_final_review_hotel_time_size"
+                                            android:textColor="@color/new_hotel_final_review_hotel_time_color"
+                                            android:id="@+id/txt_hotel_check_in_time"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/medium_padding"
+                                            android:layout_marginBottom="@dimen/new_hotel_less_big_padding"
+                                            android:text="02:00 PM"
+                                            android:singleLine="true"
+                                            android:includeFontPadding="false"
+                                            android:fontFamily="sans-serif" />
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_gravity="center"
+                                    >
+                                    <ImageView
+                                        android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/new_hotel_less_big_padding"
+                                        android:visibility="gone"
+                                        android:src="@drawable/ic_moon_icon" />
+                                    <TextView
+                                        android:textSize="@dimen/new_hotel_final_review_hotel_check_in_and_check_out_txt_size"
+                                        android:textColor="@color/new_hotel_final_review_hotel_title_color"
+                                        android:id="@+id/txt_no_of_Nights"
+                                        android:visibility="visible"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="14dp"
+                                        android:singleLine="true"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:text=""
+                                        android:includeFontPadding="false"
+                                        android:fontFamily="sans-serif" />
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.0"
+                                    android:layout_gravity="right"
+                                    android:gravity="right">
+                                        <TextView
+                                            android:textSize="@dimen/new_hotel_final_review_hotel_check_in_and_check_out_txt_size"
+                                            android:textColor="@color/new_hotel_final_review_hotel_title_color"
+                                            android:layout_gravity="right"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/new_hotel_less_big_padding"
+                                            android:text="Check-out"
+                                            android:singleLine="true"
+                                            android:includeFontPadding="false"
+                                            android:fontFamily="sans-serif" />
+                                        <TextView
+                                            android:textSize="@dimen/new_hotel_final_review_hotel_date_size"
+                                            android:textColor="@color/new_hotel_final_review_hotel_date_color"
+                                            android:layout_gravity="right"
+                                            android:id="@+id/txt_hotel_check_out_date"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/new_hotel_less_large_padding"
+                                            android:text="Fri, 20 Apr"
+                                            android:singleLine="true"
+                                            android:includeFontPadding="false"
+                                            android:fontFamily="sans-serif" />
+                                        <TextView
+                                            android:textSize="@dimen/new_hotel_final_review_hotel_time_size"
+                                            android:textColor="@color/new_hotel_final_review_hotel_time_color"
+                                            android:layout_gravity="right"
+                                            android:id="@+id/txt_hotel_check_out_time"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/new_hotel_extra_medium_padding"
+                                            android:layout_marginBottom="@dimen/new_hotel_less_big_padding"
+                                            android:text="02:00 PM"
+                                            android:singleLine="true"
+                                            android:includeFontPadding="false"
+                                            android:fontFamily="sans-serif" />
+                                </LinearLayout>
+                        </LinearLayout>
+                    <View
+                        android:background="@color/new_hotel_divider_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/new_hotel_less_big_padding">
+                            <TextView
+                                android:textSize="@dimen/new_hotel_final_review_room_type_txt_size"
+                                android:textColor="@color/new_hotel_final_review_hotel_date_color"
+                                android:id="@+id/txt_room_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Room Type"
+                                android:singleLine="true"
+                                android:layout_weight="1.0" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                        <TextView
+                            android:textSize="@dimen/new_hotel_final_review_no_of_rooms_and_guest_size"
+                            android:textColor="@color/new_hotel_final_review_no_of_guest_and_room_txt_color"
+                            android:id="@+id/txt_no_of_rooms"
+                            android:layout_width="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/new_hotel_less_large_padding"
+                            android:text=""
+                            android:singleLine="true" />
+
+                            <TextView
+                                android:textSize="@dimen/new_hotel_final_review_no_of_rooms_and_guest_size"
+                                android:textColor="@color/new_hotel_final_review_no_of_guest_and_room_txt_color"
+                                android:id="@+id/txt_no_of_adult"
+                                android:layout_width="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/new_hotel_less_large_padding"
+                                android:text=""
+                                android:singleLine="true" />
+
+                            <TextView
+                                android:textSize="@dimen/new_hotel_final_review_no_of_rooms_and_guest_size"
+                                android:textColor="@color/new_hotel_final_review_no_of_guest_and_room_txt_color"
+                                android:id="@+id/txt_no_of_child"
+                                android:layout_width="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/new_hotel_less_large_padding"
+                                android:text=""
+                                android:singleLine="true" />
+                        </LinearLayout>
+                        <TextView
+                            android:textSize="@dimen/new_hotel_final_review_inclusion_txt_size"
+                            android:textColor="@color/yatra_accent_color"
+                            android:layout_gravity="end"
+                            android:id="@+id/txt_inclusion_policies"
+                            android:padding="@dimen/new_hotel_medium_padding"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/new_hotel_medium_padding"
+                            android:layout_marginBottom="@dimen/new_hotel_large_padding"
+                            android:text="Inclusions &amp; Policy"
+                            android:singleLine="true"
+                            android:visibility="gone"
+                            android:textAllCaps="true" />
+                    </LinearLayout>
+                </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray"
+                android:layout_marginBottom="10dp"
+                android:paddingLeft="@dimen/new_hotel_large_padding"
+                android:paddingRight="@dimen/new_hotel_large_padding"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:id="@+id/personal_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:orientation="vertical">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/booking_personal"
+                            android:layout_width="75dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/radio_btn_selector"
+                            android:button="@drawable/editext_border"
+                            android:gravity="center"
+                            android:text="Personal"
+                            android:textColor="@drawable/rbtn_textcolor_selector"
+                            android:textSize="16sp" />
+
+
+
+                        <RadioButton
+                            android:id="@+id/booking_company"
+                            android:layout_width="75dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/radio_btn_selector"
+                            android:button="@drawable/editext_border"
+                            android:gravity="center"
+                            android:text="Business"
+                            android:textColor="@drawable/rbtn_textcolor_selector"
+                            android:textSize="16sp" />
+                    </RadioGroup>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp">
+
+
+                            <!--<android.support.design.widget.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="10dp"
+                                android:clipToPadding="false"
+                                android:gravity="left|center"
+                                android:layout_weight="1"
+                                app:hintTextAppearance="@style/CustomTextAppearance">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/mobile_guest"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:maxLength="10"
+                                    android:fontFamily="sans-serif"
+                                    android:gravity="left"
+                                    android:hint="Mobile"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="number"
+                                    android:maxLines="1"
+                                    android:textColor="@color/md_black_1000"
+                                    android:textCursorDrawable="@color/colorPrimary"
+                                    android:textSize="16sp" />
+
+
+                            </android.support.design.widget.TextInputLayout>-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Name"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"/>
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Enter Mobile No"
+                                    android:textSize="16sp"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:lines="1"
+                                    android:inputType="number"
+                                    android:id="@+id/mobile_guest"/>
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Verify"
+                                android:visibility="gone"
+                                android:padding="5dp"
+
+                                android:gravity="center"
+
+                                android:textSize="18sp"
+                                android:id="@+id/verify_mobile_number"
+                                android:textColor="@color/colorPrimary"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/otp_parent"
+                            android:layout_marginBottom="5dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+
+                                >
+                                <!--<android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:clipToPadding="false"
+                                    android:gravity="left|center"
+                                    android:layout_weight="1"
+                                    app:hintTextAppearance="@style/CustomTextAppearance">
+
+                                    <android.support.design.widget.TextInputEditText
+                                        android:id="@+id/mobile_otp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:maxLength="10"
+                                        android:fontFamily="sans-serif"
+                                        android:gravity="left"
+                                        android:hint="OTP"
+                                        android:imeOptions="actionNext"
+                                        android:inputType="number"
+                                        android:maxLines="1"
+                                        android:textColor="@color/md_black_1000"
+                                        android:textCursorDrawable="@color/colorPrimary"
+                                        android:textSize="16sp" />
+
+
+                                </android.support.design.widget.TextInputLayout>-->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_weight="1">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="OTP"
+                                        android:textSize="14sp"
+                                        android:textColor="#000"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Enter OTP"
+                                        android:textSize="16sp"
+                                        android:id="@+id/mobile_otp"/>
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:text="submit"
+                                    android:padding="5dp"
+                                    android:gravity="center"
+                                    android:textSize="18sp"
+                                    android:id="@+id/submit_otp"
+                                    android:textColor="@color/colorPrimary"
+                                    />
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Resend"
+                                android:layout_margin="5dp"
+                                android:textSize="16sp"
+                                android:textColor="@color/colorPrimary"
+                                android:layout_gravity="right"
+                                android:id="@+id/resend_otp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/others_parent">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginBottom="5dp"
+                                >
+
+
+                                <!--<android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:clipToPadding="false"
+                                    android:gravity="left|center"
+                                    app:hintTextAppearance="@style/CustomTextAppearance">
+
+                                    <android.support.design.widget.TextInputEditText
+                                        android:id="@+id/full_name_guest"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:fontFamily="sans-serif"
+                                        android:gravity="left"
+                                        android:hint="Full Name"
+                                        android:imeOptions="actionNext"
+                                        android:inputType="textCapSentences"
+                                        android:maxLines="1"
+                                        android:textColor="@color/md_black_1000"
+                                        android:textColorHint="@color/md_black_1000"
+                                        android:textCursorDrawable="@color/colorPrimary"
+                                        android:textSize="16sp" />
+                                </android.support.design.widget.TextInputLayout>-->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Name"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"/>
+                                <app.zingo.com.agentapp.CustomViews.CustomAutoCompleteView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Enter name"
+                                    android:textSize="16sp"
+                                    android:maxLines="1"
+                                    android:lines="1"
+                                    android:singleLine="true"
+                                    android:id="@+id/full_name_guest"/>
+                            </LinearLayout>
+
+
+                            <RadioGroup
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="20dp"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/booking_male"
+                                    android:layout_width="70dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/radio_btn_selector"
+                                    android:button="@drawable/editext_border"
+                                    android:gravity="center"
+                                    android:text="Male"
+                                    android:textColor="@drawable/rbtn_textcolor_selector"
+                                    android:textSize="16sp" />
+
+                                <RadioButton
+                                    android:id="@+id/booking_female"
+                                    android:layout_width="70dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/radio_btn_selector"
+                                    android:button="@drawable/editext_border"
+                                    android:gravity="center"
+                                    android:text="Female"
+                                    android:textColor="@drawable/rbtn_textcolor_selector"
+                                    android:textSize="16sp" />
+
+                                <!--<RadioButton
+                                    android:id="@+id/booking_transgender"
+                                    android:layout_width="95dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/radio_btn_selector"
+                                    android:button="@drawable/editext_border"
+                                    android:gravity="center"
+                                    android:text="Transgender"
+                                    android:textColor="@drawable/rbtn_textcolor_selector"
+                                    android:textSize="16sp" />-->
+                            </RadioGroup>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginBottom="5dp">
+
+
+                                <!--<android.support.design.widget.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:clipToPadding="false"
+                                    android:gravity="left|center"
+                                    app:hintTextAppearance="@style/CustomTextAppearance">
+
+                                    <android.support.design.widget.TextInputEditText
+                                        android:id="@+id/email_guest"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:fontFamily="sans-serif"
+                                        android:gravity="left"
+                                        android:hint="Email"
+                                        android:imeOptions="actionNext"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:textColor="@color/md_black_1000"
+                                        android:textCursorDrawable="@color/colorPrimary"
+                                        android:textSize="16sp" />
+
+
+                                </android.support.design.widget.TextInputLayout>-->
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Email"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"/>
+                                <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Enter email"
+                                    android:textSize="16sp"
+                                    android:maxLines="1"
+                                    android:lines="1"
+                                    android:singleLine="true"
+                                    android:id="@+id/email_guest"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginBottom="5dp"
+                                android:id="@+id/gst_company_parent">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:id="@+id/company_layout"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+                                    <!--<android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_marginTop="10dp"
+                                        android:clipToPadding="false"
+                                        android:gravity="left|center"
+                                        app:hintTextAppearance="@style/CustomTextAppearance">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/company_guest"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:fontFamily="sans-serif"
+                                            android:gravity="left"
+                                            android:hint="Company"
+                                            android:imeOptions="actionNext"
+                                            android:inputType="text"
+                                            android:maxLines="1"
+                                            android:textColor="@color/md_black_1000"
+                                            android:textCursorDrawable="@color/colorPrimary"
+                                            android:textSize="16sp" />
+
+
+                                    </android.support.design.widget.TextInputLayout>-->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Company Name"
+                                        android:textSize="14sp"
+                                        android:textColor="#000"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Enter company name"
+                                        android:textSize="16sp"
+                                        android:maxLines="1"
+                                        android:lines="1"
+                                        android:singleLine="true"
+                                        android:id="@+id/company_guest"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginBottom="5dp"
+                                    android:id="@+id/gst_layout">
+
+
+                                    <!--<android.support.design.widget.TextInputLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:layout_marginRight="5dp"
+                                        android:layout_marginTop="10dp"
+                                        android:clipToPadding="false"
+                                        android:gravity="left|center"
+                                        app:hintTextAppearance="@style/CustomTextAppearance">
+
+                                        <android.support.design.widget.TextInputEditText
+                                            android:id="@+id/gst_guest"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
+                                            android:fontFamily="sans-serif"
+                                            android:gravity="left"
+                                            android:maxLength="15"
+                                            android:hint="GST Number"
+                                            android:imeOptions="actionNext"
+                                            android:inputType="text"
+                                            android:maxLines="1"
+                                            android:textColor="@color/md_black_1000"
+                                            android:textCursorDrawable="@color/colorPrimary"
+                                            android:textSize="16sp" />
+
+
+                                    </android.support.design.widget.TextInputLayout>-->
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="GST Number"
+                                        android:textSize="14sp"
+                                        android:textColor="#000"/>
+                                    <EditText
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:hint="Enter GST number"
+                                        android:textSize="16sp"
+                                        android:maxLines="1"
+                                        android:lines="1"
+                                        android:singleLine="true"
+                                        android:id="@+id/gst_guest"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/coupon_code_parent"
+                android:padding="16dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Promo Code"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/enter_promo_code"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:layout_weight="1"
+                        android:layout_marginRight="25dp"
+                        android:lines="1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="APPLY"
+                        android:id="@+id/apply_promo_code"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@color/yatra_accent_color"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="Zingo Wallet redeem"
+                        android:id="@+id/zingo_wallet"
+                        android:layout_marginTop="5dp"
+                        android:checked="false"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:textSize="18sp"
+                        android:id="@+id/zingo_money"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:text="0"
+                        android:textColor="#00FF00"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:id="@+id/message_to_user"
+                    android:text=""
+                    android:textColor="@color/text_green"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="or choose from below ongoing offers : "
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/apply_promocode_radio_button"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:background="@drawable/promo_code_background"
+                            android:text="HOTEL17"
+                            android:padding="5dp"
+                            android:id="@+id/offer_promocde"
+                            android:gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/promo_code_details"
+                            android:text="Get upto Rs 5000 off. Hurry! Limited period offer."
+                            android:textColor="#000000"
+                            android:layout_marginTop="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/full_promocode_details"
+                            android:text="Details"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/yatra_accent_color"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/gray"
+                android:visibility="gone"
+                android:layout_marginBottom="10dp"/>
+            <!--<View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/gray"
+                />-->
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                card-view:cardElevation="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tariff Details"
+                        android:textSize="18sp"
+                        android:textColor="#000000"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Hotel Charges"
+                            android:textSize="12sp"
+                            android:textColor="#000000"
+                            android:layout_weight="1"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+
+                                android:textSize="12sp"
+                                android:gravity="start"
+                                android:textColor="#8f8f8f"
+                                android:visibility="gone"
+                                android:background="@drawable/text_striker"
+                                android:id="@+id/hotel_display_charges"
+                                android:layout_weight="1"/>
+                            <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="12sp"
+                            android:gravity="end"
+                            android:textColor="#000000"
+                            android:id="@+id/hotel_charges"
+                            android:layout_weight="1"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Hotel GST"
+                            android:textSize="12sp"
+                            android:textColor="#000000"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="12sp"
+                            android:gravity="end"
+                            android:textColor="#000000"
+                            android:id="@+id/hotel_gst_charges"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/your_earning_parent"
+                        android:layout_marginTop="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Your Earnings"
+                            android:textSize="12sp"
+                            android:textColor="#000000"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="12sp"
+                            android:gravity="end"
+                            android:textColor="#000000"
+                            android:id="@+id/agent_earnings"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/gray"
+                        android:layout_marginBottom="10dp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="You Pay"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textColor="#000000"
+                            android:gravity="end"
+                            android:id="@+id/hotel_total_charges"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <Button
+                android:layout_margin="15dp"
+                android:id="@+id/pay_later_btn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Pay Later"
+                android:layout_weight="1"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_background_two"/>
+
+                <Button
+                    android:layout_margin="15dp"
+                    android:id="@+id/pay_now_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Pay Now"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/button_background_two"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        </ScrollView>
+       <!-- <include
+            android:id="@id/bottom_bar_layout"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            layout="@layout/footer_layout" />-->
+</RelativeLayout>

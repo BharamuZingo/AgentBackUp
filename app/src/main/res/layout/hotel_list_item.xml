@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/layout_row_hotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/hotel_preview_relativelayout"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="@dimen/new_hotel_less_large_padding">
+
+                <ImageView
+                    android:id="@+id/hotel_preview_imageview"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/hotel1"
+                    android:scaleType="centerCrop" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/new_hotel_medium_padding">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_medium_padding">
+                    <LinearLayout android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0">
+
+                        <TextView android:id="@+id/hotel_name_textview"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/new_hotel_hotel_name_padding"
+                            android:layout_marginRight="@dimen/new_hotel_medium_padding" android:text="Hotel Name"
+                            android:includeFontPadding="false"
+                            android:fontFamily="sans-serif" style="@style/HotelNameTextStyle" />
+
+                    </LinearLayout>
+
+                    <LinearLayout android:orientation="vertical" android:id="@+id/off_on_hotel_layout" android:background="@drawable/ic_discount_ribben_icon" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="@dimen/new_hotel_off_text_size"
+                            android:textColor="@color/white"
+                            android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                            android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                            android:id="@+id/off_on_hotel_txt_view"
+                            android:paddingTop="2dp" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="12%off"
+                            android:fontFamily="sans-serif-medium" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/new_hotel_medium_padding"
+                    android:layout_marginTop="@dimen/new_hotel_small_padding">
+
+                    <LinearLayout
+                        android:orientation="vertical" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:layout_weight="1.0">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:textSize="@dimen/new_hotel_distance_text_size"
+                                android:textColor="@color/white" android:id="@+id/hotel_distance_textview"
+                                android:background="@color/new_hotel_distance_back_color" android:paddingLeft="@dimen/new_hotel_small_padding"
+                                android:paddingTop="2dp" android:paddingRight="@dimen/new_hotel_small_padding" android:paddingBottom="2dp"
+                                android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/new_hotel_small_padding" android:text="1.2 km"
+                                android:singleLine="true"
+                                android:includeFontPadding="false" android:fontFamily="sans-serif-light" />
+
+                            <TextView
+                                android:textSize="@dimen/new_hotel_address_text_size"
+                                android:textColor="@color/new_hotel_location_txt_color"
+                                android:id="@+id/hotel_address_textview" android:visibility="visible"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Koramanagala" android:singleLine="true" android:includeFontPadding="false"
+                                android:fontFamily="sans-serif" />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:id="@+id/layout_all_hotels_rating_and_review"
+                                android:visibility="visible"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/new_hotel_small_padding"
+                                android:layout_weight="1.0">
+                                <RatingBar
+                                    android:id="@+id/hotel_ratingbar"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:isIndicator="true"
+                                    style="?android:attr/ratingBarStyleSmall"  />
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:id="@+id/layout_trip_advisor"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/new_hotel_medium_padding">
+
+                                    <ImageView
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:id="@+id/hotel_tripadvisor_logo"
+                                        android:background="@drawable/tripadv_logo"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="3dp" />
+                                    <TextView
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" android:textColor="#6b9757"
+                                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                        android:id="@+id/hotel_tripadvisor_rating_textview" android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:layout_marginLeft="@dimen/new_hotel_medium_padding"
+                                        android:text="5.0"
+                                        android:includeFontPadding="false" />
+
+                                </LinearLayout>
+                                <TextView
+                                    android:textSize="@dimen/new_hotel_reviews_text_size"
+                                    android:textColor="@color/new_hotel_location_txt_color"
+                                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                                    android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                                    android:id="@+id/triadvisor_review_search_textview"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/new_hotel_medium_padding"
+                                    android:text="123 Reviews" android:singleLine="true" android:includeFontPadding="false"
+                                    android:fontFamily="sans-serif" />
+                            </LinearLayout>
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+                        android:orientation="vertical" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/medium_padding"
+                        android:layout_marginBottom="@dimen/new_hotel_extra_small_padding">
+                        <TextView
+                            android:textSize="@dimen/new_hotel_strike_price_text_size"
+                            android:textColor="@color/new_hotel_strike_price_txt_color"
+                            android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                            android:id="@+id/hotel_display_price"
+                            android:visibility="visible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_marginTop="@dimen/new_hotel_small_padding"
+                            android:text="0" android:singleLine="true" android:fontFamily="sans-serif" />
+                        <TextView
+                            android:textSize="@dimen/new_hotel_price_text_size"
+                            android:textColor="@color/new_hotel_price_txt_color"
+                            android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                            android:id="@+id/hotel_sell_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="0"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:textSize="@dimen/new_hotel_address_text_size"
+                            android:textColor="@color/hotellocation_textcolor"
+                            android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                            android:id="@+id/txt_price_type" android:visibility="visible"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp" android:text="per night"
+                            android:singleLine="true" android:fontFamily="sans-serif" />
+
+                        <TextView
+                            android:textSize="@dimen/new_hotel_address_text_size"
+                            android:textColor="@color/new_hotel_room_left_txt_color"
+                            android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                            android:id="@+id/txt_room_left" android:visibility="visible"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0 rooms left" android:singleLine="true" android:fontFamily="sans-serif" />
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/new_hotel_amenities_bar_back_color"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="20dp">
+
+            <LinearLayout
+                android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:orientation="horizontal"
+                android:id="@+id/hotel_paylater_layout"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/new_hotel_extra_small_padding"
+                android:layout_weight="1.0">
+
+                <ImageView
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/pay_at_hotel_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/ic_amenity_active_icon" />
+
+                <TextView
+                    android:textSize="@dimen/new_hotel_facility_txt_size"
+                    android:textColor="@color/new_hotel_facilities_txt_color"
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/pay_at_hotel_txt_view"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_extra_small_padding"
+                    android:text="Pay at Hotel"
+                    android:singleLine="true" android:fontFamily="sans-serif-light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/new_hotel_extra_small_padding" android:layout_weight="1.0">
+                <ImageView
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/free_cancellation_imageview"
+                    android:layout_width="wrap_content"
+                    android:paddingTop="2dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_amenity_active_icon" />
+                <TextView
+                    android:textSize="@dimen/new_hotel_facility_txt_size"
+                    android:textColor="@color/new_hotel_facilities_txt_color"
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/free_cancellation_txt_view"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_extra_small_padding"
+                    android:text="Free Cancellation"
+                    android:singleLine="true" android:fontFamily="sans-serif-light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/new_hotel_extra_small_padding" android:layout_weight="1.0">
+                <ImageView
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/free_wifi_imageview"
+                    android:paddingTop="2dp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:src="@drawable/ic_amenity_active_icon" />
+                <TextView
+                    android:textSize="@dimen/new_hotel_facility_txt_size"
+                    android:textColor="@color/new_hotel_facilities_txt_color"
+                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/free_wifi_txt_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_extra_small_padding"
+                    android:text="Free wifi"
+                    android:singleLine="true" android:fontFamily="sans-serif-light" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:orientation="horizontal" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/new_hotel_extra_small_padding"
+                android:layout_marginRight="@dimen/new_hotel_extra_small_padding"
+                android:layout_weight="1.0">
+                <ImageView
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/free_breakast_imageview"
+                    android:paddingTop="2dp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:src="@drawable/ic_amenity_active_icon" />
+                <TextView
+                    android:textSize="@dimen/new_hotel_facility_txt_size"
+                    android:textColor="@color/new_hotel_facilities_txt_color"
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/free_breakast_txt_view" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_extra_small_padding"
+                    android:text="Free Breakfast"
+                    android:singleLine="true" android:fontFamily="sans-serif-light" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/special_offer_layout"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:src="@drawable/ic_deal_icon" />
+            <TextView
+                android:textSize="@dimen/new_hotel_offer_txt_size"
+                android:textColor="@color/black"
+                android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                android:id="@+id/hotel_special_offer_textview"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/new_hotel_medium_padding"
+                android:layout_marginTop="5dp" android:layout_marginRight="@dimen/new_hotel_medium_padding"
+                android:layout_marginBottom="5dp" android:text=" " android:layout_weight="1.0"
+                android:lineSpacingExtra="1.2dp" android:fontFamily="sans-serif-light" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

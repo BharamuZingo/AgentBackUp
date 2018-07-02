@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+    android:id="@+id/srp_roundtrip_bottom_bar"
+    android:background="@color/new_footer_back_color"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0">
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/txt_total_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/large_padding"
+                    android:text="TOTAL AMOUNT"
+                    style="@style/NewFooterTotalAmountTextStyle" />
+                <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/large_padding"
+                    android:layout_marginRight="@dimen/large_padding">
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/txt_stike_off_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹ 12345"
+                        style="@style/NewFooterStrileOffPriceTextStyle" />
+                    <!--<TextView
+                        android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+                        android:id="@+id/txt_total_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/NewFooterPriceTextStyle" />
+                    <TextView
+                        android:layout_gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end"
+                        android:id="@+id/txt_ecash"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="eCash 300"
+                        style="@style/NewFooterEcashTextStyle" />-->
+                </LinearLayout>
+                <ImageView
+                    android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/image_fare_break_up_info"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_fare_break_up_info_icon" />
+            </LinearLayout>
+            <Button
+                android:layout_gravity="center_vertical"
+                android:id="@+id/proceed_button"
+                android:background="@drawable/button_green_bg"
+                android:paddingLeft="@dimen/large_padding"
+                android:paddingRight="@dimen/large_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_padding"
+                android:layout_marginTop="@dimen/medium_padding"
+                android:layout_marginRight="@dimen/large_padding"
+                android:layout_marginBottom="@dimen/medium_padding"
+                android:text="Proceed"
+                style="@style/NewFooterProceedTextStyle" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'AgentApp'
+            keyPassword '123456789'
+            storeFile file('E:/Bharamu/keypath/AgentApp.jks')
+            storePassword '123456789'
+        }
+    }
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "app.zingo.com.agentapp"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 9
+        versionName "1.0.2"
+        multiDexEnabled = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        dexOptions {
+            javaMaxHeapSize "4g"
+        }
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+dependencies {
+    compile 'com.google.firebase:firebase-core:11.4.2'
+    compile 'com.google.firebase:firebase-messaging:11.4.2'
+    compile 'com.itextpdf:itextpdf:5.0.6'
+    compile 'com.google.firebase:firebase-auth:11.4.2'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-v4:26.+'
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //compile 'com.android.support:design:25.2.0'
+    compile 'com.android.support:design:26.+'
+    compile 'com.android.support:cardview-v7:26.+'
+    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.eftimoff:android-pathview:1.0.8@aar'
+    compile 'com.google.android.gms:play-services:11.4.2'
+    compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
+    compile 'com.github.asne.facebook:facebook:3.17.2'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'at.blogc:expandabletextview:1.0.5'
+    compile 'com.google.android.gms:play-services-location:11.4.2'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    compile 'com.razorpay:checkout:1.4.5'
+    testCompile 'junit:junit:4.12'
+
+
+}
+apply plugin: 'com.google.gms.google-services'
+

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="#ff0000"
+        android:textColor="#ffffff"
+        android:text="Close" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/buttons"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnReject"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="25dp"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:background="#ff0000"
+            android:textColor="#ffffff"
+            android:text="Reject" />
+
+        <Button
+            android:id="@+id/btnaccept"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textSize="25dp"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:background="#43A047"
+            android:textColor="#ffffff"
+            android:text="Accept" />
+
+
+
+
+
+        <Button
+            android:id="@+id/btnSuggest"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:paddingTop="2dp"
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:paddingBottom="2dp"
+            android:background="#F9A825"
+            android:textColor="#ffffff"
+            android:text="Suggest" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/btnClose"
+        android:layout_marginTop="5dp"
+        android:layout_above="@id/buttons">
+        <ImageView
+            android:id="@+id/app_log"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/btnClose"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+
+
+
+        <TextView
+            android:id="@+id/title_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bidding"
+            android:textColor="#000000"
+            android:layout_below="@+id/app_log"
+            android:layout_marginTop="15dp"
+            android:textSize="25dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/agent_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ZINGO HOTEL"
+            android:textColor="#000000"
+            android:layout_below="@+id/title_message"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp"
+            android:gravity="center"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:id="@+id/scrool_notification"
+            android:layout_below="@id/agent_name"
+            android:layout_above="@+id/btnList"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff"
+                    android:orientation="vertical"
+                    >
+
+                    <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:textColor="#000000"
+                        android:gravity="center"
+                        app:fontName="arial"
+                        android:id="@+id/bidding_amount"/>
+
+                    <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:textColor="#000000"
+                        android:gravity="center"
+                        app:fontName="arial"
+                        android:layout_below="@+id/bidding_amount"
+                        android:id="@+id/bidding_amount_hotel"/>
+                    <!--<app.zingo.com.hotelmanagement.Customviews.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_below="@id/brief_detail_traveller_name"
+                        android:gravity="center"
+                        android:text="booking room number"
+                        android:textColor="#000000"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/brief_detail_booking_number"
+                        />-->
+                    <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:layout_below="@+id/bidding_amount_hotel"
+                        android:textColor="#000000"
+                        app:fontName="arial"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/brief_detail_pax_details"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/brief_detail_pax_details"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:layout_weight="1">
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                app:fontName="arial"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="#3498DB"
+                                android:id="@+id/brief_detail_check_in_date"
+                                />
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                app:fontName="arial"
+                                android:text="Check-In Date"
+                                android:textColor="#000"
+                                android:layout_marginTop="10dp"
+                                />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:layout_weight="1"
+                            >
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                app:fontName="arial"
+                                android:gravity="right"
+                                android:textColor="#3498DB"
+                                android:id="@+id/brief_detail_check_out_date"
+                                />
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                app:fontName="arial"
+                                android:text="Check-Out Date"
+                                android:gravity="right"
+                                android:textColor="#000"
+                                android:layout_marginTop="10dp"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/date"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:layout_weight="1">
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                app:fontName="arial"
+                                android:textColor="#3498DB"
+                                android:id="@+id/brief_detail_check_in_time"
+                                />
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                app:fontName="arial"
+                                android:text="Check-In Time"
+                                android:textColor="#000"
+                                android:layout_marginTop="10dp"
+                                />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:layout_weight="1"
+                            >
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:gravity="right"
+                                app:fontName="arial"
+                                android:textColor="#3498DB"
+                                android:id="@+id/brief_detail_check_out_time"
+                                />
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                app:fontName="arial"
+                                android:text="Check-Out Time"
+                                android:gravity="right"
+                                android:textColor="#000"
+                                android:layout_marginTop="10dp"
+                                />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_amount"
+                        android:layout_below="@+id/time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                app:fontName="arial"
+                                android:textSize="14sp"
+                                android:text="No of Rooms"
+                                android:layout_weight="1"
+                                />
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|right"
+                                app:fontName="arial"
+                                android:textSize="14sp"
+                                android:id="@+id/total_rooms"
+                                android:text="0"
+                                android:layout_weight="1"
+                                />
+                        </LinearLayout>
+
+                        <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            app:fontName="arial"
+                            android:id="@+id/reason"
+                            android:layout_margin="10dp"
+                            android:textSize="14sp"
+                            android:textColor="#000000"
+                            android:layout_weight="1"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:visibility="gone"
+                            android:id="@+id/select_room_lay"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                app:fontName="arial"
+                                android:textSize="14sp"
+                                android:textColor="#000000"
+                                android:text="Requested Room:"
+                                android:layout_weight="1"
+                                />
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|right"
+                                app:fontName="arial"
+                                android:textSize="14sp"
+                                android:id="@+id/selected_room"
+                                android:text="0"
+                                android:layout_weight="1"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:id="@+id/rejected_layout"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                app:fontName="arial"
+                                android:textSize="14sp"
+                                android:textColor="#000000"
+                                android:text="Rejected Room:"
+                                android:layout_weight="1"
+                                />
+                            <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|right"
+                                app:fontName="arial"
+                                android:textSize="14sp"
+                                android:id="@+id/rejected_room"
+                                android:text="0"
+                                android:layout_weight="1"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

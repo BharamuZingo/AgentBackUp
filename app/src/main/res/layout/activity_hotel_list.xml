@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawer_layout">
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/main_content">
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/layout_toolbar_main"
+        android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar_actionbar"
+        layout="@layout/toolbar_actionbar"/>
+
+    <FrameLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar_actionbar">
+
+    <FrameLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/shortlist_layout"/>
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/layout_container_tab_and_view_pager"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+    <android.support.design.widget.TabLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/tab_layout"
+        app:tabSelectedTextColor="#000000"
+        app:tabTextColor="#f56984"
+        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+        app:tabMaxWidth="0.0dip" app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabIndicatorHeight="2.0dip"
+        app:tabIndicatorColor="@color/white"
+        android:background="@color/colorPrimary"/>
+
+    <android.support.v4.view.ViewPager
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/view_pager"/>
+    </LinearLayout>
+
+    <include
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/error_msg_include"
+        layout="@layout/error_msg_layout"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/preloader_hotel_list"
+        android:orientation="vertical"
+        android:layout_below="@id/toolbar_actionbar"
+        android:visibility="visible"
+        android:layout_centerInParent="true">
+
+    </LinearLayout>
+
+    </FrameLayout>
+
+    </RelativeLayout>
+
+
+
+    <ViewStub
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/bottom_bar_view_stub"
+        android:layout_alignParentBottom="true"
+        android:inflatedId="@+id/bottom_bar"/>
+
+    <LinearLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/anim_layout"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="@color/colorPrimary"/>
+</RelativeLayout>
+
+    <include
+        layout="@layout/navdrawer"/>
+
+    <include
+        layout="@layout/rightdrawer"/>
+
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/error_container"
+        android:layout_marginTop="35.0dip"/>
+
+
+
+</android.support.v4.widget.DrawerLayout>

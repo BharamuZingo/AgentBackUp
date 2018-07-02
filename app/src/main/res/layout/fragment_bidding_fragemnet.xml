@@ -1,0 +1,463 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.zingo.com.agentapp.Fragments.BiddingFragemnet">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollview_app_home"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:id="@+id/button"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:focusableInTouchMode="true">
+            <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:id="@+id/layout_search_container"
+                android:layout_marginBottom="16.0dip"
+                android:visibility="visible">
+                <ImageView
+                    android:layout_height="460.0dip"
+                    android:layout_width="fill_parent"
+                    android:id="@+id/image_city_background"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/app_home_placeholder"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/grey_background">
+
+                    <EditText android:id="@+id/search_editText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:drawableLeft="@drawable/ic_search_black_24dp"
+                        android:hint="Enter Your Locality or City"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:background="@android:color/transparent"
+                        android:inputType="textVisiblePassword"/>
+
+                    <ImageButton android:id="@+id/location_button"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_my_location_black_24dp"/>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_below="@+id/search"
+                    android:background="@drawable/grey_background">
+                    <RelativeLayout
+                        android:id="@+id/check"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/cin_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Check-in Date"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:id="@+id/cout_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Check-out Date"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="10dp"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/check_date"
+                        android:layout_below="@+id/check"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/cin_date_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="28dp"
+                            android:clickable="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp"/>
+
+                        <TextView
+                            android:id="@+id/cout_date_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="28dp"
+                            android:textColor="@color/colorPrimary"
+                            android:clickable="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="10dp"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/check_date"
+                        >
+                        <TextView
+                            android:id="@+id/cin_day_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"/>
+
+                        <TextView
+                            android:id="@+id/cout_day_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="5dp"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/check_tm"
+                        android:layout_below="@+id/day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/cin_time_tit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Check-in Time"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"/>
+
+                        <TextView
+                            android:id="@+id/cout_time_tit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Check-out Time"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="5dp"/>
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/check_time"
+                        android:layout_below="@+id/check_tm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/cin_time_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:clickable="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"/>
+
+                        <TextView
+                            android:id="@+id/cout_time_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="20dp"
+                            android:textColor="@color/colorPrimary"
+                            android:clickable="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="5dp"/>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_below="@+id/date"
+                    >
+
+                    <TextView
+                        android:id="@+id/budget_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Budget"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/grey_background"
+                    android:layout_toRightOf="@+id/budget"
+                    android:layout_below="@+id/date"
+                    >
+
+                    <EditText android:id="@+id/budget_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_rupee"
+                        android:hint="Price"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@android:color/transparent"
+                        android:inputType="number"/>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/spinner"
+                    android:layout_below="@+id/budget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+
+                        <Spinner
+                            android:id="@+id/adult_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:prompt="@string/aCount"
+                            android:entries="@array/aCount_arrays"
+                            android:background="@drawable/grey_background"/>
+
+
+                        <Spinner
+                            android:id="@+id/child_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:prompt="@string/chCount"
+                            android:entries="@array/chCount_arrays"
+                            android:background="@drawable/grey_background"/>
+
+                        <Spinner
+                            android:id="@+id/room_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:entries="@array/room_arrays"
+                            android:background="@drawable/grey_background"/>
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+                <Button
+                    android:layout_height="46.0dip"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/background_search_button"
+                    android:id="@+id/search_button_api"
+                    android:layout_below="@id/spinner"
+                    android:text="Bid Now"
+                    android:textSize="18sp"
+                    android:enabled="true"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:paddingLeft="52.0dip"
+                    android:layout_centerHorizontal="true"
+                    android:paddingRight="52.0dip"
+                    android:textStyle="bold"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/spinner"
+                    android:layout_height="@dimen/deal_foru_size"
+                    android:orientation="vertical"
+                    android:layout_marginTop="50dp"
+
+                    android:background="@color/normal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Deals For You!!!"
+                        android:textColor="#000000"
+                        android:layout_margin="@dimen/deal_margin"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/deal_margin"
+                        android:layout_marginLeft="@dimen/deal_margin"
+                        android:background="@color/normal">
+                        <FrameLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/firstDeal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/one"
+                                android:layout_margin="1dp"
+                                android:scaleType="centerCrop"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Travel Together"
+                                android:textColor="@color/normal"
+                                android:layout_marginLeft="@dimen/search_text_margin"
+                                android:layout_marginTop="@dimen/deal_text_margin"
+                                android:gravity="top|left"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Fall in love all over again"
+                                android:layout_marginLeft="@dimen/search_text_margin"
+                                android:layout_marginTop="@dimen/deal_small_text_margin"
+                                android:gravity="top|left"
+                                android:textColor="@color/normal"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Check-in today!"
+                                android:textColor="@color/normal"
+                                android:layout_marginLeft="@dimen/search_text_margin"
+                                android:layout_marginTop="@dimen/deal_text_margin"
+                                android:gravity="top|left"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Get minimum 35% off"
+                                android:layout_marginLeft="@dimen/search_text_margin"
+                                android:layout_marginTop="@dimen/deal_small_text_margin"
+                                android:gravity="top|left"
+                                android:textColor="@color/normal"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                            <ImageView
+                                android:id="@+id/secondDeal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/two" />
+
+                        </FrameLayout>
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_marginRight="@dimen/deal_margin"
+                        android:layout_marginLeft="@dimen/deal_margin"
+
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/thirdDeal"
+                            android:layout_margin="1dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/three"
+                            android:scaleType="centerCrop"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Less is more!"
+                            android:textColor="@color/normal"
+                            android:layout_marginLeft="@dimen/search_text_margin"
+                            android:layout_marginTop="@dimen/deal_text_margin"
+                            android:gravity="top|left"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Best Zingo rooms at Rs 999."
+                            android:layout_marginLeft="@dimen/search_text_margin"
+                            android:layout_marginTop="@dimen/deal_small_text_margin"
+                            android:gravity="top|left"
+                            android:textColor="@color/normal"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                    </FrameLayout>
+                </LinearLayout>
+                <!--   <Button
+                       android:id="@+id/search_button"
+                       android:layout_width="match_parent"
+                       android:layout_height="50dp"
+                       android:text="Search"
+                       android:layout_margin="20dp"
+                       android:textSize="20dp"
+                       android:layout_below="@+id/spinner"
+                       android:background="#ff0000"
+                       android:textColor="#ffffff"
+                       android:textAllCaps="false"/>-->
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
+</FrameLayout>

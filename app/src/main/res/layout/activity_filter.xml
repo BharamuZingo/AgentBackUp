@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3"
+        android:layout_above="@+id/filter_btn"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:weightSum="6"
+            android:background="#dadada"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:id="@+id/price_value"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Price"
+                    android:clickable="true"
+                    android:id="@+id/price_text"
+                    android:textSize="15dp"
+                    android:background="#ffffff"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_gravity="center_vertical"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/amenites"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Features"
+                    android:clickable="true"
+                    android:id="@+id/amenity_text"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_gravity="center_vertical"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/location"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Location"
+                    android:clickable="true"
+                    android:id="@+id/location_text"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/price_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:gravity="left|center"
+                app:hintTextAppearance="@style/CustomTextAppearance">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/min_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="left"
+                    android:maxLength="10"
+                    android:hint="Min Price"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textColor="@color/md_black_1000"
+                    android:textColorHint="@color/md_black_1000"
+                    android:textCursorDrawable="@color/colorPrimary"
+                    android:textSize="16sp" />
+            </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:clipToPadding="false"
+                    android:gravity="left|center"
+                    app:hintTextAppearance="@style/CustomTextAppearance">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/max_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="left"
+                        android:maxLength="10"
+                        android:hint="Max Price"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:textColor="@color/md_black_1000"
+                        android:textColorHint="@color/md_black_1000"
+                        android:textCursorDrawable="@color/colorPrimary"
+                        android:textSize="16sp" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/hotel_list_locality"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+
+                android:layout_marginTop="10dp"
+                android:paddingTop="0dp"
+
+
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/hotel_list_amenity">
+
+            </ListView>
+            <!--<android.support.v7.widget.RecyclerView
+                android:id="@+id/hotel_list_amenity"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+
+                android:layout_marginTop="10dp"
+                android:paddingTop="0dp"
+
+
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                />-->
+        </LinearLayout>
+
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/filter_btn"
+        android:layout_alignParentBottom="true"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        android:background="@drawable/button_background_two"
+        android:text="FILTER"/>
+
+
+
+</RelativeLayout>

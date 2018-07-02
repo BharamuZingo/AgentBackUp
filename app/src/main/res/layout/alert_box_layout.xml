@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Signup Alert"
+        android:textSize="20sp"
+        android:padding="20dp"
+        app:fontName="arial_bold"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textColor="#37474f"
+        android:elevation="10dp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#c2c2c2"/>
+    <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Are you traveller or agent?"
+        app:fontName="arial"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp">
+        <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+            android:id="@+id/traveller_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_background_two"
+            android:gravity="center"
+            android:text="Traveller"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:textColor="#ffffff"
+            app:fontName="arial" />
+        <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+            android:id="@+id/agent_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_background_two"
+            android:gravity="center"
+            android:text="Agent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:textColor="#ffffff"
+            app:fontName="arial" />
+    </LinearLayout>
+</LinearLayout>

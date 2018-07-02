@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fontName="arial_bold"
+            android:text="Sinq Beach Resort"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:id="@+id/adress_tag"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif-condensed"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d9d9d9"
+            />
+        <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textSize="14sp"
+            android:text="Bangalore"
+            android:layout_marginLeft="10dp"
+            app:fontName="arial"
+            android:id="@+id/hotel_address"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_marginTop="5dp"
+            />
+        <com.google.android.gms.maps.MapView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/map">
+
+        </com.google.android.gms.maps.MapView>
+    </LinearLayout>
+</LinearLayout>

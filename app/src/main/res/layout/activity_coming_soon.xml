@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:background="@drawable/app_home_placeholder"
+tools:context="app.zingo.com.agentapp.Activities.ComingSoonActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8d000000">
+        <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="108dp"
+            android:gravity="bottom|center"
+            android:layout_gravity="bottom|center"
+            android:padding="10dp"
+            android:text="@string/signup_success"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:fontName="Mistral" />
+
+        <app.zingo.com.agentapp.CustomViews.CustomFontTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="bottom|center_horizontal"
+            android:layout_gravity="bottom|center_horizontal"
+            android:padding="10dp"
+            android:text="Thank You"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:fontName="arial_bold" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

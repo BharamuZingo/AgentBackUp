@@ -1,0 +1,40 @@
+<resources>
+
+
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomFontTextView">
+        <attr name="fontName" />
+    </declare-styleable>
+
+    <attr name="fontName" format="enum">
+        <enum name="ColonnaMT" value="1" />
+        <enum name="Leprosy" value="2"/>
+        <enum name="bombardment_shadow" value="3" />
+        <enum name="Mina_is_gone_3D" value="4" />
+        <enum name="Maribel_Suit" value="5"></enum>
+        <enum name="arial" value="6"></enum>
+        <enum name="Mistral" value="7"></enum>
+        <!--<enum name="Yeysk" value="8"></enum>-->
+        <enum name="arial_bold" value="8"></enum>
+        <enum name="OpenSans_Bold" value="9"></enum>
+        <enum name="OpenSans_Light" value="10"></enum>
+    </attr>
+
+    <declare-styleable name="custom_edittext">
+        <attr name="editfontName"/>
+    </declare-styleable>
+    <attr name="editfontName" format="enum">
+        <enum name="Yeysk" value="1"></enum>
+        <enum name="Maribel_Suit" value="2"></enum>
+        <enum name="arial" value="3"></enum>
+    </attr>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="etw_maxLines" format="integer"/>
+    </declare-styleable>
+
+</resources>

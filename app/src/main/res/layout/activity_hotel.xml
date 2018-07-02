@@ -1,0 +1,148 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout_hotel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_hotel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/sort_linearlayout"
+        android:background="@color/srp_sort_background"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+        <RelativeLayout
+            android:orientation="horizontal" android:id="@+id/sort_recommended_layout"
+            android:tag="1" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="1.0">
+
+            <LinearLayout
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" android:layout_centerVertical="true">
+
+                <TextView
+                    android:textSize="@dimen/new_hotel_sort_filter_txt_size"
+                    android:textColor="@color/srp_sort_unselected_text"
+                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/sort_tv1"
+                    android:tag="t1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suggested" />
+                <ImageView
+                    android:id="@+id/sort_arrow_iv1"
+                    android:tag="i1" android:visibility="gone"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_small_padding"
+                    android:src="@drawable/ic_sort_down" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:id="@+id/sort_star_layout"
+            android:tag="3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+                <TextView
+                    android:textSize="@dimen/new_hotel_sort_filter_txt_size"
+                    android:textColor="@color/srp_sort_unselected_text"
+                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/sort_tv3" android:tag="t3"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Stars" />
+                <ImageView
+                    android:id="@+id/sort_arrow_iv3"
+                    android:tag="i3" android:visibility="gone"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_small_padding" android:src="@drawable/ic_sort_down" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:id="@+id/sort_rating_layout"
+            android:tag="2" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="1.0">
+            <LinearLayout
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" android:layout_centerVertical="true">
+                <TextView
+                    android:textSize="@dimen/new_hotel_sort_filter_txt_size"
+                    android:textColor="@color/srp_sort_unselected_text"
+                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/sort_tv2" android:tag="t2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Rating" />
+                <ImageView
+                    android:id="@+id/sort_arrow_iv2"
+                    android:tag="i2" android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_small_padding"
+                    android:src="@drawable/ic_sort_down" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:id="@+id/sort_price_layout"
+            android:tag="4" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="1.0">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+                <TextView
+                    android:textSize="@dimen/new_hotel_sort_filter_txt_size"
+                    android:textColor="@color/srp_sort_unselected_text"
+                    android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+                    android:id="@+id/sort_tv4" android:tag="t4" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Price" />
+                <ImageView
+                    android:id="@+id/sort_arrow_iv4"
+                    android:tag="i4" android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/new_hotel_small_padding"
+                    android:src="@drawable/ic_sort_down" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

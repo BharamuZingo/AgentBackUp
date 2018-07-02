@@ -1,0 +1,167 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">10dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="terms_margin">20dp</dimen>
+
+    <dimen name="search_card">50dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <!--<dimen name="medium_padding">8.0dip</dimen>-->
+    <dimen name="search_card_margi_virtcal">20dp</dimen>
+    <dimen name="search_card_margin_horizontal">30dp</dimen>
+    <dimen name="search_text_margin">10dp</dimen>
+    <dimen name="search_text_drawable_pading">20dp</dimen>
+    <dimen name="search_card_elevation">5dp</dimen>
+    <dimen name="scroll_margin_top">90dp</dimen>
+    <dimen name="text_size_medium">16.0sp</dimen>
+    <dimen name="new_hotel_less_large_padding">10dp</dimen>
+    <dimen name="new_hotel_feature_text_size">11sp</dimen>
+    <dimen name="new_hotel_medium_padding">8dp</dimen>
+    <dimen name="new_hotel_extra_small_padding">5dp</dimen>
+    <dimen name="new_hotel_hotel_name_padding">18dp</dimen>
+    <dimen name="new_hotel_off_text_size">10sp</dimen>
+
+    <dimen name="new_hotel_address_text_size">12sp</dimen>
+    <dimen name="new_hotel_animities_and_offer_empty_space_height">8dp</dimen>
+    <dimen name="new_hotel_big_padding">24dp</dimen>
+    <dimen name="new_hotel_bottom_bar_size">48dp</dimen>
+    <dimen name="new_hotel_bottom_bar_txt_size">14sp</dimen>
+    <dimen name="new_hotel_deal_row_size">30dp</dimen>
+    <dimen name="new_hotel_detail_Hotel_address_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_Hotel_deal_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_Hotel_name_txt_size">20sp</dimen>
+    <dimen name="new_hotel_detail_Hotel_view_on_map_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_amentities_txt_size">14sp</dimen>
+    <dimen name="new_hotel_detail_bedroom_count_txt_size">14sp</dimen>
+    <dimen name="new_hotel_detail_change_your_date_txt_size">14sp</dimen>
+    <dimen name="new_hotel_detail_check_in_and_check_out_date_txt_size">16sp</dimen>
+    <dimen name="new_hotel_detail_check_in_and_check_out_day_txt_size">14sp</dimen>
+    <dimen name="new_hotel_detail_check_in_and_check_out_layout_size">80dp</dimen>
+    <dimen name="new_hotel_detail_check_in_and_check_out_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_collapse_layout_height">202dp</dimen>
+    <dimen name="new_hotel_detail_host_name_txt_size">16sp</dimen>
+    <dimen name="new_hotel_detail_hotel_nearby_landmarks_txt_size">16sp</dimen>
+    <dimen name="new_hotel_detail_hotel_overview_desc_txt_size">14sp</dimen>
+    <dimen name="new_hotel_detail_hotel_overview_txt_size">14sp</dimen>
+    <dimen name="new_hotel_detail_hotel_policys_detail_txt_size">16sp</dimen>
+    <dimen name="new_hotel_detail_hotel_policys_title_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_hotel_trip_advisor_reviews_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_hotel_trip_advisor_total_txt_size">18sp</dimen>
+    <dimen name="new_hotel_detail_landmarks_desc_txt_size">13sp</dimen>
+    <dimen name="new_hotel_detail_landmarks_heading_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_landmarks_row_size">30dp</dimen>
+    <dimen name="new_hotel_detail_links_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_no_of_guest_and_rooms_txt_size">16sp</dimen>
+    <dimen name="new_hotel_detail_no_room_found_txt_size">18sp</dimen>
+    <dimen name="new_hotel_detail_other_policies_desc_txt_size">14sp</dimen>
+    <dimen name="new_hotel_detail_other_policies_title_txt_size">16sp</dimen>
+    <dimen name="new_hotel_detail_property_type_txt_size">12sp</dimen>
+    <dimen name="new_hotel_detail_things_to_note_txt_size">16sp</dimen>
+    <dimen name="new_hotel_detail_trip_advisor_localized_txt_size">16sp</dimen>
+    <dimen name="new_hotel_detail_trip_advisor_review_titletxt_size">14sp</dimen>
+    <dimen name="new_hotel_distance_text_size">11sp</dimen>
+    <dimen name="new_hotel_divider_size">1dp</dimen>
+    <dimen name="new_hotel_extra_big_padding">26dp</dimen>
+    <dimen name="new_hotel_extra_large_padding">20dp</dimen>
+    <dimen name="new_hotel_extra_medium_padding">10dp</dimen>
+    <dimen name="new_hotel_facility_bar_size">26dp</dimen>
+    <dimen name="new_hotel_facility_txt_size">10sp</dimen>
+    <dimen name="new_hotel_final_review_best_price_bottom_paddding">48dp</dimen>
+    <dimen name="new_hotel_final_review_best_price_top_paddding">56dp</dimen>
+    <dimen name="new_hotel_final_review_bottom_bar_amount_txt_size">24sp</dimen>
+    <dimen name="new_hotel_final_review_bottom_bar_size">52dp</dimen>
+    <dimen name="new_hotel_final_review_bottom_bar_total_amount_txt_size">12sp</dimen>
+    <dimen name="new_hotel_final_review_detail_height">202dp</dimen>
+    <dimen name="new_hotel_final_review_divider_size">8dp</dimen>
+    <dimen name="new_hotel_final_review_fare_break_up_sub_desc_txt_size">12sp</dimen>
+    <dimen name="new_hotel_final_review_hotel_address_txt_size">14sp</dimen>
+    <dimen name="new_hotel_final_review_hotel_check_in_and_check_out_txt_size">14sp</dimen>
+    <dimen name="new_hotel_final_review_hotel_date_size">18sp</dimen>
+    <dimen name="new_hotel_final_review_hotel_name_txt_size">20sp</dimen>
+    <dimen name="new_hotel_final_review_hotel_time_size">14sp</dimen>
+    <dimen name="new_hotel_final_review_inclusion_txt_size">14sp</dimen>
+    <dimen name="new_hotel_final_review_no_of_rooms_and_guest_size">16sp</dimen>
+    <dimen name="new_hotel_final_review_room_details_txt_size">18sp</dimen>
+    <dimen name="new_hotel_final_review_room_type_txt_size">18sp</dimen>
+    <dimen name="new_hotel_home_stay_no_bedrooms_text_size">14sp</dimen>
+    <dimen name="new_hotel_home_stay_property_and_bedrooms_text_size">12sp</dimen>
+    <dimen name="new_hotel_host_profile_content_txt_size">14sp</dimen>
+    <dimen name="new_hotel_host_profile_title_txt_size">16sp</dimen>
+
+    <dimen name="new_hotel_hotel_overview_padding">16dp</dimen>
+    <dimen name="new_hotel_hotel_policy_padding">6dp</dimen>
+    <dimen name="new_hotel_image_height">120dp</dimen>
+    <dimen name="new_hotel_image_width">120dp</dimen>
+    <dimen name="new_hotel_large_padding">16dp</dimen>
+    <dimen name="new_hotel_less_big_padding">20dp</dimen>
+    <dimen name="new_hotel_no_shortlist_hotel_found_desc_txt_size">14sp</dimen>
+    <dimen name="new_hotel_no_shortlist_hotel_found_top_padding">30dp</dimen>
+    <dimen name="new_hotel_no_shortlist_hotel_found_txt_size">20sp</dimen>
+    <dimen name="new_hotel_offer_txt_size">12sp</dimen>
+    <dimen name="new_hotel_other_detail_margin_size">14dp</dimen>
+    <dimen name="new_hotel_pay_at_hotel_txt_size">12sp</dimen>
+    <dimen name="new_hotel_price_text_size">20sp</dimen>
+    <dimen name="new_hotel_review_inclusion_and_policy_txt_size">14sp</dimen>
+    <dimen name="new_hotel_reviews_text_size">11sp</dimen>
+    <dimen name="new_hotel_select_divider_size">0.5dp</dimen>
+    <dimen name="new_hotel_select_room_book_room_txt_size">12sp</dimen>
+    <dimen name="new_hotel_select_room_divider_size">8dp</dimen>
+    <dimen name="new_hotel_select_room_hotel_name_txt_size">14sp</dimen>
+    <dimen name="new_hotel_select_room_image_height">100dp</dimen>
+    <dimen name="new_hotel_select_room_image_width">100dp</dimen>
+    <dimen name="new_hotel_select_room_max_guests_txt_size">12sp</dimen>
+    <dimen name="new_hotel_select_room_name_txt_size">16sp</dimen>
+    <dimen name="new_hotel_select_room_price_txt_size">20sp</dimen>
+    <dimen name="new_hotel_select_room_rooms_cancellation_txt_size">12sp</dimen>
+    <dimen name="new_hotel_select_room_rooms_overview_txt_size">12sp</dimen>
+    <dimen name="new_hotel_select_room_strike_price_txt_size">12sp</dimen>
+    <dimen name="new_hotel_small_padding">4dp</dimen>
+    <dimen name="new_hotel_sort_filter_height">41dp</dimen>
+    <dimen name="new_hotel_sort_filter_txt_size">12sp</dimen>
+    <dimen name="new_hotel_strike_price_text_size">12sp</dimen>
+
+    <dimen name="row_icon_size">50dp</dimen>
+    <dimen name="deal_foru_size">400dp</dimen>
+    <dimen name="deal_margin">10dp</dimen>
+
+    <dimen name="deal_text_margin">10dp</dimen>
+    <dimen name="deal_small_text_margin">30dp</dimen>
+
+    <!--Registration-->
+    <dimen name="registration_text_margin">10dp</dimen>
+    <dimen name="registration_card_vertical_margin">10dp</dimen>
+    <dimen name="registration_card_horizontal_margin">10dp</dimen>
+    <dimen name="registration_edit_horizontal_margin">5dp</dimen>
+    <dimen name="registration_padding_drawable_margin">10dp</dimen>
+    <dimen name="registration_scroll_margin">60dp</dimen>
+    <dimen name="registration_button_horizontal_margin">10dp</dimen>
+    <dimen name="registration_button_drawable_margin">20dp</dimen>
+
+    <!--MoreFragment-->
+    <dimen name="list_image_size">30dp</dimen>
+    <dimen name="more_list_image_margin_vertical">10dp</dimen>
+    <dimen name="more_list_image_margin_horizontal">20dp</dimen>
+    <dimen name="more_list_text_margin_horizontal">20dp</dimen>
+    <dimen name="more_profile_linear_margin_horizontal">20dp</dimen>
+
+    <!--Select id Upload activity-->
+    <dimen name="id_header_margin_horizontal">20dp</dimen>
+    <dimen name="id_header_margin_vertical">10dp</dimen>
+    <dimen name="id_linear_margin_horizontal">20dp</dimen>
+    <dimen name="id_linear_margin_vertical">10dp</dimen>
+    <dimen name="id_type_margin_vertical">10dp</dimen>
+    <dimen name="id_type_margin_horizontal">10dp</dimen>
+    <dimen name="profile_width">75dp</dimen>
+    <dimen name="profile_height">75dp</dimen>
+    <!--Upload Id-->
+    <dimen name="upload_margin_horizontal">20dp</dimen>
+    <dimen name="upload_margin_vertical">10dp</dimen>
+    <dimen name="upload_size">310dp</dimen>
+    <dimen name="large_padding">16dp</dimen>
+    <dimen name="medium_padding">8dp</dimen>
+    <dimen name="button_green_corner_radius">2dp</dimen>
+</resources>
