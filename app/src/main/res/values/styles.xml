@@ -155,4 +155,21 @@
     <item name="android:displayOptions">showTitle</item>
     <!--<item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>-->
     </style>
+
+
+    <style name="SearchViewTheme" parent="Widget.AppCompat.SearchView.ActionBar">
+
+        <item name="commitIcon">@drawable/ic_search_black_24dp</item>
+        <item name="colorControlNormal">@color/material_light_active_icon</item>
+        <item name="colorControlHighlight">@color/material_ripple_light</item>
+        <item name="android:hint">Enter city or Locality</item>
+
+        <item name="android:maxWidth">9999dp</item>
+    </style>
+
+    <style name="CustomTextAppearances" parent="@android:style/TextAppearance">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 </resources>
