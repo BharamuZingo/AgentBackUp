@@ -22,6 +22,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -44,6 +50,7 @@ import java.util.stream.Collectors;
 import app.zingo.com.agentapp.Adapter.HotelListImageAdapter;
 import app.zingo.com.agentapp.Adapter.ImageAdapter;
 import app.zingo.com.agentapp.Adapter.ViewPagerAdapter;
+import app.zingo.com.agentapp.CustomViews.RecyclerViewAnimator;
 import app.zingo.com.agentapp.MainActivity;
 import app.zingo.com.agentapp.Model.DataModel;
 import app.zingo.com.agentapp.Model.HotelAvailablityResponse;
@@ -76,6 +83,7 @@ public class HotelListActivity extends AppCompatActivity {
     ArrayList<HotelDetails> hotelDetailseResponse,allHotelResponse,approvedHotels,allApprovedHotels,fillterHotels;
     public LinearLayout mSortParent,mFilterParent,mSortAndFilterParent,mNoResult;
     ScrollView mScrollView;
+
 
 
     String ocity,city,locality,checkInDate,checkOutDate,room,checkInTime,checkOutTime,price,activity,lowPrice,highPrice;
@@ -230,10 +238,11 @@ public class HotelListActivity extends AppCompatActivity {
                     try {
                         LinearLayout linearLayout = (LinearLayout) mLocalHotelList.getChildAt(position);
                         CardView cardView = (CardView) linearLayout.getChildAt(0);
-                        LinearLayout linearLayout1 = (LinearLayout) cardView.getChildAt(0);
-                        LinearLayout linearLayout2 = (LinearLayout) linearLayout1.getChildAt(1);
-                        LinearLayout linearLayout3 = (LinearLayout) linearLayout2.getChildAt(1);
-                        TextView textView = (TextView) linearLayout3.getChildAt(2);
+                        //LinearLayout linearLayout1 = (LinearLayout) cardView.getChildAt(0);
+                        FrameLayout frameLayout1 = (FrameLayout) cardView.getChildAt(0);
+                        //LinearLayout linearLayout2 = (LinearLayout) frameLayout1.getChildAt(1);
+                       // LinearLayout linearLayout3 = (LinearLayout) linearLayout2.getChildAt(1);
+                        TextView textView = (TextView) frameLayout1.getChildAt(3);
 
                         //System.out.println(textView.getText().toString());
                         if (textView.getText().toString().equalsIgnoreCase("Sold out")) {
@@ -287,6 +296,24 @@ public class HotelListActivity extends AppCompatActivity {
 
                 }
             }));
+
+           mLocalHotelList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+               @Override
+               public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                   super.onScrollStateChanged(recyclerView, newState);
+                   System.out.println("Scroll Changed");
+                   slideUp(mLocalHotelList);
+               }
+
+               @Override
+               public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                   super.onScrolled(recyclerView, dx, dy);
+                   System.out.println("Scrolling");
+                   slideUp(mLocalHotelList);
+               }
+           });
+
+
 
             toolbar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -794,6 +821,7 @@ public class HotelListActivity extends AppCompatActivity {
                                                             adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
                                                                     checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
                                                             mLocalHotelList.setAdapter(adapter);
+                                                            recyclerAnimation();
                                                         }else{
 
                                                             for(int i=0;i<fillterHotels.size();i++){
@@ -826,6 +854,7 @@ public class HotelListActivity extends AppCompatActivity {
                                                                 approvedHotels = priceHotels;
                                                                 adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
                                                                 mLocalHotelList.setAdapter(adapter);
+                                                                recyclerAnimation();
                                                             }else{
 
                                                                 mNoResult.setVisibility(View.VISIBLE);
@@ -849,6 +878,7 @@ public class HotelListActivity extends AppCompatActivity {
                                                         if(minPrice==0&&maxPrice==0){
                                                             adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
                                                             mLocalHotelList.setAdapter(adapter);
+                                                            recyclerAnimation();
                                                         }else{
 
                                                             for(int i=0;i<approvedHotels.size();i++){
@@ -884,6 +914,7 @@ public class HotelListActivity extends AppCompatActivity {
                                                                 approvedHotels = priceHotels;
                                                                 adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"all");
                                                                 mLocalHotelList.setAdapter(adapter);
+                                                                recyclerAnimation();
                                                             }else{
 
                                                                 mNoResult.setVisibility(View.VISIBLE);
@@ -905,6 +936,7 @@ public class HotelListActivity extends AppCompatActivity {
                                             adapter = new HotelListAdapter(HotelListActivity.this, approvedHotels,checkInDate,
                                                     checkOutDate,latitude,longitude,checkInTime,checkOutTime,room,price,"filter");
                                             mLocalHotelList.setAdapter(adapter);
+                                            recyclerAnimation();
                                         }
 
 
@@ -1361,6 +1393,8 @@ public class HotelListActivity extends AppCompatActivity {
        private  String cid,cod,cit,cot,room,price;
        final private double curLang,curLat;
        private String adtype;
+       private int mLastPosition=0;
+       private RecyclerViewAnimator mAnimator;
 
        public HotelListAdapter(Context context, ArrayList<HotelDetails> list,String cid,String cod,
                                double curLat,double curLang,String cit,String cot,String room,String price,String adtype) {
@@ -1384,6 +1418,8 @@ public class HotelListActivity extends AppCompatActivity {
            {
                approvedHotelsDistance.clear();
            }
+
+           mAnimator = new RecyclerViewAnimator(mLocalHotelList);
        }
 
        public HotelListAdapter(Context context, ArrayList<HotelDetails> list,String cid,String cod,
@@ -1399,10 +1435,17 @@ public class HotelListActivity extends AppCompatActivity {
            this.price = price;
            this.curLat = curLat;
            this.curLang = curLang;
+           mAnimator = new RecyclerViewAnimator(mLocalHotelList);
 
 
 
        }
+
+    /*   @Override
+       public void onViewDetachedFromWindow(ViewHolder holder) {
+           super.onViewDetachedFromWindow(holder);
+           holder.itemView.clearAnimation();
+       }*/
 
        @Override
        public HotelListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -1411,7 +1454,7 @@ public class HotelListActivity extends AppCompatActivity {
                View v = LayoutInflater.from(parent.getContext())
                        .inflate(R.layout.adapter_hotel_list, parent, false);
                HotelListAdapter.ViewHolder viewHolder = new HotelListAdapter.ViewHolder(v);
-
+               mAnimator.onCreateViewHolder(v);
                return viewHolder;
            }catch (Exception e){
                e.printStackTrace();
@@ -1517,11 +1560,24 @@ public class HotelListActivity extends AppCompatActivity {
             }
         });*/
 
+        if(position!=mLastPosition){
+            mAnimator.onBindViewHolder(holder.itemView, position);
+            mLastPosition = position;
+        }
+
+
+
            }catch (Exception e){
                e.printStackTrace();
            }
 
        }
+       public void setFadeAnimation(View view) {
+           AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+           anim.setDuration(500);
+           view.startAnimation(anim);
+       }
+
 
        @Override
        public int getItemCount() {
@@ -1702,7 +1758,8 @@ public class HotelListActivity extends AppCompatActivity {
                                        }
                                    }
                                    //Toast.makeText(context,response.message(),Toast.LENGTH_SHORT).show();
-                                   tv.setText("No Location found for this hotel");
+                                   //tv.setText("No Location found for this hotel");
+                                   tv.setVisibility(View.GONE);
                                }
                            }catch (Exception e){
                                e.printStackTrace();
@@ -1904,5 +1961,46 @@ public class HotelListActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void slideUp(View view){
+
+        Animation animate = AnimationUtils.loadAnimation(this,R.anim.up_scroll);
+
+        animate.setDuration(400);
+        animate.setFillAfter(false);
+        view.startAnimation(animate);
+
+    }
+
+
+    public void slideDown(View view){
+        Animation animate = AnimationUtils.loadAnimation(this,R.anim.down_scroll);
+        animate.setDuration(400);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
+
+    }
+
+    public void recyclerAnimation(){
+        mLocalHotelList.getViewTreeObserver().addOnPreDrawListener(
+                new ViewTreeObserver.OnPreDrawListener() {
+
+                    @Override
+                    public boolean onPreDraw() {
+                        mLocalHotelList.getViewTreeObserver().removeOnPreDrawListener(this);
+
+                        for (int i = 0; i < mLocalHotelList.getChildCount(); i++) {
+                            View v = mLocalHotelList.getChildAt(i);
+                            v.setAlpha(0.0f);
+                            v.animate().alpha(1.0f)
+                                    .setDuration(300)
+                                    .setStartDelay(i * 50)
+                                    .start();
+                        }
+
+                        return true;
+                    }
+                });
     }
 }

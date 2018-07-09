@@ -6,8 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -15,15 +19,26 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +51,16 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -43,22 +68,31 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
+import app.zingo.com.agentapp.Adapter.AutocompleteCustomArrayAdapter;
 import app.zingo.com.agentapp.Adapter.CategorisedRoomListAdapter;
 import app.zingo.com.agentapp.Adapter.HotelDetailsAdapter;
 import app.zingo.com.agentapp.Adapter.ImageAdapter;
 import app.zingo.com.agentapp.Adapter.ListItemAdapter;
 import app.zingo.com.agentapp.Adapter.ViewPagerAdapter;
+import app.zingo.com.agentapp.CustomViews.CustomAutoCompleteView;
 import app.zingo.com.agentapp.CustomViews.CustomFontTextView;
 import app.zingo.com.agentapp.CustomViews.CustomGridView;
+import app.zingo.com.agentapp.MainActivity;
 import app.zingo.com.agentapp.Model.AgentHotel;
+import app.zingo.com.agentapp.Model.Bookings1;
 import app.zingo.com.agentapp.Model.HotelDetails;
 import app.zingo.com.agentapp.Model.HotelService;
+import app.zingo.com.agentapp.Model.Traveller;
+import app.zingo.com.agentapp.Model.TravellerAgentProfiles;
 import app.zingo.com.agentapp.R;
 import app.zingo.com.agentapp.Utils.Constants;
+import app.zingo.com.agentapp.Utils.PreferenceHandler;
 import app.zingo.com.agentapp.Utils.ThreadExecuter;
 import app.zingo.com.agentapp.Utils.Util;
 import app.zingo.com.agentapp.WebApi.HotelOperations;
+import app.zingo.com.agentapp.WebApi.TravellerApi;
 import at.blogc.android.views.ExpandableTextView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,7 +106,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
     ViewPager viewPager,mHotelDetailViewPager;
     CustomGridView gridView;
-    CustomFontTextView mHotelName,mHotelLocality,mHotelPolicy,ReadPolicy;
+    CustomFontTextView mHotelName,mHotelLocality,mHotelPolicy;
+    ImageView ReadPolicy;
     ExpandableTextView mHotelDetailsMoreInfo;
     TextView mToggleExpand,mSelectedRooms,mNoOfGuest;
     TabLayout mTabLayout;
@@ -81,7 +116,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
     TextView mReadMoreHotelPolicy,mCheckInDate,mCheckOutDate,
             mSelectRoomBtn,mHotelNameTitle;
     LinearLayout mCheckOutDateSelect,mCheckInDateSelect,mSelectNoGuestAndRooms,mGoToHotelLocation,mGotoPhotos,mGotoFacilities;
-    Toolbar mBackBtn;
+   // Toolbar mBackBtn;
+   Toolbar mAnimToolBar;
     RecyclerView mHotelCategoryList;
 
 
@@ -100,6 +136,47 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
     //LinearLayout dots;
     //ImageView[] dot;
 
+    //New Design
+    TextView  mVerifyMobile,mResendOTP,mSubmitOtp;
+    private RadioButton mMale,mFemale,mTransgender,mBussiness,mPersonal;
+    LinearLayout mCompany,mGST,mGSTCompanyParent,mOTPParent;
+    CustomAutoCompleteView mGuestName;
+    EditText mGuestMobile,mGuestEmail,mGuestCompany,mGuestGST,mOTP;
+    LinearLayout mAboutHotel,mPolicy;
+
+    int travellerIid;
+    Traveller traveller;
+    Bookings1 bookings;
+    int hotelid;
+    long commissionAmt;
+    AgentHotel hotelDetailseResponse;
+
+    int walletAmount,usedAmount;
+
+    boolean book = true;
+    TravellerAgentProfiles profiles;
+    double amount;
+    ProgressDialog dialog;
+
+    ArrayList<Traveller> tlist;
+    ArrayAdapter<Traveller> searchAdapter;
+
+
+    private static final String KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress";
+
+    // [START declare_auth]
+    private FirebaseAuth mAuth;
+
+    private boolean mVerificationInProgress = false;
+    private String mVerificationId;
+    private PhoneAuthProvider.ForceResendingToken mResendToken;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private String type  = null;
+
+
+    //PaymentGateway
+    private static final String TAG = HotelDetailsActivity.class.getSimpleName();
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,16 +188,18 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
         simpleDateFormat = new SimpleDateFormat("dd MMM");
 
-        mBackBtn = (Toolbar) findViewById(R.id.hotel_details_back_btn);
+       // mBackBtn = (Toolbar) findViewById(R.id.hotel_details_back_btn);
       //  dots = (LinearLayout) findViewById(R.id.dots_layout);
 
         //mReadMoreHotelPolicy = (TextView) findViewById(R.id.read_more_about_hotel);
+        mAnimToolBar = (Toolbar) findViewById(R.id.anim_toolbar);
+        setSupportActionBar(mAnimToolBar);
         mCheckInDate = (TextView) findViewById(R.id.hotel_details_check_in_date);
         mHotelNameTitle = (TextView) findViewById(R.id.hotel_name_title);
         mHotelName = (CustomFontTextView) findViewById(R.id.hotel_details_hotel_address);
         mHotelLocality = (CustomFontTextView) findViewById(R.id.hotel_locality);
-        mHotelPolicy = (CustomFontTextView) findViewById(R.id.hotel_policy);
-        ReadPolicy = (CustomFontTextView) findViewById(R.id.read_hotel_policy_more);
+        //mHotelPolicy = (CustomFontTextView) findViewById(R.id.hotel_policy);
+        ReadPolicy = (ImageView) findViewById(R.id.right_about_hotel);
         mCheckOutDate = (TextView) findViewById(R.id.hotel_details_check_out_date);
         mSelectedRooms = (TextView) findViewById(R.id.hotel_details_no_of_selected_rooms);
         mNoOfGuest = (TextView) findViewById(R.id.hotel_details_no_of_guests);
@@ -139,6 +218,38 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         mGoToHotelLocation = (LinearLayout) findViewById(R.id.go_to_hotel_location);
         mGotoPhotos = (LinearLayout) findViewById(R.id.display_hotel_images);
         mGotoFacilities = (LinearLayout) findViewById(R.id.show_hotel_facilities);
+
+
+        //New design-----------
+        mGuestName = (CustomAutoCompleteView)findViewById(R.id.full_name_guest);
+        mGuestName.setThreshold(1);
+        mGuestName.setAdapter(searchAdapter);
+
+        mGuestMobile = (EditText) findViewById(R.id.mobile_guest);
+        mGuestEmail = (EditText)findViewById(R.id.email_guest);
+        mGuestGST = (EditText)findViewById(R.id.gst_guest);
+        mGuestCompany = (EditText)findViewById(R.id.company_guest);
+        mOTP = (EditText)findViewById(R.id.mobile_otp);
+        mCompany = (LinearLayout) findViewById(R.id.company_layout);
+        mGST = (LinearLayout)findViewById(R.id.gst_layout);
+        mGSTCompanyParent = (LinearLayout)findViewById(R.id.gst_company_parent);
+        mOTPParent = (LinearLayout)findViewById(R.id.otp_parent);
+        mGSTCompanyParent.setVisibility(View.GONE);
+        mOTPParent.setVisibility(View.GONE);
+        mVerifyMobile = (TextView)findViewById(R.id.verify_mobile_number);
+        mResendOTP = (TextView)findViewById(R.id.resend_otp);
+        mSubmitOtp = (TextView)findViewById(R.id.submit_otp);
+        mAboutHotel = (LinearLayout) findViewById(R.id.linear_about_hotel);
+        mPolicy = (LinearLayout) findViewById(R.id.linear_policy);
+
+
+        mMale = (RadioButton) findViewById(R.id.booking_male);
+        mFemale = (RadioButton) findViewById(R.id.booking_female);
+        mPersonal = (RadioButton) findViewById(R.id.booking_personal);
+        mBussiness = (RadioButton) findViewById(R.id.booking_company);
+        mPersonal.setChecked(true);
+        //mTransgender = (RadioButton) findViewById(R.id.booking_transgender);
+
 
 
         //createDot(0);
@@ -166,7 +277,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             }
 
         }
-
+        getHotelDetails(hotelId);
 
         if(checkInDate != null && checkoutDate != null)
         {
@@ -196,9 +307,12 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         mGotoPhotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HotelDetailsActivity.this,HotelImagesList.class);
-                intent.putExtra("HotelId",agentHotel.getHotelId());
-                startActivity(intent);
+
+                    Intent intent = new Intent(HotelDetailsActivity.this,ImageFull.class);
+                    intent.putExtra("HotelId",agentHotel.getHotelId());
+                    startActivity(intent);
+
+
             }
         });
 
@@ -218,7 +332,15 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             }
         });
 
-        ReadPolicy.setOnClickListener(new View.OnClickListener() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow(); // in Activity's onCreate() for instance
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            CollapsingToolbarLayout.LayoutParams lp = (CollapsingToolbarLayout.LayoutParams) mAnimToolBar.getLayoutParams();
+            lp.setMargins(0,24,0,0);
+            mAnimToolBar.setLayoutParams(lp);
+        }
+
+       /* ReadPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(agentHotel.getPolicies().size()!=0){
@@ -228,9 +350,19 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 }
 
             }
+        });*/
+
+        mAboutHotel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showAlertPolicy(agentHotel);
+
+
+            }
         });
 
-        getHotelDetails(hotelId);
+
        /* mTabLayout = (TabLayout) findViewById(R.id.hotel_details_tabLayout);
         mTabLayout.setTabGravity(TabLayout.MODE_FIXED);*/
         //mHotelDetailViewPager = (ViewPager) findViewById(R.id.hotel_details_pager);
@@ -414,12 +546,12 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         /*GridViewAdapter facilityAdapter = new GridViewAdapter(HotelDetailsActivity.this,hotelFacilitiesArraylist);
         gridView.setAdapter(facilityAdapter);*/
 
-        mBackBtn.setOnClickListener(new View.OnClickListener() {
+       /* mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 HotelDetailsActivity.this.finish();
             }
-        });
+        });*/
        /* mReadMoreHotelPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -465,6 +597,245 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 startActivity(intent);
             }
         });*/
+
+
+        //New Design------
+        mGuestName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Traveller ci = (Traveller)parent.getItemAtPosition(position);
+                mGuestName.setText(ci.getFirstName());
+                if(ci.getGender().equalsIgnoreCase("Male"))
+                {
+                    mMale.setChecked(true);
+                    mMale.setEnabled(false);
+                    mFemale.setEnabled(false);
+
+                }
+                else if(ci.getGender().equalsIgnoreCase("Female"))
+                {
+                    mFemale.setChecked(true);
+                    mMale.setEnabled(false);
+                    mFemale.setEnabled(false);
+                }
+                //mGuestMobile.setEnabled(false);
+                mGuestEmail.setText(ci.getEmail());
+                //mGuestEmail.setEnabled(false);
+                mGuestCompany.setText(ci.getCompany());
+                //mGuestCompany.setEnabled(false);
+                mGuestGST.setText(ci.getCustomerGST());
+                //mGuestGST.setEnabled(false);
+
+                travellerIid = ci.getTravellerId();
+            }
+        });
+
+        mResendOTP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mobile = mGuestMobile.getText().toString();
+                if(mobile == null || mobile.isEmpty())
+                {
+                    mGuestMobile.setError("Please enter valid mobile number");
+                }
+                else
+                {
+                    dialog = new ProgressDialog(HotelDetailsActivity.this);
+                    dialog.setMessage(getResources().getString(R.string.loader_message));
+                    dialog.setCancelable(false);
+                    dialog.show();
+                    //verifyPhoneNumberWithCode(mVerificationId, code);
+                    /*if(type.equalsIgnoreCase("resend")){
+                        resendVerificationCode(country+mobile, mResendToken);
+                    }else{*/
+                    //startPhoneNumberVerification(country+mobile);
+                    //startPhoneNumberVerification(mobile);
+                    resendVerificationCode(mobile, mResendToken);
+                }
+            }
+        });
+
+        mVerifyMobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mobile = mGuestMobile.getText().toString();
+                if(mobile == null || mobile.isEmpty())
+                {
+                    mGuestMobile.setError("Please enter valid mobile number");
+                }
+                else
+                {
+                    dialog = new ProgressDialog(HotelDetailsActivity.this);
+                    dialog.setMessage(getResources().getString(R.string.loader_message));
+                    dialog.setCancelable(false);
+                    dialog.show();
+                    //verifyPhoneNumberWithCode(mVerificationId, code);
+                    /*if(type.equalsIgnoreCase("resend")){
+                        resendVerificationCode(country+mobile, mResendToken);
+                    }else{*/
+                    //startPhoneNumberVerification(country+mobile);
+                    startPhoneNumberVerification(mobile);
+                }
+                //}
+            }
+        });
+
+
+        mSubmitOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String code = mOTP.getText().toString();
+                if (TextUtils.isEmpty(code)) {
+                    mOTP.setError("Cannot be empty.");
+                    return;
+                }
+                else if(mVerificationId==null||mVerificationId.isEmpty()){
+                    Toast.makeText(HotelDetailsActivity.this, "OTP is not matching", Toast.LENGTH_SHORT).show();
+                }else{
+                    dialog = new ProgressDialog(HotelDetailsActivity.this);
+                    dialog.setMessage(getResources().getString(R.string.loader_message));
+                    dialog.setCancelable(false);
+                    dialog.show();
+                    verifyPhoneNumberWithCode(mVerificationId, code);
+                }
+            }
+        });
+
+        mPersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGST.setVisibility(View.GONE);
+                mCompany.setVisibility(View.GONE);
+            }
+        });
+
+        mCompany.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGST.setVisibility(View.VISIBLE);
+                mCompany.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        mPersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mPersonal.isChecked())
+                {
+                    mPersonal.setChecked(true);
+                    mBussiness.setChecked(false);
+                    mGSTCompanyParent.setVisibility(View.GONE);
+                }
+                else
+                {
+                    mPersonal.setChecked(true);
+                    mBussiness.setChecked(false);
+                    mGSTCompanyParent.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        mBussiness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mBussiness.isChecked())
+                {
+                    mBussiness.setChecked(true);
+                    mPersonal.setChecked(false);
+                    mGSTCompanyParent.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    mBussiness.setChecked(true);
+                    mPersonal.setChecked(false);
+                    mGSTCompanyParent.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        mGuestMobile.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                isValidEmail();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if (start == 9){
+
+                    getTravelerByPhone(mGuestMobile.getText().toString());
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+        // [START initialize_auth]
+        mAuth = FirebaseAuth.getInstance();
+        // [END initialize_auth]
+        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential credential) {
+
+                Log.d(TAG, "onVerificationCompleted:" + credential);
+                // [START_EXCLUDE silent]
+                mVerificationInProgress = false;
+
+                String code = credential.getSmsCode();
+                mOTP.setText(code);
+                dialog = new ProgressDialog(HotelDetailsActivity.this);
+                dialog.setMessage(getResources().getString(R.string.loader_message));
+                dialog.setCancelable(false);
+                dialog.show();
+
+                signInWithPhoneAuthCredential(credential);//<---hard code---->
+
+            }
+
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+
+
+                Log.w(TAG, "onVerificationFailed", e);
+                // [START_EXCLUDE silent]
+                mVerificationInProgress = false;
+                // [END_EXCLUDE]
+
+                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+
+                    mGuestMobile.setError("Invalid phone number.");
+
+                } else if (e instanceof FirebaseTooManyRequestsException) {
+
+                    Snackbar.make(findViewById(android.R.id.content), "Quota exceeded.",
+                            Snackbar.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCodeSent(String verificationId,
+                                   PhoneAuthProvider.ForceResendingToken token) {
+
+                Log.d(TAG, "onCodeSent:" + verificationId);
+
+                // Save verification ID and resending token so we can use them later
+                mVerificationId = verificationId;
+                mResendToken = token;
+
+
+            }
+        };
 
 
     }
@@ -522,6 +893,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                             {
                                 agentHotel = hotelDetailseResponse;
 
+                                if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                                setSupportActionBar(mAnimToolBar);
 
 
                                 mHotelNameTitle.setText(agentHotel.getHotelName());
@@ -532,17 +905,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                                     mHotelLocality.setText(agentHotel.getHotelStreetAddress()+","+agentHotel.getLocalty());
                                 }
 
-                                if(agentHotel.getPolicies().size()!=0){
-                                    String[] s = agentHotel.getPolicies().get(0).getHotelPolicy().split(",");
-                                    if(s.length > 1)
-                                    {
-                                        mHotelPolicy.setText(s[0]+"\n"+s[1]);
-                                    }
-                                    else
-                                    {
-                                        mHotelPolicy.setText(s[0]);
-                                    }
-                                }
+
+
 
 
 
@@ -689,7 +1053,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
     private void showAlertPolicy(AgentHotel details) {
 
-        if(details != null && details.getAminetiesList() != null && details.getAminetiesList().size() != 0)
+        if(details != null )
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsActivity.this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -697,16 +1061,16 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
             TextView policyDetails = (TextView) v.findViewById(R.id.policy_details);
 
-            policyDetails.setText("Hotel Policy: \n\n"+agentHotel.getPolicies().get(0).getHotelPolicy()+"\n\n\nCancellation Policy:\n\n"
-                    +agentHotel.getPolicies().get(0).getStandardCancellationPolicy()+"\n\n\nService Policy:\n\n"
-                    +agentHotel.getPolicies().get(0).getHotelServices());
-            //itemsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+            if(details.getPolicies()!=null&&details.getPolicies().size()!=0){
+                policyDetails.setText("Hotel Policy: \n\n"+details.getPolicies().get(0).getHotelPolicy()+"\n\n\nCancellation Policy:\n\n"
+                        +details.getPolicies().get(0).getStandardCancellationPolicy()+"\n\n\nService Policy:\n\n"
+                        +details.getPolicies().get(0).getHotelServices());
+            }else{
+               policyDetails.setText("Sorry! This hotel do not have any policies");
+            }
 
 
-            /*final ListItemAdapter adapter = new ListItemAdapter(HotelDetailsActivity.this,details.getAminetiesList());
-
-            itemsList.setAdapter(adapter);*/
-
+//This hotel do not have any policies
 
             builder.setView(v);
             // builder.setTitle(title);
@@ -720,12 +1084,6 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 }
             });
 
-       /* builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });*/
 
 
             AlertDialog dialog = builder.create();
@@ -738,7 +1096,101 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
     }
 
+    private void showalertboxPay() throws Exception{
 
+        final android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(HotelDetailsActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View view = inflater.inflate(R.layout.alert_payment_mode,null);
+
+        TextView mHotelTotalCharges = (TextView)view.findViewById(R.id.hotel_total_charges);
+        TextView mHotelRate = (TextView)view.findViewById(R.id.hotel_charges);
+        TextView mHotelGst = (TextView)view.findViewById(R.id.hotel_gst_charges);
+        TextView mAgentErnings = (TextView)view.findViewById(R.id.agent_earnings);
+
+        TextView mPayLater = (TextView)view.findViewById(R.id.pay_later_btn);
+        TextView mPayNow = (TextView)view.findViewById(R.id.pay_now_btn);
+        dialogBuilder.setView(view);
+        final android.app.AlertDialog dialog = dialogBuilder.create();
+        dialog.show();
+
+
+
+
+            int days = getDays();
+
+
+            int totalbaseprice = 0;
+            int totalprice = 0;
+            int GST =0,GST1 = 0,roomPrice = 0;
+            String[] s = room.split(",");
+
+            if(s[0] != null && !s[0].isEmpty()) {
+                totalbaseprice = sellprice*days;
+                GST = getGstPrice(sellprice)*Integer.parseInt(s[0])*days;
+                roomPrice = sellprice*Integer.parseInt(s[0])*days;
+                GST1 = getGstPrice(sellprice);
+                totalprice = (totalbaseprice+GST1)*Integer.parseInt(s[0]);
+            }
+            else
+            {
+                totalbaseprice = sellprice*days;
+                roomPrice = sellprice*days;
+                GST = getGstPrice(sellprice);
+                totalprice = totalbaseprice+GST;
+            }
+            //int totalbaseprice = price*days*rooms;
+
+
+
+
+            mHotelGst.setText("₹ "+GST);
+            mHotelRate.setText("₹ "+sellprice);
+            mHotelTotalCharges.setText("₹ "+(totalprice));
+
+
+
+
+
+        mPayLater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try
+                {
+                    if(dialog != null)
+                    {
+                        dialog.dismiss();
+                    }
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        mPayNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try
+                {
+                    if(dialog != null)
+                    {
+                        dialog.dismiss();
+                    }
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
     public void openDatePicker(final LinearLayout lv, final TextView tv) {
         // Get Current Date
 
@@ -961,7 +1413,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 public void onClick(View v) {
 
 
-                    Intent intent = new Intent(context, ReviewHotelDetailsActivity.class);
+                  /*  Intent intent = new Intent(context, ReviewHotelDetailsActivity.class);
                     intent.putExtra("HotelId",hotelId   );
                     intent.putExtra("Price",sellprice);
                     intent.putExtra("displayprice",displayprice);
@@ -971,7 +1423,13 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                     intent.putExtra("CheckoutTime",CheckOutTime);
                     intent.putExtra("Room",room);
 
-                    context.startActivity(intent);
+                    context.startActivity(intent);*/
+                  try{
+                      showalertboxPay();
+                  }catch (Exception e){
+                      e.printStackTrace();
+                  }
+
                 }
             });
 
@@ -1078,4 +1536,310 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             dots.addView(dot[i],params);
         }
     }*/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        try{
+            switch (itemId)
+            {
+
+
+                case android.R.id.home:
+                    // app icon action bar is clicked; go to parent activity
+
+
+                    this.finish();
+                    return true;
+
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+
+        }catch (Exception e ){
+            e.printStackTrace();
+            return super.onOptionsItemSelected(item);
+        }
+
+
+
+    }
+
+    //New Design-------
+    private void getTravelerByPhone(final String dto){
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("please wait..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        new ThreadExecuter().execute(new Runnable() {
+            @Override
+            public void run() {
+                String auth_string = Util.getToken(HotelDetailsActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
+                TravellerApi apiService = Util.getClient().create(TravellerApi.class);
+                Call<ArrayList<Traveller>> call = apiService.fetchTravelerByPhone(auth_string,dto);
+
+                call.enqueue(new Callback<ArrayList<Traveller>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<Traveller>> call, Response<ArrayList<Traveller>> response) {
+//                List<RouteDTO.Routes> list = new ArrayList<RouteDTO.Routes>();
+                        int statusCode = response.code();
+                        if (statusCode == 200 || statusCode == 201 || statusCode == 203 || statusCode == 204) {
+
+                            if (progressDialog != null)
+                                progressDialog.dismiss();
+
+
+                            if (response.body().size() != 0) {
+                                tlist = response.body();
+
+                                AutocompleteCustomArrayAdapter autocompleteCustomArrayAdapter =
+                                        new AutocompleteCustomArrayAdapter(HotelDetailsActivity.this,R.layout.hotels_row,tlist,"HotelDetailsActivity");
+                                mGuestName.setThreshold(1);
+                                mGuestName.setAdapter(autocompleteCustomArrayAdapter);
+
+
+                            }else{
+                                if(tlist != null)
+                                {
+                                    tlist.clear();
+                                }
+                                travellerIid = 0;
+                                mGuestName.setEnabled(true);
+                                mGuestMobile.setEnabled(true);
+                                mGuestEmail.setEnabled(true);
+                                mGuestCompany.setEnabled(true);
+                                mGuestGST.setEnabled(true);
+
+                                mVerifyMobile.setVisibility(View.VISIBLE);
+                                mOTPParent.setVisibility(View.VISIBLE);
+                               /* mOtherParent.setVisibility(View.GONE);
+                                mPayNow.setEnabled(false);
+                                mPayLater.setEnabled(false);*/
+                            }
+                        }else {
+                            if (progressDialog != null)
+                                progressDialog.dismiss();
+                            Toast.makeText(HotelDetailsActivity.this, " failed due to : " + response.message(), Toast.LENGTH_SHORT).show();
+                        }
+//                callGetStartEnd();
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<Traveller>> call, Throwable t) {
+                        // Log error here since request failed
+                        if (progressDialog!=null)
+                            progressDialog.dismiss();
+                        Log.e("TAG", t.toString());
+                    }
+                });
+            }
+
+
+        });
+    }
+
+    private boolean isexist(ArrayList<Traveller> travellers) {
+
+        if(travellers.size() != 0)
+        {
+            String name = mGuestName.getText().toString().toLowerCase().trim();
+            String mobile = mGuestMobile.getText().toString().trim();
+            String email = mGuestEmail.getText().toString().trim();
+            for (int i=0;i<travellers.size();i++)
+            {
+                Traveller traveller = travellers.get(i);
+                if(traveller.getFirstName() != null && traveller.getPhoneNumber() != null && traveller.getEmail() != null)
+                {
+
+                    if(traveller.getFirstName().equalsIgnoreCase(name) && traveller.getPhoneNumber().equalsIgnoreCase(mobile)
+                            && traveller.getEmail().equalsIgnoreCase(email))
+                    {
+                        travellerIid = traveller.getTravellerId();
+
+                        return true;
+                        //break;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+    private void verifyPhoneNumberWithCode(String verificationId, String code) {
+        // [START verify_with_code]
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+        // [END verify_with_code]
+        signInWithPhoneAuthCredential(credential);
+    }
+
+    private void startPhoneNumberVerification(String phoneNumber) {
+        // [START start_phone_auth]
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNumber,        // Phone number to verify
+                75,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                this,               // Activity (for callback binding)
+                mCallbacks);        // OnVerificationStateChangedCallbacks
+        // [END start_phone_auth]
+
+        mVerificationInProgress = true;
+        /*mOtpLayout.setVisibility(View.VISIBLE);
+        mSubmit.setVisibility(View.GONE);
+        mResend.setVisibility(View.VISIBLE);*/
+        if(dialog != null && dialog.isShowing())
+        {
+            dialog.dismiss();
+        }
+        Toast.makeText(HotelDetailsActivity.this, "OTP sent successfully", Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    private void resendVerificationCode(String phoneNumber,
+                                        PhoneAuthProvider.ForceResendingToken token) {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNumber,        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                this,               // Activity (for callback binding)
+                mCallbacks,         // OnVerificationStateChangedCallbacks
+                token);
+        // ForceResendingToken from callbacks
+        if(dialog != null && dialog.isShowing())
+        {
+            dialog.dismiss();
+        }
+
+        Toast.makeText(HotelDetailsActivity.this, "OTP resent successfully", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_VERIFY_IN_PROGRESS, mVerificationInProgress);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mVerificationInProgress = savedInstanceState.getBoolean(KEY_VERIFY_IN_PROGRESS);
+    }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(dialog != null && dialog.isShowing())
+                        {
+                            dialog.dismiss();
+                        }
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+
+                            FirebaseUser user = task.getResult().getUser();
+                            Toast.makeText(HotelDetailsActivity.this, "Sucess verification", Toast.LENGTH_SHORT).show();
+                            // [START_EXCLUDE]
+
+
+
+                            //PhoneNumberVerficationActivity.this.finish();
+                            mGuestName.setText("");
+                            mGuestEmail.setText("");
+                            mGuestCompany.setText("");
+                            mGuestGST.setText("");
+
+
+
+
+
+                            // [END_EXCLUDE]
+                        } else {
+                            // Sign in failed, display a message and update the UI
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+
+                                mOTP.setError("Invalid code.");
+                                // [END_EXCLUDE]
+                            }
+
+                        }
+                    }
+                });
+    }
+
+
+
+
+    public int getGstPrice(int sellRate)
+    {
+        double gstamount = 0;
+        if(sellRate <= 999.99)
+        {
+            //System.out.println("0%");
+
+            gstamount = (sellRate * 0)/100;
+
+        }
+        else if(sellRate >= 1000 && sellRate <= 2499.99)
+        {
+
+            gstamount = (sellRate * 12)/100;
+
+            //System.out.println("12%");
+        }
+        else if(sellRate >= 2500 && sellRate <= 7499.99)
+        {
+
+            gstamount = (sellRate * 18)/100;
+
+            //System.out.println("18%");
+        }
+        else if(sellRate >= 7500)
+        {
+
+            gstamount = (sellRate * 28)/100;
+
+            //System.out.println("28%");
+        }
+
+        return (int)Math.round(gstamount);
+    }
+
+    private int getDays() {
+        //System.out.println("Text=="+checkinDate+" Date"+checkoutDate);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        Date fd = null,td = null;
+        try {
+            fd = sdf.parse(checkInDate);
+            //System.out.println("Text=="+book_from_date.getText().toString()+" Date"+fd);
+            td = sdf.parse(checkoutDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("From==="+fd+" To===="+td);
+        try {
+            long diff = td.getTime() - fd.getTime();
+            int diffDays = (int) diff / (24 * 60 * 60 * 1000);
+            System.out.println("Diff===" + diffDays);
+            return diffDays;
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+
+
+
 }

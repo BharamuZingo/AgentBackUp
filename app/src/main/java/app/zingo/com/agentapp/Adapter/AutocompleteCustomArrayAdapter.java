@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import app.zingo.com.agentapp.Activities.HotelDetailsActivity;
 import app.zingo.com.agentapp.Activities.ReviewHotelDetailsActivity;
 import app.zingo.com.agentapp.Model.Traveller;
 import app.zingo.com.agentapp.R;
@@ -24,13 +25,15 @@ public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Traveller> {
 
     Context mContext;
     int layoutResourceId;
+    String activity;
     ArrayList<Traveller> data = null;
 
-    public AutocompleteCustomArrayAdapter(Context mContext, int layoutResourceId, ArrayList<Traveller> data) {
+    public AutocompleteCustomArrayAdapter(Context mContext, int layoutResourceId, ArrayList<Traveller> data,String activity) {
 
         super(mContext, layoutResourceId, data);
 
         this.layoutResourceId = layoutResourceId;
+        this.activity = activity;
         this.mContext = mContext;
         this.data = data;
     }
@@ -48,8 +51,14 @@ public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Traveller> {
              */
             if(convertView==null){
                 // inflate the layout
-                LayoutInflater inflater = ((ReviewHotelDetailsActivity) mContext).getLayoutInflater();
-                convertView = inflater.inflate(layoutResourceId, parent, false);
+                if(activity!=null&&activity.equalsIgnoreCase("HotelDetailsActivity")){
+                    LayoutInflater inflater = ((HotelDetailsActivity) mContext).getLayoutInflater();
+                    convertView = inflater.inflate(layoutResourceId, parent, false);
+                }else{
+                    LayoutInflater inflater = ((ReviewHotelDetailsActivity) mContext).getLayoutInflater();
+                    convertView = inflater.inflate(layoutResourceId, parent, false);
+                }
+
             }
 
             // object item based on the position

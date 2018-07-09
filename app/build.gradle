@@ -68,7 +68,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
+    compile 'com.facebook.rebound:rebound:0.3.8'
     compile 'com.razorpay:checkout:1.4.5'
     testCompile 'junit:junit:4.12'
 

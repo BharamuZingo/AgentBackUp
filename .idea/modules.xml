@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ZingoHotels-Agent-App.iml" filepath="$PROJECT_DIR$/ZingoHotels-Agent-App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AgentBackUp.iml" filepath="$PROJECT_DIR$/AgentBackUp.iml" />
+      <module fileurl="file://D:\Nizar\Github\AgentBackUp\ZingoHotels-Agent-App.iml" filepath="D:\Nizar\Github\AgentBackUp\ZingoHotels-Agent-App.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

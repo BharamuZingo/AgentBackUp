@@ -67,7 +67,8 @@
         <activity
             android:name=".Activities.HotelDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".Activities.SelectRoomActivity"
             android:screenOrientation="portrait"

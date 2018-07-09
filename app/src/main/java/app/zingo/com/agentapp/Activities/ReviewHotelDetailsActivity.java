@@ -1314,7 +1314,7 @@ public class ReviewHotelDetailsActivity extends AppCompatActivity implements Pay
                                 tlist = response.body();
 
                                 AutocompleteCustomArrayAdapter autocompleteCustomArrayAdapter =
-                                        new AutocompleteCustomArrayAdapter(ReviewHotelDetailsActivity.this,R.layout.hotels_row,tlist);
+                                        new AutocompleteCustomArrayAdapter(ReviewHotelDetailsActivity.this,R.layout.hotels_row,tlist,"ReviewHotelDetailsActivity");
                                 mGuestName.setThreshold(1);
                                 mGuestName.setAdapter(autocompleteCustomArrayAdapter);
                                 //setAdapter(tlist);
