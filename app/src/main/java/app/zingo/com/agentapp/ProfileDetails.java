@@ -33,9 +33,9 @@ public class ProfileDetails extends AppCompatActivity {
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setTitle("User Profile");
-            getSupportActionBar().setHomeButtonEnabled(true);
+            //getSupportActionBar().setHomeButtonEnabled(true);
 
             viewPager = (ViewPager) findViewById(R.id.viewpager);
             setupViewPager(viewPager);
@@ -106,7 +106,8 @@ public class ProfileDetails extends AppCompatActivity {
 
     public void goback()
     {
-        Intent main = new Intent(ProfileDetails.this, MainActivity.class);
+        Intent main = new Intent(ProfileDetails.this, DemoActivity.class);
+        main.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(main);
         this.finish();
     }

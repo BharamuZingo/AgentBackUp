@@ -26,6 +26,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 import app.zingo.com.agentapp.CustomViews.CustomFontTextView;
+import app.zingo.com.agentapp.DemoActivity;
 import app.zingo.com.agentapp.MainActivity;
 import app.zingo.com.agentapp.Model.DeviceMapping;
 import app.zingo.com.agentapp.Model.HotelDetails;
@@ -486,7 +487,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if(hotelDetailseResponse != null)
                                     {
                                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                                        Intent i = new Intent(LoginActivity.this, DemoActivity.class);
                                         startActivity(i);
                                         finish();
                                     }

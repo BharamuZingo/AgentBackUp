@@ -1,12 +1,16 @@
 package app.zingo.com.agentapp.Activities;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import app.zingo.com.agentapp.Adapter.BookingHistoryViewPagerAdapter;
+import app.zingo.com.agentapp.DemoActivity;
+import app.zingo.com.agentapp.ProfileDetails;
 import app.zingo.com.agentapp.R;
 
 public class BookingHistoryActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
@@ -18,8 +22,10 @@ public class BookingHistoryActivity extends AppCompatActivity implements TabLayo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_history);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.booking_history_toolbar);
+        setSupportActionBar(toolbar);
+       /* getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);*/
 
         setTitle("Bookings");
 
@@ -60,11 +66,26 @@ public class BookingHistoryActivity extends AppCompatActivity implements TabLayo
         switch (id)
         {
             case android.R.id.home:
-                BookingHistoryActivity.this.finish();
+                //BookingHistoryActivity.this.finish();
+                goback();
                 break;
         }
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goback();
+    }
+
+    public void goback()
+    {
+        Intent main = new Intent(BookingHistoryActivity.this, DemoActivity.class);
+        main.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(main);
+        this.finish();
     }
 }

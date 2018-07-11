@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity  {
         location_button = (ImageButton)findViewById(R.id.location_button);
         search_button = (Button)findViewById(R.id.search_button_api);*/
             search_editText = (EditText)findViewById(R.id.search_editText);
-            navBarListView = (ListView) findViewById(R.id.navbar_list);
+            //navBarListView = (ListView) findViewById(R.id.navbar_list);
 
             madult = (Spinner)findViewById(R.id.adult_count);
             mchild = (Spinner)findViewById(R.id.child_count);
@@ -186,16 +186,16 @@ public class MainActivity extends AppCompatActivity  {
             cout_time_tv = (TextView)findViewById(R.id.cout_time_tv);
             cin_day_tv = (TextView)findViewById(R.id.cin_day_tv);
             cout_day_tv = (TextView)findViewById(R.id.cout_day_tv);
-            mSearchHotels = (TextView)findViewById(R.id.search_hotels);
-            mBid = (TextView)findViewById(R.id.bid_to_hotels);
+            //mSearchHotels = (TextView)findViewById(R.id.search_hotels);
+            //mBid = (TextView)findViewById(R.id.bid_to_hotels);
 
-            mProfileName = (TextView)findViewById(R.id.main_user_name);
-            mReferColde = (TextView)findViewById(R.id.referal_code);
-            mWishField = (TextView)findViewById(R.id.main_greetings);
-            mProfilePhoto = (CircleImageView) findViewById(R.id.profile_photo);
-            mNavbarHeader = (LinearLayout) findViewById(R.id.main_user_profile);
+            //mProfileName = (TextView)findViewById(R.id.main_user_name);
+            //mReferColde = (TextView)findViewById(R.id.referal_code);
+            //mWishField = (TextView)findViewById(R.id.main_greetings);
+            /*mProfilePhoto = (CircleImageView) findViewById(R.id.profile_photo);
+            mNavbarHeader = (LinearLayout) findViewById(R.id.main_user_profile);*/
 
-            mReferColde.setText("ZINGO"+PreferenceHandler.getInstance(MainActivity.this).getUserId());
+            //mReferColde.setText("ZINGO"+PreferenceHandler.getInstance(MainActivity.this).getUserId());
 
             location_button = (ImageButton)findViewById(R.id.location_button);
             search_button = (Button)findViewById(R.id.search_button_api);
@@ -204,15 +204,15 @@ public class MainActivity extends AppCompatActivity  {
         locationHelper.checkpermission();*/
 
 
-            mProfileName.setText(""+PreferenceHandler.getInstance(MainActivity.this).getFullName());
+            //mProfileName.setText(""+PreferenceHandler.getInstance(MainActivity.this).getFullName());
 
-            drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            /*drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                     this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
             drawer.setDrawerListener(toggle);
-            toggle.syncState();
+            toggle.syncState();*/
 
-            setUpNavigationDrawer();
+            //setUpNavigationDrawer();
             getTimeFromAndroid();
 
             //Get current date,day,time and set
@@ -221,13 +221,13 @@ public class MainActivity extends AppCompatActivity  {
             long date = System.currentTimeMillis();
 
 
-            mBid.setOnClickListener(new View.OnClickListener() {
+           /* mBid.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this, BidingActivity.class);
                     startActivity(intent);
                 }
-            });
+            });*/
 
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
@@ -324,7 +324,7 @@ public class MainActivity extends AppCompatActivity  {
             });
 
 
-            mNavbarHeader.setOnClickListener(new View.OnClickListener() {
+            /*mNavbarHeader.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(drawer != null && drawer.isDrawerOpen(START))
@@ -332,7 +332,7 @@ public class MainActivity extends AppCompatActivity  {
                         drawer.closeDrawer(START);
                     }
                 }
-            });
+            });*/
 
             location_button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -843,17 +843,17 @@ public class MainActivity extends AppCompatActivity  {
     
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else {*/
             //super.onBackPressed();
             try {
                 showalertbox();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        //}
     }
 
 
@@ -899,7 +899,7 @@ public class MainActivity extends AppCompatActivity  {
                         dialog.dismiss();
                     }
 
-                    finishAffinity();
+                    finish();
 
                     System.exit(0);
 
@@ -934,7 +934,7 @@ public class MainActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setUpNavigationDrawer() {
+    /*private void setUpNavigationDrawer() {
 
         TypedArray icons = null;
         String[] title  = null;
@@ -968,7 +968,7 @@ public class MainActivity extends AppCompatActivity  {
                 displayView(finalTitle[position]);
             }
         });
-    }
+    }*/
 
     /*private void displayView(int position) {
         //System.out.println("position = "+position);
@@ -1131,12 +1131,12 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-    private void getProfileById() {
+    /*private void getProfileById() {
 
-        /*final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+        *//*final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
         dialog.setTitle("Loading");
         dialog.setCancelable(false);
-        dialog.show();*/
+        dialog.show();*//*
 
         new ThreadExecuter().execute(new Runnable() {
             @Override
@@ -1151,10 +1151,10 @@ public class MainActivity extends AppCompatActivity  {
                 getProfile.enqueue(new Callback<TravellerAgentProfiles>() {
                     @Override
                     public void onResponse(Call<TravellerAgentProfiles> call, Response<TravellerAgentProfiles> response) {
-                        /*if(dialog != null)
+                        *//*if(dialog != null)
                         {
                             dialog.dismiss();
-                        }*/
+                        }*//*
                         if(response.code() == 200)
                         {
                             TravellerAgentProfiles dto = response.body();
@@ -1177,7 +1177,7 @@ public class MainActivity extends AppCompatActivity  {
                                     mProfilePhoto.setImageResource(R.drawable.icons_profile);
                                 }
 
-                                mProfileName.setText(""+dto.getFirstName());
+                                //mProfileName.setText(""+dto.getFirstName());
 
                             }
                         }
@@ -1185,15 +1185,15 @@ public class MainActivity extends AppCompatActivity  {
 
                     @Override
                     public void onFailure(Call<TravellerAgentProfiles> call, Throwable t) {
-                        /*if(dialog != null)
+                        *//*if(dialog != null)
                         {
                             dialog.dismiss();
-                        }*/
+                        }*//*
                     }
                 });
             }
         });
-    }
+    }*/
 
     private void getTimeFromAndroid() {
         Date dt = new Date();
@@ -1204,15 +1204,15 @@ public class MainActivity extends AppCompatActivity  {
 
         if(hours>=1 && hours<=12){
             //Toast.makeText(this, "Good Morning "+PreferenceHandler.getInstance(HotelListActivity.this).getUserFullName(), Toast.LENGTH_SHORT).show();
-            mWishField.setText("Good Morning");
+            //mWishField.setText("Good Morning");
         }else if(hours>=12 && hours<=16){
             //Toast.makeText(this, "Good Afternoon "+PreferenceHandler.getInstance(HotelListActivity.this).getUserFullName(), Toast.LENGTH_SHORT).show();
-            mWishField.setText("Good Afternoon");
+            //mWishField.setText("Good Afternoon");
         }else if(hours>=16 && hours<=20){
-            mWishField.setText("Good Evening");
+            //mWishField.setText("Good Evening");
             //Toast.makeText(this, "Good Evening "+PreferenceHandler.getInstance(HotelListActivity.this).getUserFullName(), Toast.LENGTH_SHORT).show();
         }else if(hours>=20 && hours<=24){
-            mWishField.setText("Good Night");
+            //mWishField.setText("Good Night");
             //Toast.makeText(this, "Good Night "+PreferenceHandler.getInstance(HotelListActivity.this).getUserFullName(), Toast.LENGTH_SHORT).show();
         }
     }
@@ -1221,7 +1221,7 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onResume() {
         super.onResume();
-        getProfileById();
+        //getProfileById();
     }
 
     private void getProfileOther() {

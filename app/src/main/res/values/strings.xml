@@ -10,6 +10,14 @@
     <string name="chCount">Select</string>
     <string name="signup_success">Thank you for registering with us. Your Profile is under Moderation and we shall approve it Shortly</string>
 
+    <!--Tab Name-->
+    <string name="home">Home</string>
+    <string name="bid">Bid</string>
+    <string name="booking">List</string>
+    <string name="Profile">Profile</string>
+    <string name="Menu">Menu</string>
+    <string name="Hourly_charges">Hr Charges</string>
+
     <string-array name="aCount_arrays">
         <item>1 Adult</item>
         <item>2 Adults</item>

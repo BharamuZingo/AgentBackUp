@@ -5,25 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="app.zingo.com.agentapp.Activities.BookingHistoryActivity">
-    <android.support.design.widget.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff"
-        app:tabSelectedTextColor="#616161"
-        app:tabMode="scrollable"
-        app:tabTextColor="#000"
-        android:id="@+id/booking_list_tabs"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#c1c0c0"
-        android:id="@+id/view"
-        android:layout_below="@id/booking_list_tabs"/>
-    <android.support.v4.view.ViewPager
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/view"
-        android:id="@+id/booking_list_view_pager"/>
+        android:orientation="vertical">
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/booking_history_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed"
+                app:tabGravity="fill"/>
+        </android.support.design.widget.AppBarLayout>
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#fff"
+            app:tabSelectedTextColor="#616161"
+            app:tabMode="scrollable"
+            app:tabTextColor="#000"
+            android:id="@+id/booking_list_tabs"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c1c0c0"
+            android:id="@+id/view"
+            android:layout_below="@id/booking_list_tabs"/>
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/view"
+            android:id="@+id/booking_list_view_pager"/>
+    </LinearLayout>
 
 
 </RelativeLayout>

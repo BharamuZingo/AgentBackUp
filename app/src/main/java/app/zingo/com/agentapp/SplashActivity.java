@@ -66,7 +66,7 @@ public class SplashActivity extends AppCompatActivity {
                     {
                         if(PreferenceHandler.getInstance(SplashActivity.this).getProfileStatus().equalsIgnoreCase("enabled"))
                         {
-                            Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                            Intent intent = new Intent(SplashActivity.this,DemoActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -81,7 +81,7 @@ public class SplashActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                        Intent intent = new Intent(SplashActivity.this,DemoActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -128,7 +128,7 @@ public class SplashActivity extends AppCompatActivity {
                             {
 
                                 if(dto.getStatus().equalsIgnoreCase("enabled")){
-                                    Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                                    Intent intent = new Intent(SplashActivity.this,DemoActivity.class);
 
                                     PreferenceHandler.getInstance(SplashActivity.this).setCommissionAmount(dto.getCommissionAmount());
                                     PreferenceHandler.getInstance(SplashActivity.this).setProfileStatus(dto.getStatus());

@@ -96,6 +96,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.BookingHistoryActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.EarningDetailsActivity"
@@ -163,6 +164,18 @@
         <activity android:name=".Activities.ReferalCodeActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activities.BookingHistoryDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".DemoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".Activities.HourlyChargesActivty"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".Activities.NavbarListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
