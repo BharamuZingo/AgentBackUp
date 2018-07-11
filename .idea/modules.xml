@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AgentBackUp.iml" filepath="$PROJECT_DIR$/AgentBackUp.iml" />
       <module fileurl="file://E:\Bharamu\github\AgentBackUpNew\AgentBackUp.iml" filepath="E:\Bharamu\github\AgentBackUpNew\AgentBackUp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AgentBackUpNew.iml" filepath="$PROJECT_DIR$/AgentBackUpNew.iml" />
+      <module fileurl="file://D:\Nizar\Github\AgentBackUp\AgentBackUpNew.iml" filepath="D:\Nizar\Github\AgentBackUp\AgentBackUpNew.iml" />
       <module fileurl="file://D:\Nizar\Github\AgentBackUp\ZingoHotels-Agent-App.iml" filepath="D:\Nizar\Github\AgentBackUp\ZingoHotels-Agent-App.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
