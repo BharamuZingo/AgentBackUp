@@ -84,7 +84,11 @@ public class DemoActivity extends TabActivity implements TabHost.OnTabChangeList
             labelHome.setText(getResources().getString(R.string.home));
             imgHome.setImageResource(R.drawable.home_icon);
             tabHome.setIndicator(tabIndicatorHome);
-            tabHome.setContent(new Intent(this, MainActivity.class));
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            tabHome.setContent(intent);
 
             /*labelBid.setText(getResources().getString(R.string.bid));
             imgBid.setImageResource(R.drawable.bidding_icon);

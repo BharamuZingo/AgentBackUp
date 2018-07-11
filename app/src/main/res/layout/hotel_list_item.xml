@@ -65,8 +65,10 @@
                             android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
                             android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
                             android:id="@+id/off_on_hotel_txt_view"
-                            android:paddingTop="2dp" android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:text="12%off"
+                            android:paddingTop="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12%off"
                             android:fontFamily="sans-serif-medium" />
                     </LinearLayout>
 
@@ -335,7 +337,8 @@
             <ImageView
                 android:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:src="@drawable/ic_deal_icon" />
+                />
+            <!--android:src="@drawable/ic_deal_icon" -->
             <TextView
                 android:textSize="@dimen/new_hotel_offer_txt_size"
                 android:textColor="@color/black"

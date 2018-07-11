@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import app.zingo.com.agentapp.Adapter.NotificationManagerAdapter;
+import app.zingo.com.agentapp.DemoActivity;
 import app.zingo.com.agentapp.MainActivity;
 import app.zingo.com.agentapp.Model.NotificationManager;
 import app.zingo.com.agentapp.R;
@@ -137,12 +138,19 @@ public class NotificationListActivity extends AppCompatActivity {
         switch (id)
         {
             case android.R.id.home:
-                Intent main = new Intent(NotificationListActivity.this,MainActivity.class);
-                startActivity(main);
-                NotificationListActivity.this.finish();
+                goback();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goback()
+    {
+        Intent main = new Intent(NotificationListActivity.this,DemoActivity.class);
+        main.putExtra("ARG_PAGE",4);
+        startActivity(main);
+        NotificationListActivity.this.finish();
     }
 
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import app.zingo.com.agentapp.DemoActivity;
 import app.zingo.com.agentapp.MainActivity;
 import app.zingo.com.agentapp.Model.Bookings1;
 import app.zingo.com.agentapp.R;
@@ -76,21 +77,7 @@ public class EarningDetailsActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        switch (id)
-        {
-            case android.R.id.home:
-                Intent main = new Intent(EarningDetailsActivity.this, MainActivity.class);
-                startActivity(main);
-                this.finish();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     private void getBookings() {
         final ProgressDialog dialog = new ProgressDialog(EarningDetailsActivity.this);
@@ -180,5 +167,33 @@ public class EarningDetailsActivity extends AppCompatActivity {
         mCancelledBookingCount.setText(cancelledbookings.size()+"");
         mCancelledBookingAmount.setText("₹ "+cancelled+"");
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id)
+        {
+            case android.R.id.home:
+                goback();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goback();
+    }
+
+    private void goback()
+    {
+        Intent main = new Intent(EarningDetailsActivity.this, DemoActivity.class);
+        main.putExtra("ARG_PAGE",4);
+        startActivity(main);
+        this.finish();
     }
 }

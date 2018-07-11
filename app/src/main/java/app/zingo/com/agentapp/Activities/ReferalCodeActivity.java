@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import app.zingo.com.agentapp.Adapter.NotificationManagerAdapter;
 import app.zingo.com.agentapp.Adapter.ReferalCodeAdapter;
 import app.zingo.com.agentapp.CustomViews.CustomFontTextView;
+import app.zingo.com.agentapp.DemoActivity;
 import app.zingo.com.agentapp.MainActivity;
 import app.zingo.com.agentapp.Model.Bookings1;
 import app.zingo.com.agentapp.Model.ReferCodeModel;
@@ -189,38 +190,7 @@ public class ReferalCodeActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
 
-        try{
-            int id = item.getItemId();
-            switch (id) {
-
-                case android.R.id.home:
-                    Intent main = new Intent(ReferalCodeActivity.this,MainActivity.class);
-                    startActivity(main);
-                    ReferalCodeActivity.this.finish();
-                    break;
-
-                case R.id.action_share:
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello this is Zingo Hotels Agent App. Join the Zingo Hotels referral programme, and earn money for every new referral.\n Open the Zingo Hotels App and visit the invite & earn section, and find out your referral code.  It’s an alpha-numeric code like: ZINGO"+ PreferenceHandler.getInstance(ReferalCodeActivity.this).getUserId()+"\n Keep Sharing & Earning.\nTo Download the app click here: https://play.google.com/store/apps/details?id=app.zingo.com.agentapp");
-                    sendIntent.setType("text/plain");
-                    startActivity(Intent.createChooser(sendIntent,"Zingo Agent" ));
-                    break;
-
-
-
-            }
-            return super.onOptionsItemSelected(item);
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-
-
-    }
 
     private void sendEmailattache() {
 
@@ -299,6 +269,53 @@ public class ReferalCodeActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        try{
+            int id = item.getItemId();
+            switch (id) {
+
+                case android.R.id.home:
+                    goback();
+                    break;
+
+                case R.id.action_share:
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Hello this is Zingo Hotels Agent App. Join the Zingo Hotels referral programme, and earn money for every new referral.\n Open the Zingo Hotels App and visit the invite & earn section, and find out your referral code.  It’s an alpha-numeric code like: ZINGO"+ PreferenceHandler.getInstance(ReferalCodeActivity.this).getUserId()+"\n Keep Sharing & Earning.\nTo Download the app click here: https://play.google.com/store/apps/details?id=app.zingo.com.agentapp");
+                    sendIntent.setType("text/plain");
+                    startActivity(Intent.createChooser(sendIntent,"Zingo Agent" ));
+                    break;
+
+
+
+            }
+            return super.onOptionsItemSelected(item);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goback();
+    }
+
+    private void goback()
+    {
+        Intent main = new Intent(ReferalCodeActivity.this,DemoActivity.class);
+        main.putExtra("ARG_PAGE",4);
+        startActivity(main);
+        ReferalCodeActivity.this.finish();
     }
 
 }

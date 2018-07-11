@@ -25,7 +25,6 @@
         android:icon="@mipmap/ic_launcher_foreground"
         android:label="@string/app_name"
         android:largeHeap="true"
-
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -51,8 +50,8 @@
         <activity
             android:name=".MainActivity"
             android:alwaysRetainTaskState="true"
-            android:screenOrientation="portrait"
             android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HotelList"
@@ -67,8 +66,7 @@
         <activity
             android:name=".Activities.HotelDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.SelectRoomActivity"
             android:screenOrientation="portrait"
@@ -96,8 +94,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.BookingHistoryActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.EarningDetailsActivity"
             android:screenOrientation="portrait" />
@@ -155,29 +153,35 @@
             android:name=".Activities.SplitActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.BiddingRequestReply"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.BidingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.NotificationListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.ReferalCodeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.BookingHistoryDetailsActivity"
+        <activity
+            android:name=".Activities.BiddingRequestReply"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.BidingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.NotificationListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.ReferalCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.BookingHistoryDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity android:name=".DemoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DemoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity android:name=".Activities.HourlyChargesActivty"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.HourlyChargesActivty"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity android:name=".Activities.NavbarListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.NavbarListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.HourlyChargesHotelList"></activity>
     </application>
 
 </manifest>
