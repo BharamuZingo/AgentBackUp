@@ -1,15 +1,18 @@
 package app.zingo.com.agentapp.Activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +45,8 @@ public class HourlyChargesActivty extends AppCompatActivity implements
     //Ordinary Views
     Toolbar toolbar;
     private TextView showSearch;
+    Spinner madult,mchild,mRoomCount;
+    TextInputEditText  mCID,mCOD,mCIT,mCOT;
 
     //Searchview and google place api from local adapter
     private SearchView mSearchView;
@@ -58,8 +63,9 @@ public class HourlyChargesActivty extends AppCompatActivity implements
 
     //Intent values  to pass
     double latitude,longitude;
-    String ocity,city,localty,duration,fds,tds;
+    String ocity,city,localty,duration,fds,tds,pass,fromTime,toTime;
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,10 +76,20 @@ public class HourlyChargesActivty extends AppCompatActivity implements
         setTitle("Hourly Charges");
 
         showSearch= (TextView) findViewById(R.id.search_editText_hourly);
+        madult = (Spinner)findViewById(R.id.adult_count_hourly);
+        mchild = (Spinner)findViewById(R.id.child_count_hourly);
+        mRoomCount = (Spinner)findViewById(R.id.room_count_hourly);
+        mCID = (TextInputEditText)findViewById(R.id.check_in_date_hourly);
+        mCOD = (TextInputEditText)findViewById(R.id.check_out_date_hourly);
+        mCIT = (TextInputEditText)findViewById(R.id.check_in_time_hourly);
+        mCOT = (TextInputEditText)findViewById(R.id.check_out_time_hourly);
 
         mSearchView = (SearchView) findViewById(R.id.search_view_hourly);
         mSearchAutoComplete = (SearchView.SearchAutoComplete) mSearchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
 
+        mSearchAutoComplete.setDropDownBackgroundResource(R.drawable.background_white);
+        mSearchAutoComplete.setDropDownAnchor(R.id.search_view_hourly);
+        mSearchAutoComplete.setThreshold(0);
 
         mPlaceArrayAdapter = new PlaceArrayAdapter(HourlyChargesActivty.this, android.R.layout.simple_list_item_1,
                 BOUNDS_MOUNTAIN_VIEW, null);
@@ -261,7 +277,14 @@ public class HourlyChargesActivty extends AppCompatActivity implements
 
     public void validateFields(){
 
+        String fromDate = mCID.getText().toString();
+        String toDate = mCOD.getText().toString();
+        fromTime = mCIT.getText().toString();
+        toTime = mCOT.getText().toString();
         String  location = showSearch.getText().toString();
+        String child = mchild.getSelectedItem().toString();
+        String room = mRoomCount.getSelectedItem().toString();
+        String adult = madult.getSelectedItem().toString();
 
         if(location == null || location.isEmpty())
         {
