@@ -530,6 +530,12 @@ public class SignUpActivity extends AppCompatActivity {
                             }else{
                                 PreferenceHandler.getInstance(SignUpActivity.this).setFullName(dto.getFirstName()+" "+dto.getLastName());
                             }
+
+                            if(dto.getEmail()==null){
+                                PreferenceHandler.getInstance(SignUpActivity.this).setEmailId(dto.getEmail());
+                            }else{
+
+                            }
                             //PreferenceHandler.getInstance(SignUpActivity.this).setUserFullName(dto.getFirstName()+" "+dto.getLastName());
                             PreferenceHandler.getInstance(SignUpActivity.this).setUserName(dto.getUserName());
                            // PreferenceHandler.getInstance(SignUpActivity.this).setUserPlans(dto.getPlans());

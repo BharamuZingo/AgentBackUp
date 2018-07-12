@@ -149,10 +149,12 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+
     <style name="MyTheme.ActionBar" parent="android:Widget.Holo.ActionBar">
     <item name="android:background">@android:color/transparent</item>
     <item name="android:backgroundStacked">@android:color/transparent</item>
     <item name="android:displayOptions">showTitle</item>
+
     <!--<item name="android:titleTextStyle">@style/MyTheme.ActionBar.TitleTextStyle</item>-->
     </style>
 
@@ -164,7 +166,6 @@
         <item name="colorControlNormal">@color/material_light_active_icon</item>
         <item name="colorControlHighlight">@color/material_ripple_light</item>
         <item name="android:hint">Enter city or Locality</item>
-
         <item name="android:maxWidth">9999dp</item>
     </style>
 

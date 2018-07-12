@@ -181,7 +181,12 @@
             android:name=".Activities.NavbarListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.HourlyChargesHotelList"></activity>
+        <activity android:name=".Activities.HourlyChargesHotelList"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Activities.HotelDetailsHourlyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -84,6 +84,16 @@ public class PreferenceHandler {
         return sh.getString(Constants.USER_FULL_NAME,"");
     }
 
+    public void setEmailId(String username)
+    {
+        sh.edit().putString(Constants.USER_EMAIL,username).apply();
+    }
+
+    public String getEmailId()
+    {
+        return sh.getString(Constants.USER_EMAIL,"");
+    }
+
     public void setCommissionAmount(long commisionAmount)
     {
         sh.edit().putLong(Constants.COMMISSION,commisionAmount).apply();

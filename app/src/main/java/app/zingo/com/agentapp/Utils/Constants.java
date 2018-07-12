@@ -19,6 +19,7 @@ public class Constants {
     public static final String TOKEN = "auth_token";
     public static final String USER_NAME = "user_name";
     public static final String USER_FULL_NAME = "user_full_name";
+    public static final String USER_EMAIL = "user_email";
     public static final String USER_ROLE_UNIQUE_ID = "user_role_unique_id";
     public static final String auth_string = "Basic emluZ29ob3RlbHM6U3dvcmRmaXNoITI=";
 

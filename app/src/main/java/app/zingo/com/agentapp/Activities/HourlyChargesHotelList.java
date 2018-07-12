@@ -39,6 +39,7 @@ import java.util.Comparator;
 import app.zingo.com.agentapp.Adapter.HotelListImageAdapter;
 import app.zingo.com.agentapp.Adapter.ViewPagerAdapter;
 import app.zingo.com.agentapp.CustomViews.RecyclerViewAnimator;
+import app.zingo.com.agentapp.DemoActivity;
 import app.zingo.com.agentapp.MainActivity;
 import app.zingo.com.agentapp.Model.HotelAvailablityResponse;
 import app.zingo.com.agentapp.Model.HotelDetails;
@@ -73,7 +74,7 @@ public class HourlyChargesHotelList extends AppCompatActivity {
 
 
 
-    String ocity,city,locality,checkInDate,checkOutDate,room,checkInTime,checkOutTime,price,activity,lowPrice,highPrice;
+    String ocity,city,locality,checkInDate,checkOutDate,room,checkInTime,checkOutTime,price,activity,lowPrice,highPrice,duration;
     Double latitude,longitude;
     ArrayList<String> hotelLocality;
     ArrayList<String> featureList;
@@ -99,7 +100,9 @@ public class HourlyChargesHotelList extends AppCompatActivity {
                 locality = intent.getStringExtra("Locality");
                 System.out.println("Locality hotel list=="+locality);
                 city = intent.getStringExtra("City");
+                duration = intent.getStringExtra("Hours");
                 System.out.println("city hotel list=="+city);
+                System.out.println("Hours=="+duration);
                 ocity = intent.getStringExtra("OriginalCity");
                 checkInDate = intent.getStringExtra("CheckinDate");
                 checkOutDate = intent.getStringExtra("CheckOutDate");
@@ -239,15 +242,22 @@ public class HourlyChargesHotelList extends AppCompatActivity {
 
                                 System.out.println("Hotel LIst id==" + dto.getHotelId());
 
-                                Intent intent = new Intent(HourlyChargesHotelList.this, HotelDetailsActivity.class);
+                                Intent intent = new Intent(HourlyChargesHotelList.this, HotelDetailsHourlyActivity.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putInt(Constants.HOTEL_ID, dto.getHotelId());
                                 bundle.putString("CheckinDate", checkInDate);
                                 bundle.putString("CheckInTime", checkInTime);
                                 bundle.putString("CheckOutTime", checkOutTime);
                                 bundle.putString("Room", room);
-                                bundle.putInt("DisplayPrice", dto.getRooms().get(0).getDisplayRate());
-                                bundle.putInt("SellRate", dto.getRooms().get(0).getSellRate());
+                                bundle.putInt("DisplayPrice", 0);
+                                int hours = Integer.parseInt(duration);
+                                if(hours>2){
+                                    bundle.putInt("SellRate", (hours * dto.getRooms().get(0).getHourlyCharges()));
+                                }else{
+                                    bundle.putInt("SellRate", (2 * dto.getRooms().get(0).getHourlyCharges()));
+                                }
+
+                                //bundle.putInt("HourlyCharge", dto.getRooms().get(0).getHourlyCharges());
                                 bundle.putString("CheckoutDate", checkOutDate);
                                 intent.putExtras(bundle);
                                 startActivity(intent);
@@ -340,15 +350,21 @@ public class HourlyChargesHotelList extends AppCompatActivity {
 
                                 System.out.println("Hotel LIst id==" + dto.getHotelId());
 
-                                Intent intent = new Intent(HourlyChargesHotelList.this, HotelDetailsActivity.class);
+                                Intent intent = new Intent(HourlyChargesHotelList.this, HotelDetailsHourlyActivity.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putInt(Constants.HOTEL_ID, dto.getHotelId());
                                 bundle.putString("CheckinDate", checkInDate);
                                 bundle.putString("CheckoutDate", checkOutDate);
                                 bundle.putString("CheckInTime", checkInTime);
                                 bundle.putString("CheckOutTime", checkOutTime);
-                                bundle.putInt("DisplayPrice", dto.getRooms().get(0).getDisplayRate());
-                                bundle.putInt("SellRate", dto.getRooms().get(0).getSellRate());
+                                bundle.putInt("DisplayPrice", 0);
+                                int hours = Integer.parseInt(duration);
+                                if(hours>2){
+                                    bundle.putInt("SellRate", (hours * dto.getRooms().get(0).getHourlyCharges()));
+                                }else{
+                                    bundle.putInt("SellRate", (2 * dto.getRooms().get(0).getHourlyCharges()));
+                                }
+                                //bundle.putInt("HourlyCharge", dto.getRooms().get(0).getHourlyCharges());
                                 bundle.putString("Room", room);
                                 intent.putExtras(bundle);
                                 startActivity(intent);
@@ -1055,7 +1071,7 @@ public class HourlyChargesHotelList extends AppCompatActivity {
 
     private void goback()
     {
-        Intent intent = new Intent(HourlyChargesHotelList.this,MainActivity.class);
+        Intent intent = new Intent(HourlyChargesHotelList.this,DemoActivity.class);
         startActivity(intent);
         HourlyChargesHotelList.this.finish();
     }
@@ -1511,7 +1527,14 @@ public class HourlyChargesHotelList extends AppCompatActivity {
                     System.out.println("₹ "+dto.getRooms().get(0).getDisplayRate()+"");
                     holder.mDisplayPrice.setText("₹ "+dto.getRooms().get(0).getDisplayRate()+"");
                     holder.mDisplayPrice.setVisibility(View.GONE);
-                    holder.mSellPrice.setText("₹ "+(2*dto.getRooms().get(0).getHourlyCharges())+"");
+
+                    int hours = Integer.parseInt(duration);
+                    if(hours>2){
+                        holder.mSellPrice.setText("₹ "+((hours * dto.getRooms().get(0).getHourlyCharges())+getGstPrice(hours * dto.getRooms().get(0).getHourlyCharges()))+"");
+                    }else{
+                        holder.mSellPrice.setText("₹ "+((2 * dto.getRooms().get(0).getHourlyCharges())+getGstPrice(2 * dto.getRooms().get(0).getHourlyCharges()))+"");
+                    }
+
 
                     if(dto.getRooms().get(0).getDisplayRate() != 0 && dto.getRooms().get(0).getSellRate() != 0)
                     {
@@ -1991,5 +2014,40 @@ public class HourlyChargesHotelList extends AppCompatActivity {
                         return true;
                     }
                 });
+    }
+
+    public int getGstPrice(int sellRate)
+    {
+        double gstamount = 0;
+        if(sellRate <= 999.99)
+        {
+            //System.out.println("0%");
+
+            gstamount = (sellRate * 0)/100;
+
+        }
+        else if(sellRate >= 1000 && sellRate <= 2499.99)
+        {
+
+            gstamount = (sellRate * 12)/100;
+
+            //System.out.println("12%");
+        }
+        else if(sellRate >= 2500 && sellRate <= 7499.99)
+        {
+
+            gstamount = (sellRate * 18)/100;
+
+            //System.out.println("18%");
+        }
+        else if(sellRate >= 7500)
+        {
+
+            gstamount = (sellRate * 28)/100;
+
+            //System.out.println("28%");
+        }
+
+        return (int)Math.round(gstamount);
     }
 }

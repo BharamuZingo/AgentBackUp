@@ -310,6 +310,12 @@ public class LoginActivity extends AppCompatActivity {
                                                PreferenceHandler.getInstance(LoginActivity.this).setFullName(dto.getFirstName()+" "+dto.getLastName());
                                            }
 
+                                           if(dto.getEmail()==null){
+                                               PreferenceHandler.getInstance(LoginActivity.this).setEmailId(dto.getEmail());
+                                           }else{
+
+                                           }
+
                                            PreferenceHandler.getInstance(LoginActivity.this).setPhoneNumber(dto.getPhoneNumber());
                                            PreferenceHandler.getInstance(LoginActivity.this).setUserName(dto.getUserName());
                                     /*spe.putString("FirstName", dto.getFirstName());

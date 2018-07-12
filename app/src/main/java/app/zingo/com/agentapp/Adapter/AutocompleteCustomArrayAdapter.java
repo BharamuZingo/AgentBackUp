@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import app.zingo.com.agentapp.Activities.HotelDetailsActivity;
+import app.zingo.com.agentapp.Activities.HotelDetailsHourlyActivity;
 import app.zingo.com.agentapp.Activities.ReviewHotelDetailsActivity;
 import app.zingo.com.agentapp.Model.Traveller;
 import app.zingo.com.agentapp.R;
@@ -53,6 +54,9 @@ public class AutocompleteCustomArrayAdapter extends ArrayAdapter<Traveller> {
                 // inflate the layout
                 if(activity!=null&&activity.equalsIgnoreCase("HotelDetailsActivity")){
                     LayoutInflater inflater = ((HotelDetailsActivity) mContext).getLayoutInflater();
+                    convertView = inflater.inflate(layoutResourceId, parent, false);
+                }else if(activity!=null&&activity.equalsIgnoreCase("HotelDetailsHourlyActivity")){
+                    LayoutInflater inflater = ((HotelDetailsHourlyActivity) mContext).getLayoutInflater();
                     convertView = inflater.inflate(layoutResourceId, parent, false);
                 }else{
                     LayoutInflater inflater = ((ReviewHotelDetailsActivity) mContext).getLayoutInflater();

@@ -108,12 +108,9 @@ import at.blogc.android.views.ExpandableTextView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+//activity_hotel_details_hourly
 
-/**
- * Created by ZingoHotels.com on 15-01-2018.
- */
-
-public class HotelDetailsActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, PaymentResultListener {
+public class HotelDetailsHourlyActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener , PaymentResultListener {
 
     ViewPager viewPager,mHotelDetailViewPager;
     CustomGridView gridView;
@@ -129,8 +126,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             mSelectRoomBtn,mHotelNameTitle;
     LinearLayout mCheckOutDateSelect,mCheckInDateSelect,mSelectNoGuestAndRooms,
             mGoToHotelLocation,mGotoPhotos,mGotoFacilities,mGuestLayout;
-   // Toolbar mBackBtn;
-   Toolbar mAnimToolBar;
+    // Toolbar mBackBtn;
+    Toolbar mAnimToolBar;
     RecyclerView mHotelCategoryList;
 
 
@@ -189,7 +186,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
 
     //PaymentGateway
-    private static final String TAG = HotelDetailsActivity.class.getSimpleName();
+    private static final String TAG = HotelDetailsHourlyActivity.class.getSimpleName();
+
 
     //Booking intent and data
     int price;
@@ -199,15 +197,15 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-        setContentView(R.layout.hotel_details_activity_layout);
+        setContentView(R.layout.activity_hotel_details_hourly);
 
 
         //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         simpleDateFormat = new SimpleDateFormat("dd MMM");
 
-       // mBackBtn = (Toolbar) findViewById(R.id.hotel_details_back_btn);
-      //  dots = (LinearLayout) findViewById(R.id.dots_layout);
+        // mBackBtn = (Toolbar) findViewById(R.id.hotel_details_back_btn);
+        //  dots = (LinearLayout) findViewById(R.id.dots_layout);
 
         //mReadMoreHotelPolicy = (TextView) findViewById(R.id.read_more_about_hotel);
         mAnimToolBar = (Toolbar) findViewById(R.id.anim_toolbar);
@@ -216,10 +214,10 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         mHotelNameTitle = (TextView) findViewById(R.id.hotel_name_title);
         mHotelName = (CustomFontTextView) findViewById(R.id.hotel_details_hotel_address);
         mHotelLocality = (CustomFontTextView) findViewById(R.id.hotel_locality);
-        mHotelPolicy = (CustomFontTextView) findViewById(R.id.hotel_policy);
-        mHotelDescription = (CustomFontTextView) findViewById(R.id.hotel_about_description);
-        mPolicyMore = (CustomFontTextView) findViewById(R.id.read_more_policy);
-        mDescriptionMore = (CustomFontTextView) findViewById(R.id.read_more_description);
+        mHotelPolicy = (CustomFontTextView) findViewById(R.id.hotel_policy_hourly);
+        mHotelDescription = (CustomFontTextView) findViewById(R.id.hotel_about_description_hourly);
+        mPolicyMore = (CustomFontTextView) findViewById(R.id.read_more_policy_hourly);
+        mDescriptionMore = (CustomFontTextView) findViewById(R.id.read_more_description_hourly);
         mGuestUserName = (CustomFontTextView) findViewById(R.id.guest_user_name);
         ReadPolicy = (ImageView) findViewById(R.id.right_about_hotel);
         mCheckOutDate = (TextView) findViewById(R.id.hotel_details_check_out_date);
@@ -304,8 +302,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
         if(checkInDate != null && checkoutDate != null)
         {
-            CategorisedRoomListAdapter adapter = new CategorisedRoomListAdapter(HotelDetailsActivity.this,checkInDate,checkoutDate,displayprice,sellprice,room);
-            //CategorisedRoomListAdapter adapter = new CategorisedRoomListAdapter(HotelDetailsActivity.this,checkInDate,checkoutDate,room);
+            CategorisedRoomListAdapter adapter = new CategorisedRoomListAdapter(HotelDetailsHourlyActivity.this,checkInDate,checkoutDate,displayprice,sellprice,room);
+            //CategorisedRoomListAdapter adapter = new CategorisedRoomListAdapter(HotelDetailsHourlyActivity.this,checkInDate,checkoutDate,room);
             mHotelCategoryList.setAdapter(adapter);
         }
 
@@ -314,14 +312,14 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             public void onClick(View v) {
 
                 if(agentHotel.getMaps().size()!=0){
-                    Intent intent = new Intent(HotelDetailsActivity.this,HotelMapActivity.class);
+                    Intent intent = new Intent(HotelDetailsHourlyActivity.this,HotelMapActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("HotelName",agentHotel.getHotelName());
                     bundle.putSerializable("Map",agentHotel.getMaps());
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(HotelDetailsActivity.this, "No Map Location for this hotel", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HotelDetailsHourlyActivity.this, "No Map Location for this hotel", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -331,9 +329,9 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             @Override
             public void onClick(View v) {
 
-                    Intent intent = new Intent(HotelDetailsActivity.this,ImageFull.class);
-                    intent.putExtra("HotelId",agentHotel.getHotelId());
-                    startActivity(intent);
+                Intent intent = new Intent(HotelDetailsHourlyActivity.this,ImageFull.class);
+                intent.putExtra("HotelId",agentHotel.getHotelId());
+                startActivity(intent);
 
 
             }
@@ -342,7 +340,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         /*viewPager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HotelDetailsActivity.this,HotelImagesList.class);
+                Intent intent = new Intent(HotelDetailsHourlyActivity.this,HotelImagesList.class);
                 intent.putExtra("HotelId",agentHotel.getHotelId());
                 startActivity(intent);
             }
@@ -369,13 +367,11 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 if(agentHotel.getPolicies().size()!=0){
                     showAlertPolicy(agentHotel);
                 }else{
-                    Toast.makeText(HotelDetailsActivity.this, "This hotel do not have any policies", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HotelDetailsHourlyActivity.this, "This hotel do not have any policies", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });*/
-
-
 
         mDescriptionMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -400,6 +396,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         });
 
 
+
        /* mTabLayout = (TabLayout) findViewById(R.id.hotel_details_tabLayout);
         mTabLayout.setTabGravity(TabLayout.MODE_FIXED);*/
         //mHotelDetailViewPager = (ViewPager) findViewById(R.id.hotel_details_pager);
@@ -409,7 +406,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         mapView.onResume();
 
         try {
-            MapsInitializer.initialize(HotelDetailsActivity.this);
+            MapsInitializer.initialize(HotelDetailsHourlyActivity.this);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -420,7 +417,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 mMap = googleMap;
 
 
-                if (ActivityCompat.checkSelfPermission(HotelDetailsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(HotelDetailsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(HotelDetailsHourlyActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(HotelDetailsHourlyActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding
@@ -537,8 +534,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
         TypedArray hotelImages = getResources().obtainTypedArray(R.array.hotel_images);
 
-       // TypedArray hotelFacilityImages = getResources().obtainTypedArray(R.array.hotel_facily_images);
-       // String[] hotelFacilityName = getResources().getStringArray(R.array.hotel_facility_name);
+        // TypedArray hotelFacilityImages = getResources().obtainTypedArray(R.array.hotel_facily_images);
+        // String[] hotelFacilityName = getResources().getStringArray(R.array.hotel_facility_name);
 
         hotelImagesArraylist = new ArrayList<>();
 
@@ -577,16 +574,16 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             hotelFacilitiesArraylist.add(new HotelService(hotelFacilityImages.getResourceId(i,-1),hotelFacilityName[i]));
         }
 
-        /*ViewPagerAdapter hotelImagesadapter = new ViewPagerAdapter(MoreHotelDetailsActivity.this,hotelImagesArraylist);
+        /*ViewPagerAdapter hotelImagesadapter = new ViewPagerAdapter(MoreHotelDetailsHourlyActivity.this,hotelImagesArraylist);
         viewPager.setAdapter(hotelImagesadapter);*/
 
-        /*GridViewAdapter facilityAdapter = new GridViewAdapter(HotelDetailsActivity.this,hotelFacilitiesArraylist);
+        /*GridViewAdapter facilityAdapter = new GridViewAdapter(HotelDetailsHourlyActivity.this,hotelFacilitiesArraylist);
         gridView.setAdapter(facilityAdapter);*/
 
        /* mBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HotelDetailsActivity.this.finish();
+                HotelDetailsHourlyActivity.this.finish();
             }
         });*/
        /* mReadMoreHotelPolicy.setOnClickListener(new View.OnClickListener() {
@@ -622,7 +619,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         mSelectNoGuestAndRooms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(HotelDetailsActivity.this,SelectRoomActivity.class);
+                /*Intent intent = new Intent(HotelDetailsHourlyActivity.this,SelectRoomActivity.class);
                 startActivity(intent);*/
             }
         });
@@ -630,7 +627,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         /*mSelectRoomBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HotelDetailsActivity.this,SelectRoomBasedOnCategoryActivity.class);
+                Intent intent = new Intent(HotelDetailsHourlyActivity.this,SelectRoomBasedOnCategoryActivity.class);
                 startActivity(intent);
             }
         });*/
@@ -677,7 +674,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 }
                 else
                 {
-                    dialog = new ProgressDialog(HotelDetailsActivity.this);
+                    dialog = new ProgressDialog(HotelDetailsHourlyActivity.this);
                     dialog.setMessage(getResources().getString(R.string.loader_message));
                     dialog.setCancelable(false);
                     dialog.show();
@@ -702,7 +699,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 }
                 else
                 {
-                    dialog = new ProgressDialog(HotelDetailsActivity.this);
+                    dialog = new ProgressDialog(HotelDetailsHourlyActivity.this);
                     dialog.setMessage(getResources().getString(R.string.loader_message));
                     dialog.setCancelable(false);
                     dialog.show();
@@ -727,9 +724,9 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                     return;
                 }
                 else if(mVerificationId==null||mVerificationId.isEmpty()){
-                    Toast.makeText(HotelDetailsActivity.this, "OTP is not matching", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HotelDetailsHourlyActivity.this, "OTP is not matching", Toast.LENGTH_SHORT).show();
                 }else{
-                    dialog = new ProgressDialog(HotelDetailsActivity.this);
+                    dialog = new ProgressDialog(HotelDetailsHourlyActivity.this);
                     dialog.setMessage(getResources().getString(R.string.loader_message));
                     dialog.setCancelable(false);
                     dialog.show();
@@ -830,7 +827,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
                 String code = credential.getSmsCode();
                 mOTP.setText(code);
-                dialog = new ProgressDialog(HotelDetailsActivity.this);
+                dialog = new ProgressDialog(HotelDetailsHourlyActivity.this);
                 dialog.setMessage(getResources().getString(R.string.loader_message));
                 dialog.setCancelable(false);
                 dialog.show();
@@ -874,16 +871,16 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             }
         };
 
-        if(PreferenceHandler.getInstance(HotelDetailsActivity.this).getUserId()!=0&&PreferenceHandler.getInstance(HotelDetailsActivity.this).getFullName()!=null&&!PreferenceHandler.getInstance(HotelDetailsActivity.this).getFullName().isEmpty()){
-            mGuestUserName.setText(PreferenceHandler.getInstance(HotelDetailsActivity.this).getFullName());
-            mGuestName.setText(PreferenceHandler.getInstance(HotelDetailsActivity.this).getFullName());
-            if(PreferenceHandler.getInstance(HotelDetailsActivity.this).getPhoneNumber()!=null){
-                mGuestMobile.setText(PreferenceHandler.getInstance(HotelDetailsActivity.this).getPhoneNumber());
+        if(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getUserId()!=0&&PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getFullName()!=null&&!PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getFullName().isEmpty()){
+            mGuestUserName.setText(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getFullName());
+            mGuestName.setText(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getFullName());
+            if(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getPhoneNumber()!=null){
+                mGuestMobile.setText(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getPhoneNumber());
             }
 
 
-            if(PreferenceHandler.getInstance(HotelDetailsActivity.this).getEmailId()!=null){
-                mGuestEmail.setText(PreferenceHandler.getInstance(HotelDetailsActivity.this).getEmailId());
+            if(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getEmailId()!=null){
+                mGuestEmail.setText(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getEmailId());
             }
 
         }else{
@@ -891,7 +888,6 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             mGuestMobile.setText("");
             mGuestEmail.setText("");
         }
-
 
 
         mGuestUserName.setOnClickListener(new View.OnClickListener() {
@@ -938,14 +934,14 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
     private void getHotelDetails(final int hotelId) {
 
-        final ProgressDialog dialog = new ProgressDialog(HotelDetailsActivity.this);
+        final ProgressDialog dialog = new ProgressDialog(HotelDetailsHourlyActivity.this);
         dialog.setMessage(getResources().getString(R.string.loader_message));
         dialog.setCancelable(false);
         dialog.show();
         new ThreadExecuter().execute(new Runnable() {
             @Override
             public void run() {
-                String auth_string = Util.getToken(HotelDetailsActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
+                String auth_string = Util.getToken(HotelDetailsHourlyActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
                 HotelOperations hotelOperation = Util.getClient().create(HotelOperations.class);
                 Call<AgentHotel> response = hotelOperation.getAgentHotelByHotelId(auth_string,hotelId);
 
@@ -953,7 +949,6 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                     @Override
                     public void onResponse(Call<AgentHotel> call, Response<AgentHotel> response) {
                         System.out.println("GetHotelByProfileId = "+response.code());
-
                         hotelDetailseResponse = response.body();
                         if(dialog != null && dialog.isShowing())
                         {
@@ -965,6 +960,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                             if(hotelDetailseResponse != null )
                             {
                                 agentHotel = hotelDetailseResponse;
+
 
                                 if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                                 setSupportActionBar(mAnimToolBar);
@@ -979,19 +975,26 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                                 }
 
 
+                                if(agentHotel.getPolicies()!=null&&agentHotel.getPolicies().size()!=0){
+                                    mHotelPolicy.setText("Hotel Policy: \n"+agentHotel.getPolicies().get(0).getHotelPolicy()+"\n\n\nCancellation Policy:\n\n"
+                                            +agentHotel.getPolicies().get(0).getStandardCancellationPolicy()+"\n\n\nService Policy:\n\n"
+                                            +agentHotel.getPolicies().get(0).getHotelServices());
+                                }else{
+                                    mHotelPolicy.setText("Sorry! This hotel do not have any policies");
+                                }
 
 
 
 
-                                    if(agentHotel.getHotelImage().size()!=0){
-                                        ImageAdapter hotelImagesadapter = new ImageAdapter(HotelDetailsActivity.this,agentHotel.getHotelImage(),agentHotel.getHotelId(),"HotelDetails");
-                                        viewPager.setAdapter(hotelImagesadapter);
+                                if(agentHotel.getHotelImage().size()!=0){
+                                    ImageAdapter hotelImagesadapter = new ImageAdapter(HotelDetailsHourlyActivity.this,agentHotel.getHotelImage(),agentHotel.getHotelId(),"HotelDetails");
+                                    viewPager.setAdapter(hotelImagesadapter);
 
-                                    }else{
-                                        ViewPagerAdapter hotelImagesadapter = new ViewPagerAdapter(HotelDetailsActivity.this,hotelImagesArraylist,agentHotel.getHotelId(),"HotelDetails");
-                                        viewPager.setAdapter(hotelImagesadapter);
+                                }else{
+                                    ViewPagerAdapter hotelImagesadapter = new ViewPagerAdapter(HotelDetailsHourlyActivity.this,hotelImagesArraylist,agentHotel.getHotelId(),"HotelDetails");
+                                    viewPager.setAdapter(hotelImagesadapter);
 
-                                    }
+                                }
 
 
                                 //}
@@ -1053,7 +1056,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         }
                         else
                         {
-                            Toast.makeText(HotelDetailsActivity.this,"Check your internet connection or please try after some time",
+                            Toast.makeText(HotelDetailsHourlyActivity.this,"Check your internet connection or please try after some time",
                                     Toast.LENGTH_LONG).show();
                         }
 
@@ -1068,7 +1071,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         {
                             dialog.dismiss();
                         }
-                        Toast.makeText(HotelDetailsActivity.this,"Check your internet connection or please try after some time",
+                        Toast.makeText(HotelDetailsHourlyActivity.this,"Check your internet connection or please try after some time",
                                 Toast.LENGTH_LONG).show();
 
                     }
@@ -1081,7 +1084,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
         if(details != null && details.getAminetiesList() != null && details.getAminetiesList().size() != 0)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsHourlyActivity.this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = (View) inflater.inflate(R.layout.facilities_alertbox_layout,null);
 
@@ -1089,7 +1092,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             itemsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
 
-            final ListItemAdapter adapter = new ListItemAdapter(HotelDetailsActivity.this,agentHotel.getAminetiesList());
+            final ListItemAdapter adapter = new ListItemAdapter(HotelDetailsHourlyActivity.this,agentHotel.getAminetiesList());
 
             itemsList.setAdapter(adapter);
 
@@ -1119,7 +1122,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         }
         else
         {
-            Toast.makeText(HotelDetailsActivity.this,"No amenities are there",Toast.LENGTH_SHORT).show();
+            Toast.makeText(HotelDetailsHourlyActivity.this,"No amenities are there",Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -1128,7 +1131,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
         if(details != null )
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsHourlyActivity.this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = (View) inflater.inflate(R.layout.alert_box_policy,null);
 
@@ -1139,7 +1142,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         +details.getPolicies().get(0).getStandardCancellationPolicy()+"\n\n\nService Policy:\n\n"
                         +details.getPolicies().get(0).getHotelServices());
             }else{
-               policyDetails.setText("Sorry! This hotel do not have any policies");
+                policyDetails.setText("Sorry! This hotel do not have any policies");
             }
 
 
@@ -1164,18 +1167,18 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         }
         else
         {
-            Toast.makeText(HotelDetailsActivity.this,"No amenities are there",Toast.LENGTH_SHORT).show();
+            Toast.makeText(HotelDetailsHourlyActivity.this,"No amenities are there",Toast.LENGTH_SHORT).show();
         }
 
     }
 
     private void showalertboxPay() throws Exception{
 
-        final android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(HotelDetailsActivity.this);
+        final android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(HotelDetailsHourlyActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
         View view = inflater.inflate(R.layout.alert_payment_mode,null);
 
-         mHotelTotalCharges = (TextView)view.findViewById(R.id.hotel_total_charges);
+        mHotelTotalCharges = (TextView)view.findViewById(R.id.hotel_total_charges);
         TextView mHotelRate = (TextView)view.findViewById(R.id.hotel_charges);
         TextView mHotelGst = (TextView)view.findViewById(R.id.hotel_gst_charges);
         TextView mAgentErnings = (TextView)view.findViewById(R.id.agent_earnings);
@@ -1189,38 +1192,41 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
 
 
-            int days = getDays();
+        //int days = getDays();
 
 
-            int totalbaseprice = 0;
-            int totalprice = 0;
-            int GST =0,GST1 = 0,roomPrice = 0;
-            String[] s = room.split(",");
+        int totalbaseprice = 0;
+        int totalprice = 0;
+        int GST =0,GST1 = 0,roomPrice = 0;
+        String[] s = room.split(",");
 
-            if(s[0] != null && !s[0].isEmpty()) {
-                totalbaseprice = sellprice*days;
-                GST = getGstPrice(sellprice)*Integer.parseInt(s[0])*days;
-                roomPrice = sellprice*Integer.parseInt(s[0])*days;
-                price = sellprice;
-                GST1 = getGstPrice(sellprice)*days;
-                totalprice = (totalbaseprice+GST1)*Integer.parseInt(s[0]);
-            }
-            else
-            {
-                totalbaseprice = sellprice*days;
-                roomPrice = sellprice*days;
-                price = sellprice;
-                GST = getGstPrice(sellprice)*days;
-                totalprice = totalbaseprice+GST;
-            }
-            //int totalbaseprice = price*days*rooms;
-
-
+        if(s[0] != null && !s[0].isEmpty()) {
+            totalbaseprice = sellprice;
+            GST = getGstPrice(sellprice)*Integer.parseInt(s[0]);
+            roomPrice = sellprice*Integer.parseInt(s[0]);
+            price = totalbaseprice;
+            GST1 = getGstPrice(price);
+            totalprice = (totalbaseprice+GST1)*Integer.parseInt(s[0]);
+        }
+        else
+        {
+            totalbaseprice = sellprice;
+            roomPrice = sellprice;
+            price = totalbaseprice;
+            GST = getGstPrice(price);
+            totalprice = totalbaseprice+GST;
+        }
+        //int totalbaseprice = price*days*rooms;
 
 
-            mHotelGst.setText("₹ "+GST);
-            mHotelRate.setText("₹ "+sellprice);
-            mHotelTotalCharges.setText("₹ "+(totalprice));
+
+
+        mHotelGst.setText("₹ "+GST);
+        mHotelRate.setText("₹ "+sellprice);
+        mHotelTotalCharges.setText("₹ "+(totalprice));
+
+        hotelRate = mHotelRate.getText().toString();
+        hotelGst = mHotelGst.getText().toString();
 
 
 
@@ -1245,18 +1251,18 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                     String company = mGuestCompany.getText().toString();
 
                     if(guestName==null||guestName.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     }else if(guestMobile==null||guestMobile.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     }else if(guestEmail==null||guestEmail.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     }else if(total==null||total.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     }else if(hotelName==null||hotelName.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     } else if(!mMale.isChecked() && !mFemale.isChecked() )//&& !mTransgender.isChecked())
                     {
-                        Toast.makeText(HotelDetailsActivity.this,"Please select gender",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this,"Please select gender",Toast.LENGTH_SHORT).show();
                     }else if(mBussiness.isChecked()  )//&& !mTransgender.isChecked())
                     {
                         if(gst==null||gst.isEmpty()){
@@ -1332,18 +1338,18 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                     String hotelName = mHotelName.getText().toString();
 
                     if(guestName==null||guestName.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     }else if(guestMobile==null||guestMobile.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     }else if(guestEmail==null||guestEmail.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     }else if(total==null||total.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     }else if(hotelName==null||hotelName.isEmpty()){
-                        Toast.makeText(HotelDetailsActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Field should not be empty", Toast.LENGTH_SHORT).show();
                     } else if(!mMale.isChecked() && !mFemale.isChecked() )//&& !mTransgender.isChecked())
                     {
-                        Toast.makeText(HotelDetailsActivity.this,"Please select gender",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this,"Please select gender",Toast.LENGTH_SHORT).show();
                     }else{
                         startPayment();
                     /*Intent book = new Intent(HotelDetailsHourlyActivity.this,BookingDetailsActivity.class);
@@ -1389,20 +1395,20 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
                                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
-                                    Date fdate = simpleDateFormat.parse(date1);
-                                    System.out.println(simpleDateFormat.format(simpleDateFormat.parse(date1)));
-                                    checkInDate = simpleDateFormat.format(simpleDateFormat.parse(date1));
+                                Date fdate = simpleDateFormat.parse(date1);
+                                System.out.println(simpleDateFormat.format(simpleDateFormat.parse(date1)));
+                                checkInDate = simpleDateFormat.format(simpleDateFormat.parse(date1));
 
-                                    if(new Date().getTime() > fdate.getTime())
-                                    {
-                                        Toast.makeText(HotelDetailsActivity.this,"Please select future date",Toast.LENGTH_SHORT).show();
-                                    }
-                                    else
-                                    {
-                                        String from = new SimpleDateFormat("dd MMM yy").format(fdate);
-                                        System.out.println("To = "+from);
-                                        tv.setText(from);
-                                    }
+                                if(new Date().getTime() > fdate.getTime())
+                                {
+                                    Toast.makeText(HotelDetailsHourlyActivity.this,"Please select future date",Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    String from = new SimpleDateFormat("dd MMM yy").format(fdate);
+                                    System.out.println("To = "+from);
+                                    tv.setText(from);
+                                }
 
                                 //fd = sdf.parse(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
                                 //cd = sdf.parse(sdf.format(new Date()));
@@ -1442,7 +1448,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                                 checkoutDate = simpleDateFormat.format(simpleDateFormat.parse(date1));
                                 if(cDate.getTime() >= fdate.getTime())
                                 {
-                                    Toast.makeText(HotelDetailsActivity.this,"Please select future date",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HotelDetailsHourlyActivity.this,"Please select future date",Toast.LENGTH_SHORT).show();
                                 }
                                 else
                                 {
@@ -1506,7 +1512,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
    /* public void showHotelPolicy()
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsHourlyActivity.this);
         builder.setTitle("Hotel Policy");
         builder.setPositiveButton("GOT IT", new DialogInterface.OnClickListener() {
             @Override
@@ -1570,7 +1576,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 double dis = div*100;
                 //System.out.println("dis = "+dis);
                 DecimalFormat numberFormat = new DecimalFormat("#.##");
-                holder.mDiscount.setText(" "+numberFormat.format(dis)+"% Discount");
+               // holder.mDiscount.setText(" "+numberFormat.format(dis)+"% Discount");
                 //holder.mDiscount.setText(" "+dis+"% Discount");
             }
             else
@@ -1583,7 +1589,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 public void onClick(View v) {
 
 
-                  /*  Intent intent = new Intent(context, ReviewHotelDetailsActivity.class);
+                  /*  Intent intent = new Intent(context, ReviewHotelDetailsHourlyActivity.class);
                     intent.putExtra("HotelId",hotelId   );
                     intent.putExtra("Price",sellprice);
                     intent.putExtra("displayprice",displayprice);
@@ -1594,11 +1600,11 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                     intent.putExtra("Room",room);
 
                     context.startActivity(intent);*/
-                  try{
-                      showalertboxPay();
-                  }catch (Exception e){
-                      e.printStackTrace();
-                  }
+                    try{
+                        showalertboxPay();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
 
                 }
             });
@@ -1609,7 +1615,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                     if(agentHotel.getPolicies().size()!=0){
                         showAlertPolicy(agentHotel);
                     }else{
-                        Toast.makeText(HotelDetailsActivity.this, "This hotel do not have any policies", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "This hotel do not have any policies", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -1624,7 +1630,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         private void showOverView(String s) {
 
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(HotelDetailsHourlyActivity.this);
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View v = (View) inflater.inflate(R.layout.alert_box_policy,null);
 
@@ -1636,7 +1642,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             //itemsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
 
-            /*final ListItemAdapter adapter = new ListItemAdapter(HotelDetailsActivity.this,details.getAminetiesList());
+            /*final ListItemAdapter adapter = new ListItemAdapter(HotelDetailsHourlyActivity.this,details.getAminetiesList());
 
             itemsList.setAdapter(adapter);*/
 
@@ -1682,6 +1688,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 mDisplaprice = (TextView) itemView.findViewById(R.id.select_room_display_rate);
                 mSellPrice = (TextView) itemView.findViewById(R.id.select_room_sell_rate);
                 mDiscount = (TextView) itemView.findViewById(R.id.select_room_discount);
+                mDiscount.setVisibility(View.GONE);
+                mDisplaprice.setVisibility(View.GONE);
                 mDisplayPolicy = (TextView) itemView.findViewById(R.id.display_policies);
                 mRoomOverView = (TextView) itemView.findViewById(R.id.show_room_overview);
                 //mRoomCategory = (TextView) itemView.findViewById(R.id.select_room_category_type);
@@ -1746,7 +1754,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         new ThreadExecuter().execute(new Runnable() {
             @Override
             public void run() {
-                String auth_string = Util.getToken(HotelDetailsActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
+                String auth_string = Util.getToken(HotelDetailsHourlyActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
                 TravellerApi apiService = Util.getClient().create(TravellerApi.class);
                 Call<ArrayList<Traveller>> call = apiService.fetchTravelerByPhone(auth_string,dto);
 
@@ -1765,7 +1773,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                                 tlist = response.body();
 
                                 AutocompleteCustomArrayAdapter autocompleteCustomArrayAdapter =
-                                        new AutocompleteCustomArrayAdapter(HotelDetailsActivity.this,R.layout.hotels_row,tlist,"HotelDetailsActivity");
+                                        new AutocompleteCustomArrayAdapter(HotelDetailsHourlyActivity.this,R.layout.hotels_row,tlist,"HotelDetailsHourlyActivity");
                                 mGuestName.setThreshold(1);
                                 mGuestName.setAdapter(autocompleteCustomArrayAdapter);
 
@@ -1782,8 +1790,8 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                                 mGuestCompany.setEnabled(true);
                                 mGuestGST.setEnabled(true);
 
-                                mVerifyMobile.setVisibility(View.VISIBLE);
-                                mOTPParent.setVisibility(View.VISIBLE);
+                              /*  mVerifyMobile.setVisibility(View.VISIBLE);
+                                mOTPParent.setVisibility(View.VISIBLE);*/
                                /* mOtherParent.setVisibility(View.GONE);
                                 mPayNow.setEnabled(false);
                                 mPayLater.setEnabled(false);*/
@@ -1791,7 +1799,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         }else {
                             if (progressDialog != null)
                                 progressDialog.dismiss();
-                            Toast.makeText(HotelDetailsActivity.this, " failed due to : " + response.message(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HotelDetailsHourlyActivity.this, " failed due to : " + response.message(), Toast.LENGTH_SHORT).show();
                         }
 //                callGetStartEnd();
                     }
@@ -1866,7 +1874,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         {
             dialog.dismiss();
         }
-        Toast.makeText(HotelDetailsActivity.this, "OTP sent successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HotelDetailsHourlyActivity.this, "OTP sent successfully", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -1886,7 +1894,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             dialog.dismiss();
         }
 
-        Toast.makeText(HotelDetailsActivity.this, "OTP resent successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HotelDetailsHourlyActivity.this, "OTP resent successfully", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -1915,7 +1923,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
-                            Toast.makeText(HotelDetailsActivity.this, "Sucess verification", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HotelDetailsHourlyActivity.this, "Sucess verification", Toast.LENGTH_SHORT).show();
                             // [START_EXCLUDE]
 
 
@@ -2008,6 +2016,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         }
     }
 
+
     private void addTraveler(final String type){
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -2053,7 +2062,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         new ThreadExecuter().execute(new Runnable() {
             @Override
             public void run() {
-                String auth_string = Util.getToken(HotelDetailsActivity.this);
+                String auth_string = Util.getToken(HotelDetailsHourlyActivity.this);
                 TravellerApi apiService = Util.getClient().create(TravellerApi.class);
                 Call<Traveller> call = apiService.addTraveler(auth_string,dto);
 
@@ -2082,7 +2091,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         }else {
                             if (progressDialog!=null)
                                 progressDialog.dismiss();
-                            Toast.makeText(HotelDetailsActivity.this, " failed due to : "+response.message(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HotelDetailsHourlyActivity.this, " failed due to : "+response.message(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -2134,7 +2143,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             bookings.setCheckInTime(CheckInTime);
             bookings.setCheckOutTime(CheckOutTime);
             bookings.setHotelId(hotelDetailseResponse.getHotelId());
-            if(PreferenceHandler.getInstance(HotelDetailsActivity.this).getUserRoleUniqueID().equalsIgnoreCase("Luci-Agent"))
+            if(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getUserRoleUniqueID().equalsIgnoreCase("Luci-Agent"))
             {
                 bookings.setCommissionAmount((int)commissionAmt);
             }
@@ -2143,14 +2152,11 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                 bookings.setCommissionAmount(0);
             }
 
-            double diff = displayprice - price;
+           /* double diff = displayprice - price;
             double div = diff/displayprice;
-            double disc = div*100;
+            double disc = div*100;*/
 
             DecimalFormat numberFormat = new DecimalFormat("#.##");
-            bookings.setDiscount((int)disc);
-            bookings.setDiscountAmount(displayprice - price);
-
 
 
 
@@ -2274,18 +2280,17 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             String time = sdft.format(d);
 
             bookings.setBookingTime(time);
-            bookings.setTravellerAgentId(PreferenceHandler.getInstance(HotelDetailsActivity.this).getUserId());
+            bookings.setTravellerAgentId(PreferenceHandler.getInstance(HotelDetailsHourlyActivity.this).getUserId());
             if(book){
                 updateRoomBooking(bookings,type);
                 book = false;
             }else{
-                Toast.makeText(HotelDetailsActivity.this,"Booking done successfully",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(HotelDetailsActivity.this,BookingDetailsActivity.class);
+                Toast.makeText(HotelDetailsHourlyActivity.this,"Booking done successfully",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HotelDetailsHourlyActivity.this,BookingDetailsActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Booking",bookings);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                HotelDetailsActivity.this.finish();
             }
 
         }catch (Exception e){
@@ -2308,7 +2313,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             @Override
             public void run() {
                 BookingApi bookingApi = Util.getClient().create(BookingApi.class);
-                String auth = Util.getToken(HotelDetailsActivity.this);
+                String auth = Util.getToken(HotelDetailsHourlyActivity.this);
                 Call<Bookings1> bookingresponse = bookingApi.postBooking(auth,booking);
 
                 bookingresponse.enqueue(new Callback<Bookings1>() {
@@ -2367,7 +2372,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                                 progressDialog.dismiss();
                             }
 
-                            Toast.makeText(HotelDetailsActivity.this,"Please try after some time",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HotelDetailsHourlyActivity.this,"Please try after some time",Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -2378,7 +2383,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         {
                             progressDialog.dismiss();
                         }
-                        Toast.makeText(HotelDetailsActivity.this,"Please try after some time",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this,"Please try after some time",Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -2393,11 +2398,11 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
     public void addPayment(){
        /* String paymentName = "Room Payment";
-
-
+     
+      
         String paymentPrice = mAmount.getText().toString();
         String paymentMode = "Online";
-
+        
         */
         final Payment payment = new Payment();
         if(mHotelTotalCharges.getText().toString().contains(" ")){
@@ -2415,7 +2420,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
         payment.setBookingId(bookings.getBookingId());
         SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
         payment.setPaymentDate(date.format(new Date()));
-        final ProgressDialog dialog = new ProgressDialog(HotelDetailsActivity.this);
+        final ProgressDialog dialog = new ProgressDialog(HotelDetailsHourlyActivity.this);
         dialog.setMessage("Please wait...");
         dialog.setCancelable(false);
         dialog.show();
@@ -2423,7 +2428,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             @Override
             public void run() {
 
-                String auth_string = Util.getToken(HotelDetailsActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
+                String auth_string = Util.getToken(HotelDetailsHourlyActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
                 PaymentApi paymentApi = Util.getClient().create(PaymentApi.class);
 
                 Call<Payment> response = paymentApi.addPayment(auth_string,payment);
@@ -2466,7 +2471,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         }
                         else {
 
-                            Toast.makeText(HotelDetailsActivity.this,"Please try after some time",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HotelDetailsHourlyActivity.this,"Please try after some time",Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -2474,7 +2479,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                     @Override
                     public void onFailure(Call<Payment> call, Throwable t) {
                         System.out.println("onFailure");
-                        Toast.makeText(HotelDetailsActivity.this,"Please try after some time",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this,"Please try after some time",Toast.LENGTH_SHORT).show();
                         if(dialog != null && dialog.isShowing())
                         {
                             dialog.dismiss();
@@ -2500,7 +2505,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             @Override
             public void run() {
                 System.out.println("Hotel id = "+notification.getHotelId());
-                String auth_string = Util.getToken(HotelDetailsActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
+                String auth_string = Util.getToken(HotelDetailsHourlyActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
                 NotificationApi travellerApi = Util.getClient().create(NotificationApi.class);
                 Call<ArrayList<String>> response = travellerApi.sendnotificationToProfile(auth_string,notification);
 
@@ -2527,11 +2532,11 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                                 intent.putExtras(bundle);
                                 startActivity(intent);*/
 
-                                NotificationManager nf = new NotificationManager();
+                                /*NotificationManager nf = new NotificationManager();
                                 nf.setNotificationText(notification.getTitle());
                                 nf.setNotificationFor(notification.getMessage());
                                 nf.setHotelId(notification.getHotelId());
-                                savenotification(nf,bookings1);
+                                savenotification(nf,bookings1);*/
                                 Log.d("Notification","Sent to bill");
 
 
@@ -2549,7 +2554,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         {
                             dialog.dismiss();
                         }*/
-                        Toast.makeText(HotelDetailsActivity.this, "Notification sent failed due to "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Notification sent failed due to "+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -2559,7 +2564,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
     private void sendfirebaseNotification(final HotelNotification notification, final Bookings1 bookings1) {
 
-        final ProgressDialog dialog = new ProgressDialog(HotelDetailsActivity.this);
+        final ProgressDialog dialog = new ProgressDialog(HotelDetailsHourlyActivity.this);
         dialog.setMessage(getResources().getString(R.string.loader_message));
         dialog.setCancelable(false);
         dialog.show();
@@ -2568,7 +2573,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             @Override
             public void run() {
                 System.out.println("Hotel id = "+notification.getHotelId());
-                String auth_string = Util.getToken(HotelDetailsActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
+                String auth_string = Util.getToken(HotelDetailsHourlyActivity.this);//"Basic " +  Base64.encodeToString(authentication.getBytes(), Base64.NO_WRAP);
                 NotificationApi travellerApi = Util.getClient().create(NotificationApi.class);
                 Call<ArrayList<String>> response = travellerApi.sendnotificationToHotel(auth_string,notification);
 
@@ -2612,7 +2617,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                         {
                             dialog.dismiss();
                         }
-                        Toast.makeText(HotelDetailsActivity.this, "Notification sent failed due to "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HotelDetailsHourlyActivity.this, "Notification sent failed due to "+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -2622,7 +2627,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
 
     private void savenotification(final NotificationManager notification, final Bookings1 bookings1) {
 
-        final ProgressDialog dialog = new ProgressDialog(HotelDetailsActivity.this);
+        final ProgressDialog dialog = new ProgressDialog(HotelDetailsHourlyActivity.this);
         dialog.setMessage(getResources().getString(R.string.loader_message));
         dialog.setCancelable(false);
         dialog.show();
@@ -2631,7 +2636,7 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             @Override
             public void run() {
                 System.out.println("Hotel id = "+notification.getHotelId());
-                String auth_string = Util.getToken(HotelDetailsActivity.this);
+                String auth_string = Util.getToken(HotelDetailsHourlyActivity.this);
                 NotificationApi travellerApi = Util.getClient().create(NotificationApi.class);
                 Call<NotificationManager> response = travellerApi.saveNotification(auth_string,notification);
 
@@ -2659,13 +2664,12 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
                                 }*/
 
 
-                                Toast.makeText(HotelDetailsActivity.this,"Booking done successfully",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(HotelDetailsActivity.this,BookingDetailsActivity.class);
+                                Toast.makeText(HotelDetailsHourlyActivity.this,"Booking done successfully",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(HotelDetailsHourlyActivity.this,BookingDetailsActivity.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable("Booking",bookings1);
                                 intent.putExtras(bundle);
                                 startActivity(intent);
-                                HotelDetailsActivity.this.finish();
                                 //Toast.makeText(HotelDetailsHourlyActivity.this, "Save Notification", Toast.LENGTH_SHORT).show();
 
 
@@ -2782,9 +2786,6 @@ public class HotelDetailsActivity extends AppCompatActivity implements TabLayout
             Log.e(TAG, "Exception in onPaymentError", e);
         }
     }
-
-
-
 
 
 }

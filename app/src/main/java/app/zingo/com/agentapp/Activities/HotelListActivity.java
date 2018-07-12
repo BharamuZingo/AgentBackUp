@@ -51,6 +51,7 @@ import app.zingo.com.agentapp.Adapter.HotelListImageAdapter;
 import app.zingo.com.agentapp.Adapter.ImageAdapter;
 import app.zingo.com.agentapp.Adapter.ViewPagerAdapter;
 import app.zingo.com.agentapp.CustomViews.RecyclerViewAnimator;
+import app.zingo.com.agentapp.DemoActivity;
 import app.zingo.com.agentapp.MainActivity;
 import app.zingo.com.agentapp.Model.DataModel;
 import app.zingo.com.agentapp.Model.HotelAvailablityResponse;
@@ -1069,7 +1070,7 @@ public class HotelListActivity extends AppCompatActivity {
 
     private void goback()
     {
-        Intent intent = new Intent(HotelListActivity.this,MainActivity.class);
+        Intent intent = new Intent(HotelListActivity.this,DemoActivity.class);
         startActivity(intent);
         HotelListActivity.this.finish();
     }

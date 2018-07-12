@@ -370,7 +370,7 @@
                             android:src="@drawable/right_arrow" />
 
                         <app.zingo.com.agentapp.CustomViews.CustomFontTextView
-                            android:id="@+id/hotel_about_description"
+                            android:id="@+id/hotel_about_description_hourly"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -383,7 +383,7 @@
                             app:fontName="OpenSans_Light" />
 
                         <app.zingo.com.agentapp.CustomViews.CustomFontTextView
-                            android:id="@+id/read_more_description"
+                            android:id="@+id/read_more_description_hourly"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -428,7 +428,7 @@
                             android:src="@drawable/right_arrow" />
 
                         <app.zingo.com.agentapp.CustomViews.CustomFontTextView
-                            android:id="@+id/hotel_policy"
+                            android:id="@+id/hotel_policy_hourly"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -441,7 +441,7 @@
                             app:fontName="OpenSans_Light" />
 
                         <app.zingo.com.agentapp.CustomViews.CustomFontTextView
-                            android:id="@+id/read_more_policy"
+                            android:id="@+id/read_more_policy_hourly"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -584,15 +584,15 @@
                             android:textColor="#000"
                             app:fontName="arial_bold" />
 
-                        <!-- <ImageView
-                             android:id="@+id/guest_info_edit_icon"
-                             android:layout_width="20dp"
-                             android:layout_height="17dp"
-                             android:layout_gravity="center"
-                             android:elevation="20dp"
-                             android:scaleType="centerCrop"
-                             android:src="@drawable/edit_pencil_icon" />
- -->
+                       <!-- <ImageView
+                            android:id="@+id/guest_info_edit_icon"
+                            android:layout_width="20dp"
+                            android:layout_height="17dp"
+                            android:layout_gravity="center"
+                            android:elevation="20dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/edit_pencil_icon" />
+-->
 
                         <app.zingo.com.agentapp.CustomViews.CustomFontTextView
                             android:layout_width="wrap_content"
